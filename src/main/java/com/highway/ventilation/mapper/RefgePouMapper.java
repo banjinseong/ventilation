@@ -16,4 +16,7 @@ public interface RefgePouMapper {
     void enroll(RefgePouGetDTO refgePouGetDTO);
     //데이터 업데이트
     void update(RefgePouGetDTO refgePouGetDTO);
+
+    //데이터 삭제
+    void delete(String pou_no);
 }

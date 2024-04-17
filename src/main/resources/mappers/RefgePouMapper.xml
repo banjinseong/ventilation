@@ -19,6 +19,10 @@
 
     <update id="update">
         update refge_pou set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
-        where pou_no = 'pou1'
+        where pou_no = #{pou_no}
     </update>
+
+    <delete id="delete">
+        delete from refge_pou where pou_no = #{pou_no}
+    </delete>
 </mapper>

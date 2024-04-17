@@ -27,4 +27,8 @@ public class RefgePouService {
     public void update(RefgePouGetDTO refgePouGetDTO){
         refgePouMapper.update(refgePouGetDTO);
     }
+
+    public void delete(String pou_no){
+        refgePouMapper.delete(pou_no);
+    }
 }

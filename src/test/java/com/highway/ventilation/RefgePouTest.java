@@ -57,18 +57,31 @@ public class RefgePouTest {
     @Test
     public void 방화문_업데이트_테스트() throws Exception{
         //given
+        String pouNo = String.format("%-11s", "pou1");
         RefgePouGetDTO refgePouGetDTO = new RefgePouGetDTO();
         refgePouGetDTO.setInstl_lc("54");
         refgePouGetDTO.setX_crdnt(123);
+        refgePouGetDTO.setPou_no(pouNo);
         //when
         refgePouService.update(refgePouGetDTO);
         /**
          * db상에선 no로 체크 되어있기 때문에 좀 골치아프네 ㅁㅎㅁㅎ
          */
-        String pouNo = String.format("%-11s", "pou1");
+
         RefgePouVO vo = refgePouService.findOne(pouNo);
 
         //then
         Assertions.assertThat(vo.getX_crdnt()).isEqualTo(123);
+    }
+
+    @Test
+    public void 방화문_삭제_테스트() throws Exception{
+        //given
+        String pouNo = String.format("%-11s", "pou1");
+        //when
+        refgePouService.delete(pouNo);
+        List<RefgePouVO> list = refgePouService.findAll();
+        //then
+        Assertions.assertThat(list.size()).isEqualTo(2);
     }
 }
