@@ -1,6 +1,7 @@
 package com.highway.ventilation.service;
 
 import com.highway.ventilation.domain.RefgePouVO;
+import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.mapper.RefgePouMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,5 +16,15 @@ public class RefgePouService {
 
     public List<RefgePouVO> findAll(){
         return refgePouMapper.findAll();
+    }
+
+    public RefgePouVO findOne(String pou_no){ return refgePouMapper.findOne(pou_no); }
+
+    public void enroll(RefgePouGetDTO refgePouGetDTO){
+        refgePouMapper.enroll(refgePouGetDTO);
+    }
+
+    public void update(RefgePouGetDTO refgePouGetDTO){
+        refgePouMapper.update(refgePouGetDTO);
     }
 }

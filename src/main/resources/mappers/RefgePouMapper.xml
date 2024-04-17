@@ -6,4 +6,19 @@
     <select id="findAll" resultType="com.highway.ventilation.domain.RefgePouVO">
         SELECT makr_nm, instl_de, instl_milg, x_crdnt, y_crdnt FROM refge_pou
     </select>
+
+    <select id="findOne" resultType="com.highway.ventilation.domain.RefgePouVO">
+        SELECT * FROM refge_pou
+        where pou_no = #{pou_no}
+    </select>
+
+    <insert id="enroll">
+        insert into refge_pou(pou_no, link_id, makr_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
+        values('re4', 'link2', #{makr_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+    </insert>
+
+    <update id="update">
+        update refge_pou set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
+        where pou_no = 'pou1'
+    </update>
 </mapper>
