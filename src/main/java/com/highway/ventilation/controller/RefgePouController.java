@@ -1,13 +1,11 @@
 package com.highway.ventilation.controller;
 
-import com.highway.ventilation.domain.RefgePouVO;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.dto.Result;
 import com.highway.ventilation.service.RefgePouService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;

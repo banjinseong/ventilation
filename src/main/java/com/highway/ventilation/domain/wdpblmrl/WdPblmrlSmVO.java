@@ -1,4 +1,4 @@
-package com.highway.ventilation.domain;
+package com.highway.ventilation.domain.wdpblmrl;
 
 import lombok.Getter;
 import lombok.Setter;

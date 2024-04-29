@@ -1,6 +1,6 @@
 package com.highway.ventilation.dto;
 
-import com.highway.ventilation.domain.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePouVO;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;

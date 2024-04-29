@@ -1,4 +1,4 @@
-package com.highway.ventilation.domain;
+package com.highway.ventilation.domain.jetpan;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,10 +6,10 @@ import lombok.Setter;
 @Getter
 @Setter
 /**
- * 축류팬 정보
+ * 제트팬
  */
-public class VenAxfnVO {
-    private String ven_axfn_no; //기본키
+public class JetPanVO {
+    private String jet_pan_no; //기본키
     private String link_id; //링크(fk)키
     private String makr_nm; //제조사명
     private String model_nm; //모델명
@@ -20,4 +20,8 @@ public class VenAxfnVO {
     private char delete_at; //삭제여부
     private int x_crdnt; //x좌표
     private int y_crdnt; //y좌표
+    private String ven_vs_msrins_no; //가시도(fk)키
+    private String cmo_msrins_no; //일산화탄소(fk)키
+    private String wd_pblmrl_sm_no; //풍향(fk)키
+    private String inshlt_no; //백엽상(fk)키
 }

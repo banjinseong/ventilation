@@ -1,6 +1,6 @@
 package com.highway.ventilation.mapper;
 
-import com.highway.ventilation.domain.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePouVO;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import org.apache.ibatis.annotations.Mapper;
 

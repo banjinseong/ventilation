@@ -1,0 +1,19 @@
+package com.highway.ventilation.domain.venaxfn;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+/**
+ * 축류팬 일(하루) 통계
+ */
+public class VenAxfnDeStats {
+    private String link_id;//링크키(fk)
+    private String ven_axfn_no;//축류팬 번호(fk)
+    private String stats_de;//통계 일(pk)
+    private int opr_time;//가동 시간
+    private int opr_co;//가동 횟수
+    private int defect_time;//고장시간
+    private int defect_co;//고장 횟수
+}

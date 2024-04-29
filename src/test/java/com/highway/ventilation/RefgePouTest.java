@@ -1,6 +1,6 @@
 package com.highway.ventilation;
 
-import com.highway.ventilation.domain.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePouVO;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.mapper.RefgePouMapper;
 import com.highway.ventilation.service.RefgePouService;
