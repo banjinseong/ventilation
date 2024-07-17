@@ -3,11 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.ventilation.mapper.RefgePouMapper">
-    <select id="findAll" resultType="com.highway.ventilation.domain.refgepou.RefgePouVO">
+    <select id="findAll" resultType="com.highway.ventilation.domain.refgepou.RefgePou">
         SELECT makr_nm, instl_de, instl_milg, x_crdnt, y_crdnt FROM refge_pou
     </select>
 
-    <select id="findOne" resultType="com.highway.ventilation.domain.refgepou.RefgePouVO">
+    <select id="findOne" resultType="com.highway.ventilation.domain.refgepou.RefgePou">
         SELECT * FROM refge_pou
         where pou_no = #{pou_no}
     </select>

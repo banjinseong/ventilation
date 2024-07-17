@@ -8,7 +8,7 @@ import lombok.Setter;
 /**
  * 피난 경문(피난문)정보
  */
-public class RefgePouVO {
+public class RefgePou {
     private String pou_no; //기본키
     private String link_id; //링크(fk)키
     private String makr_nm; //제조사명

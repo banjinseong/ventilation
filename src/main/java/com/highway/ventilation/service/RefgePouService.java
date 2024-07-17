@@ -1,6 +1,6 @@
 package com.highway.ventilation.service;
 
-import com.highway.ventilation.domain.refgepou.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePou;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.mapper.RefgePouMapper;
 import lombok.RequiredArgsConstructor;
@@ -14,11 +14,11 @@ public class RefgePouService {
 
     private final RefgePouMapper refgePouMapper;
 
-    public List<RefgePouVO> findAll(){
+    public List<RefgePou> findAll(){
         return refgePouMapper.findAll();
     }
 
-    public RefgePouVO findOne(String pou_no){ return refgePouMapper.findOne(pou_no); }
+    public RefgePou findOne(String pou_no){ return refgePouMapper.findOne(pou_no); }
 
     public void enroll(RefgePouGetDTO refgePouGetDTO){
         refgePouMapper.enroll(refgePouGetDTO);

@@ -1,6 +1,6 @@
 package com.highway.ventilation;
 
-import com.highway.ventilation.domain.refgepou.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePou;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.mapper.RefgePouMapper;
 import com.highway.ventilation.service.RefgePouService;
@@ -32,7 +32,7 @@ public class RefgePouTest {
         //given
 
         //when
-        List<RefgePouVO> list = refgePouService.findAll();
+        List<RefgePou> list = refgePouService.findAll();
         //then
         Assertions.assertThat(list.size()).isEqualTo(3);
     }
@@ -49,7 +49,7 @@ public class RefgePouTest {
         refgePouGetDTO.setY_crdnt(456);
         //when
         refgePouService.enroll(refgePouGetDTO);
-        List<RefgePouVO> list = refgePouService.findAll();
+        List<RefgePou> list = refgePouService.findAll();
         //then
         Assertions.assertThat(list.size()).isEqualTo(4);
     }
@@ -68,7 +68,7 @@ public class RefgePouTest {
          * db상에선 no로 체크 되어있기 때문에 좀 골치아프네 ㅁㅎㅁㅎ
          */
 
-        RefgePouVO vo = refgePouService.findOne(pouNo);
+        RefgePou vo = refgePouService.findOne(pouNo);
 
         //then
         Assertions.assertThat(vo.getX_crdnt()).isEqualTo(123);
@@ -80,7 +80,7 @@ public class RefgePouTest {
         String pouNo = String.format("%-11s", "pou1");
         //when
         refgePouService.delete(pouNo);
-        List<RefgePouVO> list = refgePouService.findAll();
+        List<RefgePou> list = refgePouService.findAll();
         //then
         Assertions.assertThat(list.size()).isEqualTo(2);
     }

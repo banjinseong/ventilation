@@ -1,6 +1,6 @@
 package com.highway.ventilation.dto;
 
-import com.highway.ventilation.domain.refgepou.RefgePouVO;
+import com.highway.ventilation.domain.refgepou.RefgePou;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class RefgePouGetDTO {
     private int x_crdnt; //x좌표
     private int y_crdnt; //y좌표
 
-    public RefgePouGetDTO(RefgePouVO refgePouVO){
+    public RefgePouGetDTO(RefgePou refgePouVO){
         this.pou_no = refgePouVO.getPou_no();
         this.makr_nm = refgePouVO.getMakr_nm();
         this.instl_lc = refgePouVO.getInstl_lc();

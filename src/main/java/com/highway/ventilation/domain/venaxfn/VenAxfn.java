@@ -8,7 +8,7 @@ import lombok.Setter;
 /**
  * 축류팬 정보
  */
-public class VenAxfnVO {
+public class VenAxfn {
     private String ven_axfn_no; //기본키
     private String link_id; //링크(fk)키
     private String makr_nm; //제조사명

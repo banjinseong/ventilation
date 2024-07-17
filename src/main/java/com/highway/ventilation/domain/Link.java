@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class LinkVO {
+public class Link {
     private String link_id;
 }

@@ -1,4 +1,4 @@
-package com.highway.ventilation.domain.CO;
+package com.highway.ventilation.domain.wdpblmrl;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,10 +6,10 @@ import lombok.Setter;
 @Setter
 @Getter
 /**
- * 일산화탄소 계측
+ * 풍향 풍속 계측
  */
-public class CmoMsrinsVO {
-    private String cmo_msrins_no; //기본키
+public class WdPblmrlSm {
+    private String wd_pblml_sm_no; //기본키
     private String link_id; //링크(fk)키
     private String makr_nm; //제조사명
     private String model_nm; //모델명
