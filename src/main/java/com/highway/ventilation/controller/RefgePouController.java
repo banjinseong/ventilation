@@ -1,5 +1,6 @@
 package com.highway.ventilation.controller;
 
+import com.highway.ventilation.domain.refgepou.RefgePou;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import com.highway.ventilation.dto.Result;
 import com.highway.ventilation.service.RefgePouService;
@@ -22,11 +23,10 @@ public class RefgePouController {
 
     //조회시
     @GetMapping("/refge")
-    public ResponseEntity<Result<RefgePouGetDTO>> findAll(){
-        List<RefgePouGetDTO> list = refgePouService.findAll().stream()
-                .map(RefgePouGetDTO::new)
-                .collect(Collectors.toList());
-        return ResponseEntity.status(HttpStatus.valueOf(200)).body(new Result(list));
+    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
+                                                    @RequestParam(defaultValue = "10") int size) {
+        Result<RefgePou> result = refgePouService.findAll(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     //방화문 등록시

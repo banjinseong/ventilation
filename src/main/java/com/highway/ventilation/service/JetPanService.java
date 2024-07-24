@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RefgePouService {
+public class JetPanService {
 
     private final RefgePouMapper refgePouMapper;
 

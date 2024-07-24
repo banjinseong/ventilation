@@ -1,17 +1,14 @@
-package com.highway.ventilation.domain.jetpan;
+package com.highway.ventilation.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-/**
- * 제트팬
- */
-@Getter
-@Setter
-public class JetPan {
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class JetPanGetDTO {
     private String jet_pan_no; //기본키
-    private String link; //링크(fk)키
     private String makrNm; //제조사명
     private String modelNm; //모델명
     private String instlLc; //설치위치
@@ -25,7 +22,4 @@ public class JetPan {
     private String cmoMsrinsNo; //일산화탄소(fk)키
     private String wdPblmrlSmNo; //풍향(fk)키
     private String inshltNo; //백엽상(fk)키
-
-
 }
-

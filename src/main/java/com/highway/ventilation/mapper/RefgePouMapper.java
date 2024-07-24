@@ -3,13 +3,16 @@ package com.highway.ventilation.mapper;
 import com.highway.ventilation.domain.refgepou.RefgePou;
 import com.highway.ventilation.dto.RefgePouGetDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface RefgePouMapper {
-    //모든 조회
-    List<RefgePou> findAll();
+
+    List<RefgePou> findAll(@Param("offset") int offset, @Param("limit") int limit);
+
+    int countAll();
     //하나만 조회
     RefgePou findOne(String pou_no);
     //데이터 등록

@@ -4,9 +4,19 @@
 
 <mapper namespace="com.highway.ventilation.mapper.RefgePouMapper">
     <select id="findAll" resultType="com.highway.ventilation.domain.refgepou.RefgePou">
-        SELECT makr_nm, instl_de, instl_milg, x_crdnt, y_crdnt FROM refge_pou
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM refge_pou
+                                   ORDER BY pou_no
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM refge_pou
+    </select>
     <select id="findOne" resultType="com.highway.ventilation.domain.refgepou.RefgePou">
         SELECT * FROM refge_pou
         where pou_no = #{pou_no}
@@ -14,7 +24,7 @@
 
     <insert id="enroll">
         insert into refge_pou(pou_no, link_id, makr_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
-        values('re4', 'link2', #{makr_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+        values(#{pou_no}, 'link2', #{makr_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
     </insert>
 
     <update id="update">
