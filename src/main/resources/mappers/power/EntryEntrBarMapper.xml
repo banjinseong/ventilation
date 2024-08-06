@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.EntryEntrBar">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM entry_entr_bar
+                                   ORDER BY entry_entr_bar_no
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM entry_entr_bar
+    </select>
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.EntryEntrBar">
+        SELECT * FROM entry_entr_bar
+        where entry_entr_bar_no = #{entry_entr_bar_no}
+    </select>
+
+    <insert id="enroll">
+        insert into entry_entr_bar(entry_entr_bar_no, link_id, makr_nm, model_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
+        values(#{entry_entr_bar_no}, 'link2', #{makr_nm}, #{model_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+    </insert>
+
+    <update id="update">
+        update entry_entr_bar set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
+        where entry_entr_bar_no = #{entry_entr_bar_no}
+    </update>
+
+    <delete id="delete">
+        delete from entry_entr_bar where entry_entr_bar_no = #{entry_entr_bar_no}
+    </delete>
+</mapper>

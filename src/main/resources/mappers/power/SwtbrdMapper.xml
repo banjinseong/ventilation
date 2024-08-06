@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.Swtbrd">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM swtbrd
+                                   ORDER BY swtbrd_no
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM swtbrd
+    </select>
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.Swtbrd">
+        SELECT * FROM swtbrd
+        where swtbrd_no = #{swtbrd_no}
+    </select>
+
+    <insert id="enroll">
+        insert into swtbrd(swtbrd_no, pow_pop_no, makr_nm, model_nm, instl_lc, instl_de, instl_milg, pero, x_crdnt, y_crdnt)
+        values(#{swtbrd_no}, #{pow_pop_no}, #{makr_nm}, #{model_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{pero}, #{x_crdnt}, #{y_crdnt})
+    </insert>
+
+    <update id="update">
+        update swtbrd set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
+        where swtbrd_no = #{swtbrd_no}
+    </update>
+
+    <delete id="delete">
+        delete from swtbrd where swtbrd_no = #{swtbrd_no}
+    </delete>
+</mapper>

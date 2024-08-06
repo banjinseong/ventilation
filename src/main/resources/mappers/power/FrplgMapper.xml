@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.FrplgMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.Frplg">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM frplg
+                                   ORDER BY frplg_no
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM frplg
+    </select>
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.Frplg">
+        SELECT * FROM frplg
+        where frplg_no = #{frplg_no}
+    </select>
+
+    <insert id="enroll">
+        insert into frplg(frplg_no, link_id, frplg_knd, makr_nm, model_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
+        values(#{frplg_no}, 'link2', #{frplg_knd}, #{makr_nm}, #{model_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+    </insert>
+
+    <update id="update">
+        update frplg set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
+        where frplg_no = #{frplg_no}
+    </update>
+
+    <delete id="delete">
+        delete from frplg where frplg_no = #{frplg_no}
+    </delete>
+</mapper>

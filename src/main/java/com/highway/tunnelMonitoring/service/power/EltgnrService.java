@@ -1,0 +1,41 @@
+package com.highway.tunnelMonitoring.service.power;
+
+import com.highway.tunnelMonitoring.domain.power.Eltgnr;
+import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
+import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
+import com.highway.tunnelMonitoring.mapper.ventilation.CmoMsrinsMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class EltgnrService {
+
+    private final EltgnrMapper eltgnrMapper;
+
+    public Result<Eltgnr> findAll(int page, int size) {
+        int offset = (page - 1) * size;
+        List<Eltgnr> list = eltgnrMapper.findAll(offset, size);
+        int total = eltgnrMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+    }
+
+    public Eltgnr findOne(String eltgnr_no){ return eltgnrMapper.findOne(eltgnr_no); }
+
+    public void enroll(Eltgnr eltgnr){
+        eltgnrMapper.enroll(eltgnr);
+    }
+
+    public void update(Eltgnr eltgnr){
+        eltgnrMapper.update(eltgnr);
+    }
+
+    public void delete(String eltgnr_no){
+        eltgnrMapper.delete(eltgnr_no);
+    }
+}
