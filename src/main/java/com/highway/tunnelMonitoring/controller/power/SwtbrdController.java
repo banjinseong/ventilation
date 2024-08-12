@@ -1,9 +1,9 @@
-package com.highway.tunnelMonitoring.controller.ventilation;
+package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.RefgePouGetDTO;
+import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
+import com.highway.tunnelMonitoring.dto.power.SwtbrdDTO;
+import com.highway.tunnelMonitoring.service.power.SwtbrdService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,26 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 배전반 (Swtbrd)
+ */
 @RestController
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/refge/*")
-public class RefgePouController {
+@RequestMapping("/power/swtbrd/*")
+public class SwtbrdController {
 
-    private final RefgePouService refgePouService;
+    private final SwtbrdService swtbrdService;
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
-        Result<RefgePou> result = refgePouService.findAll(page, size);
+    public ResponseEntity<Result<Swtbrd>> findAll(@RequestParam(defaultValue = "1") int page,
+                                                  @RequestParam(defaultValue = "10") int size) {
+        Result<Swtbrd> result = swtbrdService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postSwtbrd(@RequestBody @Valid SwtbrdDTO swtbrdDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -44,7 +47,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.enroll(refgePouGetDTO);
+            swtbrdService.enroll(swtbrdDTO);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -56,9 +59,9 @@ public class RefgePouController {
     }
 
 
-    @PutMapping("config/update")
+    @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putSwtbrd(@RequestBody @Valid SwtbrdDTO swtbrdDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -68,7 +71,8 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.update(refgePouGetDTO);
+            swtbrdService.update(swtbrdDTO);
+
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -81,10 +85,10 @@ public class RefgePouController {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteRefge(@RequestBody List<String> pouNos){
+    public ResponseEntity<String> deleteSwtbrd(@RequestBody List<String> swtbrd_nos){
         try {
-            for (String pouNo : pouNos) {
-                refgePouService.delete(pouNo);
+            for (String swtbrd_no : swtbrd_nos) {
+                swtbrdService.delete(swtbrd_no);
             }
             String message = "삭제에 성공하셨습니다.";
             return ResponseEntity.ok(message);

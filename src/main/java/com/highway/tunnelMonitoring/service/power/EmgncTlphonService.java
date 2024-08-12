@@ -1,9 +1,8 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Eltgnr;
+import com.highway.tunnelMonitoring.dto.power.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.mapper.power.EmgncTlphonMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,12 +25,12 @@ public class EmgncTlphonService {
 
     public EmgncTlphon findOne(String emgnc_tlphon_no){ return emgncTlphonMapper.findOne(emgnc_tlphon_no); }
 
-    public void enroll(EmgncTlphon emgncTlphon){
-        emgncTlphonMapper.enroll(emgncTlphon);
+    public void enroll(EmgncTlphonDTO emgncTlphonDTO){
+        emgncTlphonMapper.enroll(emgncTlphonDTO);
     }
 
-    public void update(EmgncTlphon emgncTlphon){
-        emgncTlphonMapper.update(emgncTlphon);
+    public void update(EmgncTlphonDTO emgncTlphonDTO){
+        emgncTlphonMapper.update(emgncTlphonDTO);
     }
 
     public void delete(String emgnc_tlphon_no){

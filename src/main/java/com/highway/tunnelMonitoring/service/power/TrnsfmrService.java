@@ -3,6 +3,7 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.domain.power.Trnsfmr;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.TrnsfmrDTO;
 import com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper;
 import com.highway.tunnelMonitoring.mapper.power.TrnsfmrMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,13 +27,13 @@ public class TrnsfmrService {
 
     public Trnsfmr findOne(String trnsfmr_no){ return trnsfmrMapper.findOne(trnsfmr_no); }
 
-    public void enroll(Trnsfmr trnsfmr){
-        trnsfmrMapper.enroll(trnsfmr);
+    public void enroll(TrnsfmrDTO trnsfmrDTO){
+        trnsfmrMapper.enroll(trnsfmrDTO);
     }
 
-//    public void update(Trnsfmr trnsfmr){
-//        trnsfmrMapper.update(trnsfmr);
-//    }
+    public void update(TrnsfmrDTO trnsfmrDTO){
+        trnsfmrMapper.update(trnsfmrDTO);
+    }
 
     public void delete(String trnsfmr_no){
         trnsfmrMapper.delete(trnsfmr_no);

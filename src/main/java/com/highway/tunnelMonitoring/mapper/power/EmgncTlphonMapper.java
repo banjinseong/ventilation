@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.dto.power.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,9 +16,9 @@ public interface EmgncTlphonMapper {
     //하나만 조회
     EmgncTlphon findOne(String emgnc_tlphon_no);
     //데이터 등록
-    void enroll(EmgncTlphon emgncTlphon);
+    void enroll(EmgncTlphonDTO emgncTlphonDTO);
     //데이터 업데이트
-    void update(EmgncTlphon emgncTlphon);
+    void update(EmgncTlphonDTO emgncTlphonDTO);
 
     //데이터 삭제
     void delete(String emgnc_tlphon_no);

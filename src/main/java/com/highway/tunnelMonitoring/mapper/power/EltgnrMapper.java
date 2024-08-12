@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
-import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
-import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.power.EltgnrDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,9 +16,9 @@ public interface EltgnrMapper {
     //하나만 조회
     Eltgnr findOne(String eltgnr_no);
     //데이터 등록
-    void enroll(Eltgnr eltgnr);
+    void enroll(EltgnrDTO eltgnrDTO);
     //데이터 업데이트
-    void update(Eltgnr eltgnr);
+    void update(EltgnrDTO eltgnrDTO);
 
     //데이터 삭제
     void delete(String eltgnr_no);

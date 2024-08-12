@@ -1,9 +1,8 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Frplg;
 import com.highway.tunnelMonitoring.domain.power.Lght;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.mapper.power.FrplgMapper;
+import com.highway.tunnelMonitoring.dto.power.lght.LghtDTO;
 import com.highway.tunnelMonitoring.mapper.power.LghtMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,12 +25,12 @@ public class LghtService {
 
     public Lght findOne(String lght_group_no, String lght_knd){ return lghtMapper.findOne(lght_group_no, lght_knd); }
 
-    public void enroll(Lght lght){
-        lghtMapper.enroll(lght);
+    public void enroll(LghtDTO lghtDTO){
+        lghtMapper.enroll(lghtDTO);
     }
 
-    public void update(Lght lght){
-        lghtMapper.update(lght);
+    public void update(LghtDTO lghtDTO){
+        lghtMapper.update(lghtDTO);
     }
 
     public void delete(String lght_group_no, String lght_knd){

@@ -1,9 +1,10 @@
-package com.highway.tunnelMonitoring.controller.ventilation;
+package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.RefgePouGetDTO;
+import com.highway.tunnelMonitoring.domain.power.Lght;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
+import com.highway.tunnelMonitoring.dto.power.lght.LghtDTO;
+import com.highway.tunnelMonitoring.dto.power.lght.LghtDeleteDTO;
+import com.highway.tunnelMonitoring.service.power.LghtService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,26 +16,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 조명 (Lght)
+ */
 @RestController
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/refge/*")
-public class RefgePouController {
+@RequestMapping("/power/lght/*")
+public class LghtController {
 
-    private final RefgePouService refgePouService;
+    private final LghtService lghtService;
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
-        Result<RefgePou> result = refgePouService.findAll(page, size);
+    public ResponseEntity<Result<Lght>> findAll(@RequestParam(defaultValue = "1") int page,
+                                                @RequestParam(defaultValue = "10") int size) {
+        Result<Lght> result = lghtService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postLght(@RequestBody @Valid LghtDTO lghtDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -44,7 +48,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.enroll(refgePouGetDTO);
+            lghtService.enroll(lghtDTO);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -58,7 +62,7 @@ public class RefgePouController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putLght(@RequestBody @Valid LghtDTO lghtDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -68,7 +72,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.update(refgePouGetDTO);
+            lghtService.update(lghtDTO);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -81,10 +85,10 @@ public class RefgePouController {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteRefge(@RequestBody List<String> pouNos){
+    public ResponseEntity<String> deleteLght(@RequestBody List<LghtDeleteDTO> keys){
         try {
-            for (String pouNo : pouNos) {
-                refgePouService.delete(pouNo);
+            for (LghtDeleteDTO key : keys) {
+                lghtService.delete(key.getLght_group_no(), key.getLght_knd());
             }
             String message = "삭제에 성공하셨습니다.";
             return ResponseEntity.ok(message);

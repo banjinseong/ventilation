@@ -1,9 +1,9 @@
-package com.highway.tunnelMonitoring.controller.ventilation;
+package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.RefgePouGetDTO;
+import com.highway.tunnelMonitoring.domain.power.Frplg;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
+import com.highway.tunnelMonitoring.dto.power.FrplgDTO;
+import com.highway.tunnelMonitoring.service.power.FrplgService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,26 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 소화전
+ */
 @RestController
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/refge/*")
-public class RefgePouController {
+@RequestMapping("/power/frplg/*")
+public class FrplgController {
 
-    private final RefgePouService refgePouService;
+    private final FrplgService frplgService;
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
-        Result<RefgePou> result = refgePouService.findAll(page, size);
+    public ResponseEntity<Result<Frplg>> findAll(@RequestParam(defaultValue = "1") int page,
+                                                 @RequestParam(defaultValue = "10") int size) {
+        Result<Frplg> result = frplgService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postFrplg(@RequestBody @Valid FrplgDTO frplgDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -44,7 +47,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.enroll(refgePouGetDTO);
+            frplgService.enroll(frplgDTO);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -58,7 +61,7 @@ public class RefgePouController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putFrplg(@RequestBody @Valid FrplgDTO frplgDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -68,7 +71,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.update(refgePouGetDTO);
+            frplgService.update(frplgDTO);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -81,10 +84,10 @@ public class RefgePouController {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteRefge(@RequestBody List<String> pouNos){
+    public ResponseEntity<String> deleteFrplg(@RequestBody List<String> frplg_nos){
         try {
-            for (String pouNo : pouNos) {
-                refgePouService.delete(pouNo);
+            for (String frplg_no : frplg_nos) {
+                frplgService.delete(frplg_no);
             }
             String message = "삭제에 성공하셨습니다.";
             return ResponseEntity.ok(message);

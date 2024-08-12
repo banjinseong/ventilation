@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
-import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
+import com.highway.tunnelMonitoring.dto.power.SwtbrdDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,9 +16,9 @@ public interface SwtbrdMapper {
     //하나만 조회
     Swtbrd findOne(String swtbrd_no);
     //데이터 등록
-    void enroll(Swtbrd swtbrd);
+    void enroll(SwtbrdDTO swtbrd);
     //데이터 업데이트
-    void update(Swtbrd swtbrd);
+    void update(SwtbrdDTO swtbrd);
 
     //데이터 삭제
     void delete(String swtbrd_no);

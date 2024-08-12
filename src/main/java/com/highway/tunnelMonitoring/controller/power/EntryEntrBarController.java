@@ -1,9 +1,9 @@
-package com.highway.tunnelMonitoring.controller.ventilation;
+package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.RefgePouGetDTO;
+import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
+import com.highway.tunnelMonitoring.dto.power.EntryEntrBarDTO;
+import com.highway.tunnelMonitoring.service.power.EntryEntrBarService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,26 +15,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 진입 차단기
+ */
 @RestController
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/refge/*")
-public class RefgePouController {
+@RequestMapping("/power/entryEntrBar/*")
+public class EntryEntrBarController {
 
-    private final RefgePouService refgePouService;
+    private final EntryEntrBarService entryEntrBarService;
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
-        Result<RefgePou> result = refgePouService.findAll(page, size);
+    public ResponseEntity<Result<EntryEntrBar>> findAll(@RequestParam(defaultValue = "1") int page,
+                                                        @RequestParam(defaultValue = "10") int size) {
+        Result<EntryEntrBar> result = entryEntrBarService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postEntryEntrBar(@RequestBody @Valid EntryEntrBarDTO entryEntrBarDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -44,7 +47,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.enroll(refgePouGetDTO);
+            entryEntrBarService.enroll(entryEntrBarDTO);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -58,7 +61,7 @@ public class RefgePouController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putEntryEntrBar(@RequestBody @Valid EntryEntrBarDTO entryEntrBarDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -68,7 +71,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.update(refgePouGetDTO);
+            entryEntrBarService.update(entryEntrBarDTO);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -81,10 +84,10 @@ public class RefgePouController {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteRefge(@RequestBody List<String> pouNos){
+    public ResponseEntity<String> deleteEntryEntrBar(@RequestBody List<String> entry_entr_bar_nos){
         try {
-            for (String pouNo : pouNos) {
-                refgePouService.delete(pouNo);
+            for (String entry_entr_bar_no : entry_entr_bar_nos) {
+                entryEntrBarService.delete(entry_entr_bar_no);
             }
             String message = "삭제에 성공하셨습니다.";
             return ResponseEntity.ok(message);

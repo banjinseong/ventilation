@@ -1,10 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.Frplg;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
+import com.highway.tunnelMonitoring.dto.power.FrplgDTO;
 import com.highway.tunnelMonitoring.mapper.power.FrplgMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +26,12 @@ public class FrplgService {
 
     public Frplg findOne(String frplg_no){ return frplgMapper.findOne(frplg_no); }
 
-    public void enroll(Frplg frplg){
-        frplgMapper.enroll(frplg);
+    public void enroll(FrplgDTO frplgDTO){
+        frplgMapper.enroll(frplgDTO);
     }
 
-    public void update(Frplg frplg){
-        frplgMapper.update(frplg);
+    public void update(FrplgDTO frplgDTO){
+        frplgMapper.update(frplgDTO);
     }
 
     public void delete(String frplg_no){

@@ -3,6 +3,7 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.PowPop;
 import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.RectDTO;
 import com.highway.tunnelMonitoring.mapper.power.PowPopMapper;
 import com.highway.tunnelMonitoring.mapper.power.RectMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,12 @@ public class RectService {
 
     public Rect findOne(String rect_no){ return rectMapper.findOne(rect_no); }
 
-    public void enroll(Rect rect){
-        rectMapper.enroll(rect);
+    public void enroll(RectDTO rectDTO){
+        rectMapper.enroll(rectDTO);
     }
 
-    public void update(Rect rect){
-        rectMapper.update(rect);
+    public void update(RectDTO rectDTO){
+        rectMapper.update(rectDTO);
     }
 
     public void delete(String rect_no){

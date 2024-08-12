@@ -3,6 +3,7 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.EltgnrDTO;
 import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.mapper.ventilation.CmoMsrinsMapper;
@@ -27,12 +28,12 @@ public class EltgnrService {
 
     public Eltgnr findOne(String eltgnr_no){ return eltgnrMapper.findOne(eltgnr_no); }
 
-    public void enroll(Eltgnr eltgnr){
-        eltgnrMapper.enroll(eltgnr);
+    public void enroll(EltgnrDTO eltgnrDTO){
+        eltgnrMapper.enroll(eltgnrDTO);
     }
 
-    public void update(Eltgnr eltgnr){
-        eltgnrMapper.update(eltgnr);
+    public void update(EltgnrDTO eltgnrDTO){
+        eltgnrMapper.update(eltgnrDTO);
     }
 
     public void delete(String eltgnr_no){

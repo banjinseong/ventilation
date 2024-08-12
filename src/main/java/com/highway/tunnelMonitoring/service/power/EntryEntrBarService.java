@@ -3,6 +3,7 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
 import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.EntryEntrBarDTO;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,12 @@ public class EntryEntrBarService {
 
     public EntryEntrBar findOne(String entry_entr_bar_no){ return entryEntrBarMapper.findOne(entry_entr_bar_no); }
 
-    public void enroll(EntryEntrBar entryEntrBar){
-        entryEntrBarMapper.enroll(entryEntrBar);
+    public void enroll(EntryEntrBarDTO entryEntrBarDTO){
+        entryEntrBarMapper.enroll(entryEntrBarDTO);
     }
 
-    public void update(EntryEntrBar entryEntrBar){
-        entryEntrBarMapper.update(entryEntrBar);
+    public void update(EntryEntrBarDTO entryEntrBarDTO){
+        entryEntrBarMapper.update(entryEntrBarDTO);
     }
 
     public void delete(String entry_entr_bar_no){

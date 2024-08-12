@@ -1,7 +1,8 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
-import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.Frplg;
+import com.highway.tunnelMonitoring.dto.power.FrplgDTO;
+import jakarta.validation.Valid;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,9 +17,9 @@ public interface FrplgMapper {
     //하나만 조회
     Frplg findOne(String frplg_no);
     //데이터 등록
-    void enroll(Frplg frplg);
+    void enroll(FrplgDTO frplg);
     //데이터 업데이트
-    void update(Frplg frplg);
+    void update(FrplgDTO frplg);
 
     //데이터 삭제
     void delete(String frplg_no);

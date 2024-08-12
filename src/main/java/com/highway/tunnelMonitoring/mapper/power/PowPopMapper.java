@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lmtr;
 import com.highway.tunnelMonitoring.domain.power.PowPop;
+import com.highway.tunnelMonitoring.dto.power.PowPopDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,9 +16,9 @@ public interface PowPopMapper {
     //하나만 조회
     PowPop findOne(String pow_pop_no);
     //데이터 등록
-    void enroll(PowPop powPop);
+    void enroll(PowPopDTO powPop);
     //데이터 업데이트
-    void update(PowPop powPop);
+    void update(PowPopDTO powPop);
 
     //데이터 삭제
     void delete(String pow_pop_no);

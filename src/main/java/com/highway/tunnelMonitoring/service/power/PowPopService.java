@@ -1,9 +1,8 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lmtr;
 import com.highway.tunnelMonitoring.domain.power.PowPop;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.mapper.power.LmtrMapper;
+import com.highway.tunnelMonitoring.dto.power.PowPopDTO;
 import com.highway.tunnelMonitoring.mapper.power.PowPopMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PopPopService {
+public class PowPopService {
 
     private final PowPopMapper powPopMapper;
 
@@ -26,12 +25,12 @@ public class PopPopService {
 
     public PowPop findOne(String pow_pop_no){ return powPopMapper.findOne(pow_pop_no); }
 
-    public void enroll(PowPop powPop){
-        powPopMapper.enroll(powPop);
+    public void enroll(PowPopDTO powPopDTO){
+        powPopMapper.enroll(powPopDTO);
     }
 
-    public void update(PowPop powPop){
-        powPopMapper.update(powPop);
+    public void update(PowPopDTO powPopDTO){
+        powPopMapper.update(powPopDTO);
     }
 
     public void delete(String pow_pop_no){

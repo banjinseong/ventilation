@@ -2,6 +2,7 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Ups;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.UpsDTO;
 import com.highway.tunnelMonitoring.mapper.power.UpsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,12 +25,12 @@ public class UpsService {
 
     public Ups findOne(String ups_no){ return upsMapper.findOne(ups_no); }
 
-    public void enroll(Ups ups){
-        upsMapper.enroll(ups);
+    public void enroll(UpsDTO upsDTO){
+        upsMapper.enroll(upsDTO);
     }
 
-    public void update(Ups ups){
-        upsMapper.update(ups);
+    public void update(UpsDTO upsDTO){
+        upsMapper.update(upsDTO);
     }
 
     public void delete(String ups_no){

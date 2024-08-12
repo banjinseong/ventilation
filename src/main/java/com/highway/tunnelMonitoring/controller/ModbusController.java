@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.controller.ventilation;
+package com.highway.tunnelMonitoring.controller;
 
 import com.highway.tunnelMonitoring.service.ModbusRTUService;
 import org.springframework.web.bind.annotation.GetMapping;

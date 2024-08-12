@@ -3,6 +3,7 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.SwtbrdDTO;
 import com.highway.tunnelMonitoring.mapper.power.RectMapper;
 import com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,12 +27,12 @@ public class SwtbrdService {
 
     public Swtbrd findOne(String swtbrd_no){ return swtbrdMapper.findOne(swtbrd_no); }
 
-    public void enroll(Swtbrd swtbrd){
-        swtbrdMapper.enroll(swtbrd);
+    public void enroll(SwtbrdDTO swtbrdDTO){
+        swtbrdMapper.enroll(swtbrdDTO);
     }
 
-    public void update(Swtbrd swtbrd){
-        swtbrdMapper.update(swtbrd);
+    public void update(SwtbrdDTO swtbrdDTO){
+        swtbrdMapper.update(swtbrdDTO);
     }
 
     public void delete(String swtbrd_no){
