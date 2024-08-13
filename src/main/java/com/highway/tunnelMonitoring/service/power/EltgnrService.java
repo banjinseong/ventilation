@@ -3,6 +3,8 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
 import com.highway.tunnelMonitoring.dto.Result;
 import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrDTO;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class EltgnrService {
 
     public void delete(String eltgnr_no){
         eltgnrMapper.delete(eltgnr_no);
+    }
+
+    public Result<EltgnrMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<EltgnrMonitorDTO> list = eltgnrMapper.monitor(offset, size);
+        int total = eltgnrMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

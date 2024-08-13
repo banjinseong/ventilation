@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
+import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface EmgncTlphonMapper {
 
     //데이터 삭제
     void delete(String emgnc_tlphon_no);
+
+    List<EmgncTlphonMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

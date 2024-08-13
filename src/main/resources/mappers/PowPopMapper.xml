@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from pow_pop where pow_pop_no = #{pow_pop_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM POW_POP_STTUS
+                                   ORDER BY POW_POP_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

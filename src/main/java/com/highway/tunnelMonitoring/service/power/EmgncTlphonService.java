@@ -1,8 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.EmgncTlphonMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class EmgncTlphonService {
 
     public void delete(String emgnc_tlphon_no){
         emgncTlphonMapper.delete(emgnc_tlphon_no);
+    }
+
+    public Result<EmgncTlphonMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<EmgncTlphonMonitorDTO> list = emgncTlphonMapper.monitor(offset, size);
+        int total = emgncTlphonMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

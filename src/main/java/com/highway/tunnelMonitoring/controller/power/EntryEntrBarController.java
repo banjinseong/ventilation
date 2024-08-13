@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarDTO;
+import com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarMonitorDTO;
 import com.highway.tunnelMonitoring.service.power.EntryEntrBarService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -96,5 +98,16 @@ public class EntryEntrBarController {
             //500으로 메시지 고정, 위에서 유효성검사 하기때문에
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
+    }
+
+    /**
+     * 모니터링
+     */
+    @GetMapping("monitor")
+    public ResponseEntity<Result<EntryEntrBarMonitorDTO>> monitorEntryEntrBar(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                              @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<EntryEntrBarMonitorDTO> result = entryEntrBarService.monitor(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 }

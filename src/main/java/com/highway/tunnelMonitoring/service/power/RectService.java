@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.rect.RectDTO;
+import com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.RectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class RectService {
 
     public void delete(String rect_no){
         rectMapper.delete(rect_no);
+    }
+
+    public Result<RectMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<RectMonitorDTO> list = rectMapper.monitor(offset, size);
+        int total = rectMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

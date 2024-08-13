@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from frplg where frplg_no = #{frplg_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.frplg.FrplgMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM FRPLG_STTUS
+                                   ORDER BY FRPLG_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

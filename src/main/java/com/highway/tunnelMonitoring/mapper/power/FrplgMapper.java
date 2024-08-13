@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Frplg;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.frplg.FrplgDTO;
+import com.highway.tunnelMonitoring.dto.power.frplg.FrplgMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface FrplgMapper {
 
     //데이터 삭제
     void delete(String frplg_no);
+
+    List<FrplgMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

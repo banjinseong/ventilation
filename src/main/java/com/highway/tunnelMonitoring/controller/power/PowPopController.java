@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.PowPop;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
+import com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO;
 import com.highway.tunnelMonitoring.service.power.PowPopService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -97,5 +99,16 @@ public class PowPopController {
             //500으로 메시지 고정, 위에서 유효성검사 하기때문에
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
+    }
+
+    /**
+     * 모니터링
+     */
+    @GetMapping("monitor")
+    public ResponseEntity<Result<PowPopMonitorDTO>> monitorPowPop(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                  @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<PowPopMonitorDTO> result = powPopService.monitor(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 }

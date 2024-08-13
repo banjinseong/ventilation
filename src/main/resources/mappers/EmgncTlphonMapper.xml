@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from emgnc_tlphon where emgnc_tlphon_no = #{emgnc_tlphon_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM EMGNC_TLPHON_STTUS
+                                   ORDER BY EMGNC_TLPHON_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

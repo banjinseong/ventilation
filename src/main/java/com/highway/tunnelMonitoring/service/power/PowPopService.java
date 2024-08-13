@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.PowPop;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
+import com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.PowPopMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class PowPopService {
 
     public void delete(String pow_pop_no){
         powPopMapper.delete(pow_pop_no);
+    }
+
+    public Result<PowPopMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<PowPopMonitorDTO> list = powPopMapper.monitor(offset, size);
+        int total = powPopMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

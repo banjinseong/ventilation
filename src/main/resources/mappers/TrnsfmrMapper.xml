@@ -31,4 +31,15 @@
     <delete id="delete">
         delete from trnsfmr where trnsfmr_no = #{trnsfmr_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.trnsfmr.TrnsfmrMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM TRNSFMR_STTUS
+                                   ORDER BY TRNSFMR_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

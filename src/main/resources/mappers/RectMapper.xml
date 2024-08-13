@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from rect where rect_no = #{rect_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM RECT_STTUS
+                                   ORDER BY RECT_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

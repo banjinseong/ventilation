@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdDTO;
+import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,4 +38,13 @@ public class SwtbrdService {
     public void delete(String swtbrd_no){
         swtbrdMapper.delete(swtbrd_no);
     }
+
+    public Result<SwtbrdMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<SwtbrdMonitorDTO> list = swtbrdMapper.monitor(offset, size);
+        int total = swtbrdMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+    }
 }
+

@@ -8,7 +8,7 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM lght
-                                   ORDER BY LGHT_GROUP_NO
+                                   ORDER BY LGHT_GROUP_NO, LGHT_KND
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from lght where LGHT_GROUP_NO = #{LGHT_GROUP_NO} AND LGHT_KND = #{LGHT_KND}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.lght.LghtMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM LGHT_STTUS
+                                   ORDER BY LGHT_GROUP_NO, LGHT_KND
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

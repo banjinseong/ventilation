@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Trnsfmr;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.trnsfmr.TrnsfmrDTO;
+import com.highway.tunnelMonitoring.dto.power.trnsfmr.TrnsfmrMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface TrnsfmrMapper {
 
     //데이터 삭제
     void delete(String trnsfmr_no);
+
+    List<TrnsfmrMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

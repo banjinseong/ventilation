@@ -2,6 +2,8 @@ package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
 import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrDTO;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface EltgnrMapper {
 
     //데이터 삭제
     void delete(String eltgnr_no);
+
+    List<EltgnrMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

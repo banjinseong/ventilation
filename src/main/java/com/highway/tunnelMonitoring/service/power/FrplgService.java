@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Frplg;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.frplg.FrplgDTO;
+import com.highway.tunnelMonitoring.dto.power.frplg.FrplgMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.power.FrplgMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class FrplgService {
 
     public void delete(String frplg_no){
         frplgMapper.delete(frplg_no);
+    }
+
+    public Result<FrplgMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<FrplgMonitorDTO> list = frplgMapper.monitor(offset, size);
+        int total = frplgMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

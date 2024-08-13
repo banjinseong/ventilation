@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.PowPop;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
+import com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface PowPopMapper {
 
     //데이터 삭제
     void delete(String pow_pop_no);
+
+    List<PowPopMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

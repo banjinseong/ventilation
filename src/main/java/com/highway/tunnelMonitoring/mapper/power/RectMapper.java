@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Rect;
+import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
 import com.highway.tunnelMonitoring.dto.power.rect.RectDTO;
+import com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface RectMapper {
 
     //데이터 삭제
     void delete(String rect_no);
+
+    List<RectMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }
