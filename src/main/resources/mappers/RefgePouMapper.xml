@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from refge_pou where pou_no = #{pou_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM REFGE_POU_STTUS
+                                   ORDER BY POU_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

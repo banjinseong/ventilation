@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Frplg;
-import com.highway.tunnelMonitoring.dto.power.FrplgDTO;
-import jakarta.validation.Valid;
+import com.highway.tunnelMonitoring.dto.power.frplg.FrplgDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,6 +1,6 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.dto.power.EmgncTlphonDTO;
+import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import com.highway.tunnelMonitoring.dto.Result;
 import com.highway.tunnelMonitoring.mapper.power.EmgncTlphonMapper;

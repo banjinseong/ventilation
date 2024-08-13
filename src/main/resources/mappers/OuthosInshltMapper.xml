@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from OUTHOUS_INSHLT where INSHLT_NO = #{INSHLT_NO}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM OUTHOUS_WETHER_STTUS
+                                   ORDER BY INSHLT_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

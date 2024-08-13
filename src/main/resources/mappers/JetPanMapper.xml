@@ -35,4 +35,16 @@
     <delete id="delete">
         delete from JET_PAN where JET_PAN_NO = #{JET_PAN_NO}
     </delete>
+
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM JET_PAN_STTUS
+                                   ORDER BY JET_PAN_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

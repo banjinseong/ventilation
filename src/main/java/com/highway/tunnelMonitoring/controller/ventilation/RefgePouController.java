@@ -1,8 +1,10 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.RefgePouGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouGetDTO;
 import com.highway.tunnelMonitoring.dto.Result;
+import com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouMonitorDTO;
 import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -93,5 +95,16 @@ public class RefgePouController {
             //500으로 메시지 고정, 위에서 유효성검사 하기때문에
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
+    }
+
+    /**
+     * 모니터링
+     */
+    @GetMapping("monitor")
+    public ResponseEntity<Result<RefgePouMonitorDTO>> monitorRefgePou(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<RefgePouMonitorDTO> result = refgePouService.monitor(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 }

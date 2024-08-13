@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.EmgncTlphonDTO;
+import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.service.power.EmgncTlphonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

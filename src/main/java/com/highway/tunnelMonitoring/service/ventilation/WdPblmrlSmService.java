@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.service.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.wdpblmrl.WdPblmrlSm;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.WdPblmrlSmGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.wdpblmrlsm.WdPblmrlSmGetDTO;
 import com.highway.tunnelMonitoring.mapper.ventilation.WdPblmrlSmMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

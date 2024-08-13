@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.ventilation;
+package com.highway.tunnelMonitoring.dto.ventilation.refgepou;
 
 import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
 import jakarta.validation.constraints.NotNull;

@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from VEN_AXFN where VEN_AXFN_NO = #{VEN_AXFN_NO}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.venaxfn.VenAxfnMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM VEN_AXFN_STTUS
+                                   ORDER BY VEN_AXFN_NO
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

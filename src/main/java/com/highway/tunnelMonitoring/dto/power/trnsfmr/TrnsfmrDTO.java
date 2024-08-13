@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.power;
+package com.highway.tunnelMonitoring.dto.power.trnsfmr;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

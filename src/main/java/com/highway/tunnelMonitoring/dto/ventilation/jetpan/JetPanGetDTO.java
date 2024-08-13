@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.ventilation;
+package com.highway.tunnelMonitoring.dto.ventilation.jetpan;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

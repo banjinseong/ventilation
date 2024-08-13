@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.SwtbrdDTO;
+import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdDTO;
 import com.highway.tunnelMonitoring.service.power.SwtbrdService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

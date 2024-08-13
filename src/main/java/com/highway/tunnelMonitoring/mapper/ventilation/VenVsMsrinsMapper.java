@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsMsrins;
-import com.highway.tunnelMonitoring.dto.ventilation.VenVsMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.venvsmsrins.VenVsMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.venvsmsrins.VenVsMsrinsMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface VenVsMsrinsMapper {
 
     //데이터 삭제
     void delete(String ven_vs_msrins_no);
+
+    List<VenVsMsrinsMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

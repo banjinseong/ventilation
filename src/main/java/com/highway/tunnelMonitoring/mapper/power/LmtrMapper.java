@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.Lmtr;
-import com.highway.tunnelMonitoring.dto.power.LmtrDTO;
+import com.highway.tunnelMonitoring.dto.power.lmtr.LmtrDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

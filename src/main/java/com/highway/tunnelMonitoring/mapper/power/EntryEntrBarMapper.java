@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
-import com.highway.tunnelMonitoring.dto.power.EntryEntrBarDTO;
+import com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

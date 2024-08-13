@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.PowPop;
-import com.highway.tunnelMonitoring.dto.power.PowPopDTO;
+import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

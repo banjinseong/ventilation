@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.SwtbrdDTO;
-import com.highway.tunnelMonitoring.mapper.power.RectMapper;
+import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdDTO;
 import com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

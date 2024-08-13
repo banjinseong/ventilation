@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.power;
+package com.highway.tunnelMonitoring.dto.ventilation.venvsmsrins;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LmtrDTO {
-    private String lmtr_no; //기본키
+public class VenVsMsrinsGetDTO {
+    private String ven_vs_msrins_no; //기본키
     private String makr_nm; //제조사명
     private String model_nm; //모델명
     private String instl_lc; //설치위치

@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Rect;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.RectDTO;
+import com.highway.tunnelMonitoring.dto.power.rect.RectDTO;
 import com.highway.tunnelMonitoring.service.power.RectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

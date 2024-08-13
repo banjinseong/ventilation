@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.power;
+package com.highway.tunnelMonitoring.dto.power.ups;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RectDTO {
-    private String rect_no; // 정류기 번호 (Primary Key)
+public class UpsDTO {
+    private String ups_no; // UPS 번호 (Primary Key)
     private String makr_nm; // 제조사 이름
     private String model_nm; // 모델 이름
     private String instl_lc; // 설치 위치

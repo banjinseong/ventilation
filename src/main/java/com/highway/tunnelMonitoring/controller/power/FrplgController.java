@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Frplg;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.FrplgDTO;
+import com.highway.tunnelMonitoring.dto.power.frplg.FrplgDTO;
 import com.highway.tunnelMonitoring.service.power.FrplgService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

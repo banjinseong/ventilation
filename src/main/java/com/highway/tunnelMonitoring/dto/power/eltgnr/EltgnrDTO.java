@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.ventilation;
+package com.highway.tunnelMonitoring.dto.power.eltgnr;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class WdPblmrlSmGetDTO {
-    private String wd_pblml_sm_no; //기본키
-    private String link_id; //링크(fk)키
+public class EltgnrDTO {
+    private String eltgnr_no; //기본키
     private String makr_nm; //제조사명
     private String model_nm; //모델명
     private String instl_lc; //설치위치

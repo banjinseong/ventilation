@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.inshlt.OuthousInshlt;
-import com.highway.tunnelMonitoring.dto.ventilation.OuthousInshltGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +24,7 @@ public interface OuthosInshltMapper {
 
     //데이터 삭제
     void delete(String inshlt_no);
+
+    List<OuthousInshltMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+
 }

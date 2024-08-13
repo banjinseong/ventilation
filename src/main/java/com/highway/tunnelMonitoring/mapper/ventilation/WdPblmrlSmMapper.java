@@ -1,7 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.wdpblmrl.WdPblmrlSm;
-import com.highway.tunnelMonitoring.dto.ventilation.WdPblmrlSmGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.wdpblmrlsm.WdPblmrlSmGetDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.wdpblmrl.WdPblmrlSm;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.WdPblmrlSmGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.wdpblmrlsm.WdPblmrlSmGetDTO;
 import com.highway.tunnelMonitoring.service.ventilation.WdPblmrlSmService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

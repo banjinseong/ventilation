@@ -2,7 +2,7 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Ups;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.UpsDTO;
+import com.highway.tunnelMonitoring.dto.power.ups.UpsDTO;
 import com.highway.tunnelMonitoring.mapper.power.UpsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

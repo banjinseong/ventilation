@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.service.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsMsrins;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.VenVsMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.venvsmsrins.VenVsMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.venvsmsrins.VenVsMsrinsMonitorDTO;
 import com.highway.tunnelMonitoring.mapper.ventilation.VenVsMsrinsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,13 @@ public class VenVsMsrinsService {
 
     public void delete(String ven_vs_msrins_no){
         venVsMsrinsMapper.delete(ven_vs_msrins_no);
+    }
+
+    public Result<VenVsMsrinsMonitorDTO> monitor(int page, int size) {
+        int offset = (page - 1) * size;
+        List<VenVsMsrinsMonitorDTO> list = venVsMsrinsMapper.monitor(offset, size);
+        int total = venVsMsrinsMapper.countAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
     }
 }

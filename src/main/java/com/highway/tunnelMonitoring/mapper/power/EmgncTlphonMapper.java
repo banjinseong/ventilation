@@ -1,6 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
-import com.highway.tunnelMonitoring.dto.power.EmgncTlphonDTO;
+import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
 import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

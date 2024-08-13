@@ -2,7 +2,9 @@ package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.inshlt.OuthousInshlt;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.OuthousInshltGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltMonitorDTO;
 import com.highway.tunnelMonitoring.service.ventilation.OuthosInshltService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -93,5 +95,16 @@ public class OuthousInshltController {
             //500으로 메시지 고정, 위에서 유효성검사 하기때문에
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
+    }
+
+    /**
+     * 모니터링
+     */
+    @GetMapping("monitor")
+    public ResponseEntity<Result<OuthousInshltMonitorDTO>> monitorOuthousInshlt(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                                @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<OuthousInshltMonitorDTO> result = outhosInshltService.monitor(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
     }
 }
