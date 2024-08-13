@@ -25,8 +25,8 @@ public class RefgePouController {
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<Result<RefgePou>> findAll(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                    @RequestParam(defaultValue = "10", name = "size") int size) {
         Result<RefgePou> result = refgePouService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

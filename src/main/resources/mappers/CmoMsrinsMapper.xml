@@ -35,4 +35,15 @@
     <delete id="delete">
         delete from cmo_msrins where cmo_msrins_no = #{cmo_msrins_no}
     </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM CMO_STTUS
+                                   ORDER BY cmo_msrins_no
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
 </mapper>

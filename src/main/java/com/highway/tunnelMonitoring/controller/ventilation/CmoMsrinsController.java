@@ -2,7 +2,8 @@ package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
 import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
 import com.highway.tunnelMonitoring.service.ventilation.CmoMsrinsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +19,15 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/cmoMsrins/*")
+@RequestMapping("/ventilation/cmoMsrins")
 public class CmoMsrinsController {
 
     private final CmoMsrinsService cmoMsrinsService;
 
     //조회시
     @GetMapping("config/list")
-    public ResponseEntity<Result<CmoMsrins>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
+    public ResponseEntity<Result<CmoMsrins>> findAll(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                    @RequestParam(defaultValue = "10", name = "size") int size) {
         Result<CmoMsrins> result = cmoMsrinsService.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
@@ -94,4 +95,17 @@ public class CmoMsrinsController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
     }
+
+
+    /**
+     * 모니터링
+     */
+    @GetMapping("monitor")
+    public ResponseEntity<Result<CmoMsrinsMonitorDTO>> monitorCmoMsrins(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                              @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<CmoMsrinsMonitorDTO> result = cmoMsrinsService.monitor(page, size);
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+
+    }
+
 }

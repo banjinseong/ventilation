@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.dto.ventilation;
+package com.highway.tunnelMonitoring.dto.ventilation.cmomsrins;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CmoMsrinsGetDTO {
     private String cmo_msrins_no; //기본키
+    private String link_id;
     private String makr_nm; //제조사명
     private String model_nm; //모델명
     private String instl_lc; //설치위치

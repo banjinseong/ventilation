@@ -1,7 +1,8 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
-import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsGetDTO;
+import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,4 +23,6 @@ public interface CmoMsrinsMapper {
 
     //데이터 삭제
     void delete(String cmo_msrins_no);
+
+    List<CmoMsrinsMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
 }

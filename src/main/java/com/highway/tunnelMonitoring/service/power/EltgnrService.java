@@ -1,12 +1,9 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.power.Eltgnr;
-import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
 import com.highway.tunnelMonitoring.dto.Result;
 import com.highway.tunnelMonitoring.dto.power.EltgnrDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.CmoMsrinsGetDTO;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
-import com.highway.tunnelMonitoring.mapper.ventilation.CmoMsrinsMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
