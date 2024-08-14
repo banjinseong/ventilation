@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,12 +16,12 @@ public interface CmoMsrinsMapper {
     //하나만 조회
     CmoMsrins findOne(String cmo_msrins_no);
     //데이터 등록
-    void enroll(CmoMsrinsGetDTO cmoMsrinsGetDTO);
+    void enroll(CmoMsrins cmoMsrinsGetDTO);
     //데이터 업데이트
-    void update(CmoMsrinsGetDTO cmoMsrinsGetDTO);
+    void update(CmoMsrins cmoMsrinsGetDTO);
 
     //데이터 삭제
     void delete(String cmo_msrins_no);
 
-    List<CmoMsrinsMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<CmoSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 }

@@ -36,7 +36,7 @@
         delete from refge_pou where pou_no = #{pou_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePouSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

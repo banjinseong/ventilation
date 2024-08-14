@@ -1,9 +1,9 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lmtr;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.lmtr.LmtrDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.lmtr.Lmtr;
 import com.highway.tunnelMonitoring.mapper.power.LmtrMapper;
+import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class LmtrService {
+public class LmtrService implements CrudService<Lmtr, String> {
 
     private final LmtrMapper lmtrMapper;
 
+    @Override
     public Result<Lmtr> findAll(int page, int size) {
         int offset = (page - 1) * size;
         List<Lmtr> list = lmtrMapper.findAll(offset, size);
@@ -23,16 +24,20 @@ public class LmtrService {
         return new Result<>(list, total, page, totalPages);
     }
 
+    @Override
     public Lmtr findOne(String lmtr_no){ return lmtrMapper.findOne(lmtr_no); }
 
-    public void enroll(LmtrDTO lmtrDTO){
-        lmtrMapper.enroll(lmtrDTO);
+    @Override
+    public void enroll(Lmtr lmtr){
+        lmtrMapper.enroll(lmtr);
     }
 
-    public void update(LmtrDTO lmtrDTO){
-        lmtrMapper.update(lmtrDTO);
+    @Override
+    public void update(Lmtr lmtr){
+        lmtrMapper.update(lmtr);
     }
 
+    @Override
     public void delete(String lmtr_no){
         lmtrMapper.delete(lmtr_no);
     }

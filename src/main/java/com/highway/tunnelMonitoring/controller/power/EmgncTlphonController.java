@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
-import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphon;
+import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphonSttus;
 import com.highway.tunnelMonitoring.service.power.EmgncTlphonService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class EmgncTlphonController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postEmgncTlphon(@RequestBody @Valid EmgncTlphonDTO emgncTlphonDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postEmgncTlphon(@RequestBody @Valid EmgncTlphon emgncTlphonDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -63,7 +61,7 @@ public class EmgncTlphonController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putEmgncTlphon(@RequestBody @Valid EmgncTlphonDTO emgncTlphonDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putEmgncTlphon(@RequestBody @Valid EmgncTlphon emgncTlphonDTO, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -104,9 +102,9 @@ public class EmgncTlphonController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<EmgncTlphonMonitorDTO>> monitorEmgncTlphon(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                            @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EmgncTlphonMonitorDTO> result = emgncTlphonService.monitor(page, size);
+    public ResponseEntity<Result<EmgncTlphonSttus>> monitorEmgncTlphon(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<EmgncTlphonSttus> result = emgncTlphonService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

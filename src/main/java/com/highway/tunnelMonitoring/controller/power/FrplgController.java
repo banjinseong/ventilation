@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.Frplg;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.frplg.FrplgDTO;
-import com.highway.tunnelMonitoring.dto.power.frplg.FrplgMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
+import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import com.highway.tunnelMonitoring.service.power.FrplgService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class FrplgController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postFrplg(@RequestBody @Valid FrplgDTO frplgDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postFrplg(@RequestBody @Valid Frplg frplg, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +47,7 @@ public class FrplgController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            frplgService.enroll(frplgDTO);
+            frplgService.enroll(frplg);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +61,7 @@ public class FrplgController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putFrplg(@RequestBody @Valid FrplgDTO frplgDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putFrplg(@RequestBody @Valid Frplg frplg, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +71,7 @@ public class FrplgController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            frplgService.update(frplgDTO);
+            frplgService.update(frplg);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -104,9 +102,9 @@ public class FrplgController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<FrplgMonitorDTO>> monitorFrplg(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<FrplgMonitorDTO> result = frplgService.monitor(page, size);
+    public ResponseEntity<Result<FrplgSttus>> monitorFrplg(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                           @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<FrplgSttus> result = frplgService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

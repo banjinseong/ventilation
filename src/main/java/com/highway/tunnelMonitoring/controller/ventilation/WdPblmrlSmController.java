@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.wdpblmrl.WdPblmrlSm;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.wdpblmrlsm.WdPblmrlSmGetDTO;
+import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.service.ventilation.WdPblmrlSmService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,7 @@ public class WdPblmrlSmController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postWdPblmrlSm(@RequestBody @Valid WdPblmrlSmGetDTO wdPblmrlSmGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postWdPblmrlSm(@RequestBody @Valid WdPblmrlSm wdPblmrlSm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -44,7 +43,7 @@ public class WdPblmrlSmController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            wdPblmrlSmService.enroll(wdPblmrlSmGetDTO);
+            wdPblmrlSmService.enroll(wdPblmrlSm);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -58,7 +57,7 @@ public class WdPblmrlSmController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putWdPblmrlSm(@RequestBody @Valid WdPblmrlSmGetDTO wdPblmrlSmGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putWdPblmrlSm(@RequestBody @Valid WdPblmrlSm wdPblmrlSm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -68,7 +67,7 @@ public class WdPblmrlSmController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            wdPblmrlSmService.update(wdPblmrlSmGetDTO);
+            wdPblmrlSmService.update(wdPblmrlSm);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){

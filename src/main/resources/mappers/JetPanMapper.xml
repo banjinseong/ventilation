@@ -37,7 +37,7 @@
     </delete>
 
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

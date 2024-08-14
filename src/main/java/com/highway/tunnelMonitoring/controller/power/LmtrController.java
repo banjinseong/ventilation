@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lmtr;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.lmtr.LmtrDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.lmtr.Lmtr;
 import com.highway.tunnelMonitoring.service.power.LmtrService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +36,7 @@ public class LmtrController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postLmtr(@RequestBody @Valid LmtrDTO lmtrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postLmtr(@RequestBody @Valid Lmtr lmtr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -47,7 +46,7 @@ public class LmtrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            lmtrService.enroll(lmtrDTO);
+            lmtrService.enroll(lmtr);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -61,7 +60,7 @@ public class LmtrController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putLmtr(@RequestBody @Valid LmtrDTO lmtrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putLmtr(@RequestBody @Valid Lmtr lmtr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -71,7 +70,7 @@ public class LmtrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            lmtrService.update(lmtrDTO);
+            lmtrService.update(lmtr);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);

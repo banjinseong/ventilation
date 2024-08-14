@@ -1,10 +1,9 @@
 package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Trnsfmr;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.trnsfmr.TrnsfmrDTO;
-import com.highway.tunnelMonitoring.dto.power.trnsfmr.TrnsfmrMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.trnsfmr.Trnsfmr;
+import com.highway.tunnelMonitoring.domain.power.trnsfmr.TrnsfmrSttus;
 import com.highway.tunnelMonitoring.service.power.TrnsfmrService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +38,7 @@ public class TrnsfmrController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postTrnsfmr(@RequestBody @Valid TrnsfmrDTO trnsfmrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postTrnsfmr(@RequestBody @Valid Trnsfmr trnsfmr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +48,7 @@ public class TrnsfmrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            trnsfmrService.enroll(trnsfmrDTO);
+            trnsfmrService.enroll(trnsfmr);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +62,7 @@ public class TrnsfmrController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putTrnsfmr(@RequestBody @Valid TrnsfmrDTO trnsfmrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putTrnsfmr(@RequestBody @Valid Trnsfmr trnsfmr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +72,7 @@ public class TrnsfmrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            trnsfmrService.update(trnsfmrDTO);
+            trnsfmrService.update(trnsfmr);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -105,9 +104,9 @@ public class TrnsfmrController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<TrnsfmrMonitorDTO>> monitorTrnsfmr(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                    @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<TrnsfmrMonitorDTO> result = trnsfmrService.monitor(page, size);
+    public ResponseEntity<Result<TrnsfmrSttus>> monitorTrnsfmr(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                               @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<TrnsfmrSttus> result = trnsfmrService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

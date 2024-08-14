@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.PowPopMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.PowPop">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.powpop.PowPop">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -17,7 +17,7 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM pow_pop
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.PowPop">
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.powpop.PowPop">
         SELECT * FROM pow_pop
         where pow_pop_no = #{pow_pop_no}
     </select>
@@ -36,7 +36,7 @@
         delete from pow_pop where pow_pop_no = #{pow_pop_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.powpop.PowPopSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

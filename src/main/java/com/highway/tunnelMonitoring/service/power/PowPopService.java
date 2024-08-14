@@ -1,11 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.PowPop;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
-import com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.powpop.PowPop;
+import com.highway.tunnelMonitoring.domain.power.powpop.PowPopSttus;
 import com.highway.tunnelMonitoring.mapper.power.PowPopMapper;
+import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PowPopService {
+public class PowPopService implements CrudService<PowPop, String> {
 
     private final PowPopMapper powPopMapper;
 
+    @Override
     public Result<PowPop> findAll(int page, int size) {
         int offset = (page - 1) * size;
         List<PowPop> list = powPopMapper.findAll(offset, size);
@@ -25,23 +25,27 @@ public class PowPopService {
         return new Result<>(list, total, page, totalPages);
     }
 
+    @Override
     public PowPop findOne(String pow_pop_no){ return powPopMapper.findOne(pow_pop_no); }
 
-    public void enroll(PowPopDTO powPopDTO){
-        powPopMapper.enroll(powPopDTO);
+    @Override
+    public void enroll(PowPop powPop){
+        powPopMapper.enroll(powPop);
     }
 
-    public void update(PowPopDTO powPopDTO){
-        powPopMapper.update(powPopDTO);
+    @Override
+    public void update(PowPop powPop){
+        powPopMapper.update(powPop);
     }
 
+    @Override
     public void delete(String pow_pop_no){
         powPopMapper.delete(pow_pop_no);
     }
 
-    public Result<PowPopMonitorDTO> monitor(int page, int size) {
+    public Result<PowPopSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
-        List<PowPopMonitorDTO> list = powPopMapper.monitor(offset, size);
+        List<PowPopSttus> list = powPopMapper.monitor(offset, size);
         int total = powPopMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

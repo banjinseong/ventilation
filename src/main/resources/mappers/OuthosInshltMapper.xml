@@ -36,7 +36,7 @@
         delete from OUTHOUS_INSHLT where INSHLT_NO = #{INSHLT_NO}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.inshlt.OuthousWetherSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

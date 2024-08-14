@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.Ups;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.ups.UpsDTO;
-import com.highway.tunnelMonitoring.dto.power.ups.UpsMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.ups.Ups;
+import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
 import com.highway.tunnelMonitoring.service.power.UpsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class UpsController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postUps(@RequestBody @Valid UpsDTO upsDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postUps(@RequestBody @Valid Ups ups, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +47,7 @@ public class UpsController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            upsService.enroll(upsDTO);
+            upsService.enroll(ups);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +61,7 @@ public class UpsController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putUps(@RequestBody @Valid UpsDTO upsDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putUps(@RequestBody @Valid Ups ups, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +71,7 @@ public class UpsController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            upsService.update(upsDTO);
+            upsService.update(ups);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -105,9 +103,9 @@ public class UpsController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<UpsMonitorDTO>> monitorUps(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                            @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<UpsMonitorDTO> result = upsService.monitor(page, size);
+    public ResponseEntity<Result<UpsSttus>> monitorUps(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<UpsSttus> result = upsService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

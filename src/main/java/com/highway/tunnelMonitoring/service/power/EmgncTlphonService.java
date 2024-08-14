@@ -1,11 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonDTO;
-import com.highway.tunnelMonitoring.domain.power.EmgncTlphon;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.emgnctlphon.EmgncTlphonMonitorDTO;
+import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphon;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphonSttus;
 import com.highway.tunnelMonitoring.mapper.power.EmgncTlphonMapper;
+import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmgncTlphonService {
+public class EmgncTlphonService implements CrudService<EmgncTlphon, String> {
 
     private final EmgncTlphonMapper emgncTlphonMapper;
 
+    @Override
     public Result<EmgncTlphon> findAll(int page, int size) {
         int offset = (page - 1) * size;
         List<EmgncTlphon> list = emgncTlphonMapper.findAll(offset, size);
@@ -25,23 +25,27 @@ public class EmgncTlphonService {
         return new Result<>(list, total, page, totalPages);
     }
 
+    @Override
     public EmgncTlphon findOne(String emgnc_tlphon_no){ return emgncTlphonMapper.findOne(emgnc_tlphon_no); }
 
-    public void enroll(EmgncTlphonDTO emgncTlphonDTO){
-        emgncTlphonMapper.enroll(emgncTlphonDTO);
+    @Override
+    public void enroll(EmgncTlphon emgncTlphon){
+        emgncTlphonMapper.enroll(emgncTlphon);
     }
 
-    public void update(EmgncTlphonDTO emgncTlphonDTO){
-        emgncTlphonMapper.update(emgncTlphonDTO);
+    @Override
+    public void update(EmgncTlphon emgncTlphon){
+        emgncTlphonMapper.update(emgncTlphon);
     }
 
+    @Override
     public void delete(String emgnc_tlphon_no){
         emgncTlphonMapper.delete(emgnc_tlphon_no);
     }
 
-    public Result<EmgncTlphonMonitorDTO> monitor(int page, int size) {
+    public Result<EmgncTlphonSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
-        List<EmgncTlphonMonitorDTO> list = emgncTlphonMapper.monitor(offset, size);
+        List<EmgncTlphonSttus> list = emgncTlphonMapper.monitor(offset, size);
         int total = emgncTlphonMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

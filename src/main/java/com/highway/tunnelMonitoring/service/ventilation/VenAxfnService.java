@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.service.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfn;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.venaxfn.VenAxfnGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.venaxfn.VenAxfnMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfnSttus;
 import com.highway.tunnelMonitoring.mapper.ventilation.VenAxfnMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,12 +25,12 @@ public class VenAxfnService {
 
     public VenAxfn findOne(String ven_axfn_no){ return venAxfnMapper.findOne(ven_axfn_no); }
 
-    public void enroll(VenAxfnGetDTO venAxfnGetDto){
-        venAxfnMapper.enroll(venAxfnGetDto);
+    public void enroll(VenAxfn venAxfn){
+        venAxfnMapper.enroll(venAxfn);
     }
 
-    public void update(VenAxfnGetDTO venAxfnGetDto){
-        venAxfnMapper.update(venAxfnGetDto);
+    public void update(VenAxfn venAxfn){
+        venAxfnMapper.update(venAxfn);
     }
 
     public void delete(String ven_axfn_no){
@@ -40,9 +38,9 @@ public class VenAxfnService {
     }
 
 
-    public Result<VenAxfnMonitorDTO> monitor(int page, int size) {
+    public Result<VenAxfnSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
-        List<VenAxfnMonitorDTO> list = venAxfnMapper.monitor(offset, size);
+        List<VenAxfnSttus> list = venAxfnMapper.monitor(offset, size);
         int total = venAxfnMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

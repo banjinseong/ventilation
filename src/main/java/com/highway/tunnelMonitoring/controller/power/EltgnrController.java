@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.Eltgnr;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrDTO;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import com.highway.tunnelMonitoring.service.power.EltgnrService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class EltgnrController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postEltgnr(@RequestBody @Valid EltgnrDTO eltgnrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postEltgnr(@RequestBody @Valid Eltgnr eltgnr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +47,7 @@ public class EltgnrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            eltgnrService.enroll(eltgnrDTO);
+            eltgnrService.enroll(eltgnr);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +61,7 @@ public class EltgnrController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putEltgnr(@RequestBody @Valid EltgnrDTO eltgnrDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putEltgnr(@RequestBody @Valid Eltgnr eltgnr, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +71,7 @@ public class EltgnrController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            eltgnrService.update(eltgnrDTO);
+            eltgnrService.update(eltgnr);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -106,9 +104,9 @@ public class EltgnrController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<EltgnrMonitorDTO>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                  @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EltgnrMonitorDTO> result = eltgnrService.monitor(page, size);
+    public ResponseEntity<Result<EltgnrSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<EltgnrSttus> result = eltgnrService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

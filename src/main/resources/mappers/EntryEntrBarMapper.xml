@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.EntryEntrBar">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -17,7 +17,7 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM entry_entr_bar
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.EntryEntrBar">
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar">
         SELECT * FROM entry_entr_bar
         where entry_entr_bar_no = #{entry_entr_bar_no}
     </select>
@@ -36,7 +36,7 @@
         delete from entry_entr_bar where entry_entr_bar_no = #{entry_entr_bar_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

@@ -1,10 +1,9 @@
 package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Rect;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.rect.RectDTO;
-import com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.rect.Rect;
+import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
 import com.highway.tunnelMonitoring.service.power.RectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +38,7 @@ public class RectController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRect(@RequestBody @Valid RectDTO rectDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postRect(@RequestBody @Valid Rect rect, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +48,7 @@ public class RectController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            rectService.enroll(rectDTO);
+            rectService.enroll(rect);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +62,7 @@ public class RectController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putRect(@RequestBody @Valid RectDTO rectDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putRect(@RequestBody @Valid Rect rect, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +72,7 @@ public class RectController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            rectService.update(rectDTO);
+            rectService.update(rect);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -105,9 +104,9 @@ public class RectController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<RectMonitorDTO>> monitorRect(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                              @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<RectMonitorDTO> result = rectService.monitor(page, size);
+    public ResponseEntity<Result<RectSttus>> monitorRect(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                         @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<RectSttus> result = rectService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

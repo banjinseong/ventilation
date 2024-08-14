@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.inshlt.OuthousInshlt;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.outhousinshlt.OuthousInshltMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.ventilation.inshlt.OuthousWetherSttus;
 import com.highway.tunnelMonitoring.service.ventilation.OuthosInshltService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class OuthousInshltController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postOuthousInshlt(@RequestBody @Valid OuthousInshltGetDTO outhousInshltGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postOuthousInshlt(@RequestBody @Valid OuthousInshlt outhousInshlt, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -46,7 +44,7 @@ public class OuthousInshltController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            outhosInshltService.enroll(outhousInshltGetDTO);
+            outhosInshltService.enroll(outhousInshlt);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -60,7 +58,7 @@ public class OuthousInshltController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putOuthousInshlt( @RequestBody @Valid OuthousInshltGetDTO outhousInshltGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putOuthousInshlt( @RequestBody @Valid OuthousInshlt outhousInshlt, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -70,7 +68,7 @@ public class OuthousInshltController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            outhosInshltService.update(outhousInshltGetDTO);
+            outhosInshltService.update(outhousInshlt);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -101,9 +99,9 @@ public class OuthousInshltController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<OuthousInshltMonitorDTO>> monitorOuthousInshlt(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                                @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<OuthousInshltMonitorDTO> result = outhosInshltService.monitor(page, size);
+    public ResponseEntity<Result<OuthousWetherSttus>> monitorOuthousInshlt(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                           @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<OuthousWetherSttus> result = outhosInshltService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

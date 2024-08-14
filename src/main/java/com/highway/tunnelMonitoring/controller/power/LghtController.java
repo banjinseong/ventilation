@@ -1,11 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lght;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.lght.LghtDTO;
-import com.highway.tunnelMonitoring.dto.power.lght.LghtDeleteDTO;
-import com.highway.tunnelMonitoring.dto.power.lght.LghtMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.lght.Lght;
+import com.highway.tunnelMonitoring.domain.power.lght.LghtSttus;
 import com.highway.tunnelMonitoring.service.power.LghtService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +37,7 @@ public class LghtController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postLght(@RequestBody @Valid LghtDTO lghtDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postLght(@RequestBody @Valid Lght lght, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -50,7 +47,7 @@ public class LghtController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            lghtService.enroll(lghtDTO);
+            lghtService.enroll(lght);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -64,7 +61,7 @@ public class LghtController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putLght(@RequestBody @Valid LghtDTO lghtDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putLght(@RequestBody @Valid Lght lght, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -74,7 +71,7 @@ public class LghtController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            lghtService.update(lghtDTO);
+            lghtService.update(lght);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -87,9 +84,9 @@ public class LghtController {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteLght(@RequestBody List<LghtDeleteDTO> keys){
+    public ResponseEntity<String> deleteLght(@RequestBody List<Lght> keys){
         try {
-            for (LghtDeleteDTO key : keys) {
+            for (Lght key : keys) {
                 lghtService.delete(key.getLght_group_no(), key.getLght_knd());
             }
             String message = "삭제에 성공하셨습니다.";
@@ -105,9 +102,9 @@ public class LghtController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<LghtMonitorDTO>> monitorLght(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                              @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<LghtMonitorDTO> result = lghtService.monitor(page, size);
+    public ResponseEntity<Result<LghtSttus>> monitorLght(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                         @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<LghtSttus> result = lghtService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

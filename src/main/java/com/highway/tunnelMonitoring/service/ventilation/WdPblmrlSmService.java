@@ -1,8 +1,7 @@
 package com.highway.tunnelMonitoring.service.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.wdpblmrl.WdPblmrlSm;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.wdpblmrlsm.WdPblmrlSmGetDTO;
+import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.mapper.ventilation.WdPblmrlSmMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,12 +24,12 @@ public class WdPblmrlSmService {
 
     public WdPblmrlSm findOne(String wd_pblml_sm_no){ return wdPblmrlSmMapper.findOne(wd_pblml_sm_no); }
 
-    public void enroll(WdPblmrlSmGetDTO wdPblmrlSmGetDTO){
-        wdPblmrlSmMapper.enroll(wdPblmrlSmGetDTO);
+    public void enroll(WdPblmrlSm wdPblmrlSm){
+        wdPblmrlSmMapper.enroll(wdPblmrlSm);
     }
 
-    public void update(WdPblmrlSmGetDTO wdPblmrlSmGetDTO){
-        wdPblmrlSmMapper.update(wdPblmrlSmGetDTO);
+    public void update(WdPblmrlSm wdPblmrlSm){
+        wdPblmrlSmMapper.update(wdPblmrlSm);
     }
 
     public void delete(String wd_pblml_sm_no){

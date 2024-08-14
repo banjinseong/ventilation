@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePou;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouGetDTO;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.refgepou.RefgePouMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.ventilation.refgepou.RefgePouSttus;
 import com.highway.tunnelMonitoring.service.ventilation.RefgePouService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class RefgePouController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postRefge(@RequestBody @Valid RefgePou refgePou, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -46,7 +44,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.enroll(refgePouGetDTO);
+            refgePouService.enroll(refgePou);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -60,7 +58,7 @@ public class RefgePouController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePouGetDTO refgePouGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putRefge(@RequestBody @Valid RefgePou refgePou, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -70,7 +68,7 @@ public class RefgePouController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            refgePouService.update(refgePouGetDTO);
+            refgePouService.update(refgePou);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -101,9 +99,9 @@ public class RefgePouController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<RefgePouMonitorDTO>> monitorRefgePou(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<RefgePouMonitorDTO> result = refgePouService.monitor(page, size);
+    public ResponseEntity<Result<RefgePouSttus>> monitorRefgePou(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                 @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<RefgePouSttus> result = refgePouService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

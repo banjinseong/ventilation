@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.UpsMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.Ups">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.ups.Ups">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -17,7 +17,7 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM ups
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.Ups">
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.ups.Ups">
         SELECT * FROM ups
         where ups_no = #{ups_no}
     </select>
@@ -36,7 +36,7 @@
         delete from ups where ups_no = #{ups_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.ups.UpsMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

@@ -36,7 +36,7 @@
         delete from cmo_msrins where cmo_msrins_no = #{cmo_msrins_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.CO.CmoSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

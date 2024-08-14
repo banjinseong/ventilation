@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.PowPop;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.powpop.PowPopDTO;
-import com.highway.tunnelMonitoring.dto.power.powpop.PowPopMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.powpop.PowPop;
+import com.highway.tunnelMonitoring.domain.power.powpop.PowPopSttus;
 import com.highway.tunnelMonitoring.service.power.PowPopService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class PowPopController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postPowPop(@RequestBody @Valid PowPopDTO powPopDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postPowPop(@RequestBody @Valid PowPop powPop, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +47,7 @@ public class PowPopController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            powPopService.enroll(powPopDTO);
+            powPopService.enroll(powPop);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +61,7 @@ public class PowPopController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putPowPop(@RequestBody @Valid PowPopDTO powPopDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putPowPop(@RequestBody @Valid PowPop powPop, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +71,7 @@ public class PowPopController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            powPopService.update(powPopDTO);
+            powPopService.update(powPop);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -105,9 +103,9 @@ public class PowPopController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<PowPopMonitorDTO>> monitorPowPop(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                  @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<PowPopMonitorDTO> result = powPopService.monitor(page, size);
+    public ResponseEntity<Result<PowPopSttus>> monitorPowPop(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<PowPopSttus> result = powPopService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

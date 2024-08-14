@@ -1,9 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
-import com.highway.tunnelMonitoring.domain.power.Lght;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.lght.LghtDTO;
-import com.highway.tunnelMonitoring.dto.power.lght.LghtMonitorDTO;
+import com.highway.tunnelMonitoring.domain.power.lght.Lght;
+import com.highway.tunnelMonitoring.domain.power.lght.LghtSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,13 +16,13 @@ public interface LghtMapper {
     //하나만 조회
     Lght findOne(String lght_group_no, String lght_knd);
     //데이터 등록
-    void enroll(LghtDTO lght);
+    void enroll(Lght lght);
     //데이터 업데이트
-    void update(LghtDTO lght);
+    void update(Lght lght);
 
     //데이터 삭제
     void delete(String lght_group_no, String lght_knd);
 
-    List<LghtMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<LghtSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
 }

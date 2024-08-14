@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.LmtrMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.Lmtr">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.lmtr.Lmtr">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -17,7 +17,7 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM lmtr
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.Lmtr">
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.lmtr.Lmtr">
         SELECT * FROM lmtr
         where lmtr_no = #{lmtr_no}
     </select>

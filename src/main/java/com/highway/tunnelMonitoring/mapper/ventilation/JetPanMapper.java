@@ -1,9 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPan;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanMonitorDTO;
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,13 +16,13 @@ public interface JetPanMapper {
     //하나만 조회
     JetPan findOne(String jet_pan_no);
     //데이터 등록
-    void enroll(JetPanGetDTO jetPanGetDTO);
+    void enroll(JetPan jetPanGetDTO);
     //데이터 업데이트
-    void update(JetPanGetDTO jetPanGetDTO);
+    void update(JetPan jetPanGetDTO);
 
     //데이터 삭제
     void delete(String jet_pan_no);
 
-    List<JetPanMonitorDTO> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<JetPanSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
 }

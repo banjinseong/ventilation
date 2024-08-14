@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.RectMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.Rect">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.rect.Rect">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -17,7 +17,7 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM rect
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.Rect">
+    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.rect.Rect">
         SELECT * FROM rect
         where rect_no = #{rect_no}
     </select>
@@ -36,7 +36,7 @@
         delete from rect where rect_no = #{rect_no}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO">
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.rect.RectSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

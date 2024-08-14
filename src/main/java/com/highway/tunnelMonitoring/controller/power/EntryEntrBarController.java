@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.power;
 
-import com.highway.tunnelMonitoring.domain.power.EntryEntrBar;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarDTO;
-import com.highway.tunnelMonitoring.dto.power.entryentrbar.EntryEntrBarMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
 import com.highway.tunnelMonitoring.service.power.EntryEntrBarService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +37,7 @@ public class EntryEntrBarController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postEntryEntrBar(@RequestBody @Valid EntryEntrBarDTO entryEntrBarDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postEntryEntrBar(@RequestBody @Valid EntryEntrBar entryEntrBar, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +47,7 @@ public class EntryEntrBarController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            entryEntrBarService.enroll(entryEntrBarDTO);
+            entryEntrBarService.enroll(entryEntrBar);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +61,7 @@ public class EntryEntrBarController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putEntryEntrBar(@RequestBody @Valid EntryEntrBarDTO entryEntrBarDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putEntryEntrBar(@RequestBody @Valid EntryEntrBar entryEntrBar, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +71,7 @@ public class EntryEntrBarController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            entryEntrBarService.update(entryEntrBarDTO);
+            entryEntrBarService.update(entryEntrBar);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -104,9 +102,9 @@ public class EntryEntrBarController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<EntryEntrBarMonitorDTO>> monitorEntryEntrBar(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                              @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EntryEntrBarMonitorDTO> result = entryEntrBarService.monitor(page, size);
+    public ResponseEntity<Result<EntryEntrBarSttus>> monitorEntryEntrBar(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                         @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<EntryEntrBarSttus> result = entryEntrBarService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

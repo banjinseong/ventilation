@@ -1,11 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
-import com.highway.tunnelMonitoring.domain.power.Rect;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.rect.RectDTO;
-import com.highway.tunnelMonitoring.dto.power.rect.RectMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.rect.Rect;
+import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
 import com.highway.tunnelMonitoring.mapper.power.RectMapper;
+import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RectService {
+public class RectService implements CrudService<Rect, String> {
 
     private final RectMapper rectMapper;
 
+    @Override
     public Result<Rect> findAll(int page, int size) {
         int offset = (page - 1) * size;
         List<Rect> list = rectMapper.findAll(offset, size);
@@ -25,23 +25,27 @@ public class RectService {
         return new Result<>(list, total, page, totalPages);
     }
 
+    @Override
     public Rect findOne(String rect_no){ return rectMapper.findOne(rect_no); }
 
-    public void enroll(RectDTO rectDTO){
-        rectMapper.enroll(rectDTO);
+    @Override
+    public void enroll(Rect rect){
+        rectMapper.enroll(rect);
     }
 
-    public void update(RectDTO rectDTO){
-        rectMapper.update(rectDTO);
+    @Override
+    public void update(Rect rect){
+        rectMapper.update(rect);
     }
 
+    @Override
     public void delete(String rect_no){
         rectMapper.delete(rect_no);
     }
 
-    public Result<RectMonitorDTO> monitor(int page, int size) {
+    public Result<RectSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
-        List<RectMonitorDTO> list = rectMapper.monitor(offset, size);
+        List<RectSttus> list = rectMapper.monitor(offset, size);
         int total = rectMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfn;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.venaxfn.VenAxfnGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.venaxfn.VenAxfnMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfnSttus;
 import com.highway.tunnelMonitoring.service.ventilation.VenAxfnService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class VenAxfnController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postVenAxfn(@RequestBody @Valid VenAxfnGetDTO venAxfnGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postVenAxfn(@RequestBody @Valid VenAxfn venAxfn, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -46,7 +44,7 @@ public class VenAxfnController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            venAxfnService.enroll(venAxfnGetDTO);
+            venAxfnService.enroll(venAxfn);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -60,7 +58,7 @@ public class VenAxfnController {
 
     @PutMapping("config/update")
     @Transactional
-    public ResponseEntity<String> putVenAxfn(@RequestBody @Valid VenAxfnGetDTO venAxfnGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putVenAxfn(@RequestBody @Valid VenAxfn venAxfn, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -70,7 +68,7 @@ public class VenAxfnController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            venAxfnService.update(venAxfnGetDTO);
+            venAxfnService.update(venAxfn);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -102,9 +100,9 @@ public class VenAxfnController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<VenAxfnMonitorDTO>> monitorVenAxfn(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                      @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<VenAxfnMonitorDTO> result = venAxfnService.monitor(page, size);
+    public ResponseEntity<Result<VenAxfnSttus>> monitorVenAxfn(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                               @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<VenAxfnSttus> result = venAxfnService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

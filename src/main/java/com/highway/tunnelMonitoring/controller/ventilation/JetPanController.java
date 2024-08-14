@@ -1,10 +1,8 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPan;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.ventilation.cmomsrins.CmoMsrinsMonitorDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanGetDTO;
-import com.highway.tunnelMonitoring.dto.ventilation.jetpan.JetPanMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanSttus;
 import com.highway.tunnelMonitoring.service.ventilation.JetPanService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +34,7 @@ public class JetPanController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postJetPan(@RequestBody @Valid JetPanGetDTO jetPanGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postJetPan(@RequestBody @Valid JetPan jetPan, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -46,7 +44,7 @@ public class JetPanController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            jetPanService.enroll(jetPanGetDTO);
+            jetPanService.enroll(jetPan);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -60,7 +58,7 @@ public class JetPanController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putJetPan(@RequestBody @Valid JetPanGetDTO jetPanGetDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putJetPan(@RequestBody @Valid JetPan jetPan, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -70,7 +68,7 @@ public class JetPanController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            jetPanService.update(jetPanGetDTO);
+            jetPanService.update(jetPan);
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -101,9 +99,9 @@ public class JetPanController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<JetPanMonitorDTO>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                  @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<JetPanMonitorDTO> result = jetPanService.monitor(page, size);
+    public ResponseEntity<Result<JetPanSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<JetPanSttus> result = jetPanService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

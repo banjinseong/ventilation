@@ -1,10 +1,9 @@
 package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.domain.power.Swtbrd;
-import com.highway.tunnelMonitoring.dto.Result;
-import com.highway.tunnelMonitoring.dto.power.eltgnr.EltgnrMonitorDTO;
-import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdDTO;
-import com.highway.tunnelMonitoring.dto.power.swtbrd.SwtbrdMonitorDTO;
+import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.swtbrd.Swtbrd;
+import com.highway.tunnelMonitoring.domain.power.swtbrd.SwtbrdSttus;
 import com.highway.tunnelMonitoring.service.power.SwtbrdService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +38,7 @@ public class SwtbrdController {
     //방화문 등록시
     @PostMapping("config/create")
     @Transactional
-    public ResponseEntity<String> postSwtbrd(@RequestBody @Valid SwtbrdDTO swtbrdDTO, BindingResult bindingResult){
+    public ResponseEntity<String> postSwtbrd(@RequestBody @Valid Swtbrd swtbrd, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -49,7 +48,7 @@ public class SwtbrdController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            swtbrdService.enroll(swtbrdDTO);
+            swtbrdService.enroll(swtbrd);
             String message = "등록에 성공하셨습니다.";
             return ResponseEntity.ok(message);
         }catch (IllegalAccessError error){
@@ -63,7 +62,7 @@ public class SwtbrdController {
 
     @PutMapping("config/update/")
     @Transactional
-    public ResponseEntity<String> putSwtbrd(@RequestBody @Valid SwtbrdDTO swtbrdDTO, BindingResult bindingResult){
+    public ResponseEntity<String> putSwtbrd(@RequestBody @Valid Swtbrd swtbrd, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             StringBuilder errorMessage = new StringBuilder();
@@ -73,7 +72,7 @@ public class SwtbrdController {
             return ResponseEntity.badRequest().body(errorMessage.toString());
         }
         try {
-            swtbrdService.update(swtbrdDTO);
+            swtbrdService.update(swtbrd);
 
             String message = "업데이트에 성공하셨습니다.";
             return ResponseEntity.ok(message);
@@ -105,9 +104,9 @@ public class SwtbrdController {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<SwtbrdMonitorDTO>> monitorSwtbrd(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                  @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<SwtbrdMonitorDTO> result = swtbrdService.monitor(page, size);
+    public ResponseEntity<Result<SwtbrdSttus>> monitorSwtbrd(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<SwtbrdSttus> result = swtbrdService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
