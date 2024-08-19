@@ -21,7 +21,7 @@ public interface RefgePouMapper {
     void update(RefgePou refgePou);
 
     //데이터 삭제
-    void delete(String pou_no);
+    void delete(RefgePou refgePou);
 
     List<RefgePouSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

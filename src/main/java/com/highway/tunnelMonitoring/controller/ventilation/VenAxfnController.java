@@ -1,98 +1,27 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
+import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfn;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfnSttus;
 import com.highway.tunnelMonitoring.service.ventilation.VenAxfnService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
 @RequestMapping("/ventilation/venAxfn/*")
-public class VenAxfnController {
+public class VenAxfnController extends BaseCrudController<VenAxfn> {
 
     private final VenAxfnService venAxfnService;
 
-    //조회시
-    @GetMapping("config/list")
-    public ResponseEntity<Result<VenAxfn>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                   @RequestParam(defaultValue = "10") int size) {
-        Result<VenAxfn> result = venAxfnService.findAll(page, size);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
-    }
-
-    //방화문 등록시
-    @PostMapping("config/create")
-    @Transactional
-    public ResponseEntity<String> postVenAxfn(@RequestBody @Valid VenAxfn venAxfn, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            StringBuilder errorMessage = new StringBuilder();
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                errorMessage.append(error.getDefaultMessage()).append("; ");
-            }
-            return ResponseEntity.badRequest().body(errorMessage.toString());
-        }
-        try {
-            venAxfnService.enroll(venAxfn);
-            String message = "등록에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "등록에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
-
-    }
-
-
-    @PutMapping("config/update")
-    @Transactional
-    public ResponseEntity<String> putVenAxfn(@RequestBody @Valid VenAxfn venAxfn, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            StringBuilder errorMessage = new StringBuilder();
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                errorMessage.append(error.getDefaultMessage()).append("; ");
-            }
-            return ResponseEntity.badRequest().body(errorMessage.toString());
-        }
-        try {
-            venAxfnService.update(venAxfn);
-            String message = "업데이트에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "업데이트에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
-
-    }
-
-    @DeleteMapping("config/delete")
-    @Transactional
-    public ResponseEntity<String> deleteVenAxfn(@RequestBody List<String> ven_axfn_nos){
-        try {
-            for (String ven_axfn_no : ven_axfn_nos) {
-                venAxfnService.delete(ven_axfn_no);
-            }
-            String message = "삭제에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "삭제에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
+    public VenAxfnController(VenAxfnService venAxfnService) {
+        super(venAxfnService);
+        this.venAxfnService = venAxfnService;
     }
 
 

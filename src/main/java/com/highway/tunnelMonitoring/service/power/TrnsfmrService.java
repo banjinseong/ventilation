@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TrnsfmrService implements CrudService<Trnsfmr, String> {
+public class TrnsfmrService implements CrudService<Trnsfmr> {
 
     private final TrnsfmrMapper trnsfmrMapper;
 
@@ -25,8 +25,8 @@ public class TrnsfmrService implements CrudService<Trnsfmr, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Trnsfmr findOne(String trnsfmr_no){ return trnsfmrMapper.findOne(trnsfmr_no); }
+//    @Override
+//    public Trnsfmr findOne(String trnsfmr_no){ return trnsfmrMapper.findOne(trnsfmr_no); }
 
     @Override
     public void enroll(Trnsfmr trnsfmr){
@@ -39,8 +39,8 @@ public class TrnsfmrService implements CrudService<Trnsfmr, String> {
     }
 
     @Override
-    public void delete(String trnsfmr_no){
-        trnsfmrMapper.delete(trnsfmr_no);
+    public void delete(Trnsfmr trnsfmr){
+        trnsfmrMapper.delete(trnsfmr);
     }
 
     public Result<TrnsfmrSttus> monitor(int page, int size) {

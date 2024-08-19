@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmgncTlphonService implements CrudService<EmgncTlphon, String> {
+public class EmgncTlphonService implements CrudService<EmgncTlphon> {
 
     private final EmgncTlphonMapper emgncTlphonMapper;
 
@@ -25,8 +25,8 @@ public class EmgncTlphonService implements CrudService<EmgncTlphon, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public EmgncTlphon findOne(String emgnc_tlphon_no){ return emgncTlphonMapper.findOne(emgnc_tlphon_no); }
+//    @Override
+//    public EmgncTlphon findOne(String emgnc_tlphon_no){ return emgncTlphonMapper.findOne(emgnc_tlphon_no); }
 
     @Override
     public void enroll(EmgncTlphon emgncTlphon){
@@ -39,8 +39,8 @@ public class EmgncTlphonService implements CrudService<EmgncTlphon, String> {
     }
 
     @Override
-    public void delete(String emgnc_tlphon_no){
-        emgncTlphonMapper.delete(emgnc_tlphon_no);
+    public void delete(EmgncTlphon emgncTlphon){
+        emgncTlphonMapper.delete(emgncTlphon);
     }
 
     public Result<EmgncTlphonSttus> monitor(int page, int size) {

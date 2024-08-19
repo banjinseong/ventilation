@@ -4,23 +4,17 @@ import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoMsrins;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.CO.CmoSttus;
-import com.highway.tunnelMonitoring.service.CrudService;
 import com.highway.tunnelMonitoring.service.ventilation.CmoMsrinsService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @Transactional(readOnly = true)
 @RequestMapping("/ventilation/cmoMsrins")
-public class CmoMsrinsController extends BaseCrudController<CmoMsrins, String> {
+public class CmoMsrinsController extends BaseCrudController<CmoMsrins> {
 
     private final CmoMsrinsService cmoMsrinsService;
 

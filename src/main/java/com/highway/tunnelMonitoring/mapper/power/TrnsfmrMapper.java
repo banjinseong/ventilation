@@ -21,7 +21,7 @@ public interface TrnsfmrMapper {
     void update(Trnsfmr trnsfmr);
 
     //데이터 삭제
-    void delete(String trnsfmr_no);
+    void delete(Trnsfmr trnsfmr);
 
     List<TrnsfmrSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

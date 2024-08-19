@@ -21,7 +21,7 @@ public interface OuthosInshltMapper {
     void update(OuthousInshlt outhousInshlt);
 
     //데이터 삭제
-    void delete(String inshlt_no);
+    void delete(OuthousInshlt outhousInshlt);
 
     List<OuthousWetherSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

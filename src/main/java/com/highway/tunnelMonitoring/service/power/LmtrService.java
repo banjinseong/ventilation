@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class LmtrService implements CrudService<Lmtr, String> {
+public class LmtrService implements CrudService<Lmtr> {
 
     private final LmtrMapper lmtrMapper;
 
@@ -24,8 +24,8 @@ public class LmtrService implements CrudService<Lmtr, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Lmtr findOne(String lmtr_no){ return lmtrMapper.findOne(lmtr_no); }
+//    @Override
+//    public Lmtr findOne(String lmtr_no){ return lmtrMapper.findOne(lmtr_no); }
 
     @Override
     public void enroll(Lmtr lmtr){
@@ -38,7 +38,7 @@ public class LmtrService implements CrudService<Lmtr, String> {
     }
 
     @Override
-    public void delete(String lmtr_no){
-        lmtrMapper.delete(lmtr_no);
+    public void delete(Lmtr lmtr){
+        lmtrMapper.delete(lmtr);
     }
 }

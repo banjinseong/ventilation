@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EntryEntrBarService implements CrudService<EntryEntrBar, String> {
+public class EntryEntrBarService implements CrudService<EntryEntrBar> {
 
     private final EntryEntrBarMapper entryEntrBarMapper;
 
@@ -25,8 +25,8 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public EntryEntrBar findOne(String entry_entr_bar_no){ return entryEntrBarMapper.findOne(entry_entr_bar_no); }
+//    @Override
+//    public EntryEntrBar findOne(String entry_entr_bar_no){ return entryEntrBarMapper.findOne(entry_entr_bar_no); }
 
     @Override
     public void enroll(EntryEntrBar entryEntrBar){
@@ -39,8 +39,8 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar, String> {
     }
 
     @Override
-    public void delete(String entry_entr_bar_no){
-        entryEntrBarMapper.delete(entry_entr_bar_no);
+    public void delete(EntryEntrBar entryEntrBar){
+        entryEntrBarMapper.delete(entryEntrBar);
     }
 
     public Result<EntryEntrBarSttus> monitor(int page, int size) {

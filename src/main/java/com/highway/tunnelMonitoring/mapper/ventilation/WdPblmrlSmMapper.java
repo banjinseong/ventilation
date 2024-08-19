@@ -20,5 +20,5 @@ public interface WdPblmrlSmMapper {
     void update(WdPblmrlSm wdPblmrlSm);
 
     //데이터 삭제
-    void delete(String wd_pblml_sm_no);
+    void delete(WdPblmrlSm wdPblmrlSm);
 }

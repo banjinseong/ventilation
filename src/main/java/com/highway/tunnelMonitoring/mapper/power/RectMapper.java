@@ -21,7 +21,7 @@ public interface RectMapper {
     void update(Rect rect);
 
     //데이터 삭제
-    void delete(String rect_no);
+    void delete(Rect rect);
 
     List<RectSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

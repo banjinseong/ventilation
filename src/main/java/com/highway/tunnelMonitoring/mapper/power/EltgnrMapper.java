@@ -21,7 +21,7 @@ public interface EltgnrMapper {
     void update(Eltgnr eltgnr);
 
     //데이터 삭제
-    void delete(String eltgnr_no);
+    void delete(Eltgnr eltgnr);
 
     List<EltgnrSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

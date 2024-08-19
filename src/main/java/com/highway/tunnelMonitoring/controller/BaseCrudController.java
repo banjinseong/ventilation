@@ -18,10 +18,10 @@ import java.util.List;
  *
  */
 @RequiredArgsConstructor
-public abstract class BaseCrudController<T, ID> {
+public abstract class BaseCrudController<T> {
 
 
-    protected final CrudService<T, ID> service;
+    protected final CrudService<T> service;
 
     //조회시
     @GetMapping("config/list")
@@ -31,7 +31,7 @@ public abstract class BaseCrudController<T, ID> {
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }
 
-    //방화문 등록시
+    //등록시
     @PostMapping("config/create")
     @Transactional
     public ResponseEntity<String> postT(@RequestBody @Valid T dto, BindingResult bindingResult){
@@ -56,7 +56,7 @@ public abstract class BaseCrudController<T, ID> {
     }
 
 
-    @PutMapping("config/update/")
+    @PutMapping("config/update")
     @Transactional
     public ResponseEntity<String> putT(@RequestBody @Valid T dto, BindingResult bindingResult){
 
@@ -81,10 +81,10 @@ public abstract class BaseCrudController<T, ID> {
 
     @DeleteMapping("config/delete")
     @Transactional
-    public ResponseEntity<String> deleteT(@RequestBody List<ID> ids){
+    public ResponseEntity<String> deleteT(@RequestBody @Valid List<T> dtos){
         try {
-            for (ID id : ids) {
-                service.delete(id);
+            for (T dto : dtos) {
+                service.delete(dto);
             }
             String message = "삭제에 성공하셨습니다.";
             return ResponseEntity.ok(message);

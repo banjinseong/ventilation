@@ -20,5 +20,5 @@ public interface LmtrMapper {
     void update(Lmtr lmtr);
 
     //데이터 삭제
-    void delete(String lmtr_no);
+    void delete(Lmtr lmtr);
 }

@@ -14,14 +14,14 @@ public interface CmoMsrinsMapper {
 
     int countAll();
     //하나만 조회
-    CmoMsrins findOne(String cmo_msrins_no);
+//    CmoMsrins findOne(String cmo_msrins_no);
     //데이터 등록
-    void enroll(CmoMsrins cmoMsrinsGetDTO);
+    void enroll(CmoMsrins cmoMsrins);
     //데이터 업데이트
-    void update(CmoMsrins cmoMsrinsGetDTO);
+    void update(CmoMsrins cmoMsrins);
 
     //데이터 삭제
-    void delete(String cmo_msrins_no);
+    void delete(CmoMsrins cmoMsrins);
 
     List<CmoSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 }

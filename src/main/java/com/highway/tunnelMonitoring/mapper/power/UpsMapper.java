@@ -21,7 +21,7 @@ public interface UpsMapper {
     void update(Ups ups);
 
     //데이터 삭제
-    void delete(String ups_no);
+    void delete(Ups ups);
 
     List<UpsSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

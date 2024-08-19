@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SwtbrdService implements CrudService<Swtbrd, String> {
+public class SwtbrdService implements CrudService<Swtbrd> {
 
     private final SwtbrdMapper swtbrdMapper;
 
@@ -24,9 +24,9 @@ public class SwtbrdService implements CrudService<Swtbrd, String> {
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
-
-    @Override
-    public Swtbrd findOne(String swtbrd_no){ return swtbrdMapper.findOne(swtbrd_no); }
+//
+//    @Override
+//    public Swtbrd findOne(String swtbrd_no){ return swtbrdMapper.findOne(swtbrd_no); }
 
     @Override
     public void enroll(Swtbrd swtbrd){
@@ -39,8 +39,8 @@ public class SwtbrdService implements CrudService<Swtbrd, String> {
     }
 
     @Override
-    public void delete(String swtbrd_no){
-        swtbrdMapper.delete(swtbrd_no);
+    public void delete(Swtbrd swtbrd){
+        swtbrdMapper.delete(swtbrd);
     }
 
     public Result<SwtbrdSttus> monitor(int page, int size) {

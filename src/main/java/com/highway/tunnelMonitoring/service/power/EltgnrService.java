@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EltgnrService implements CrudService<Eltgnr, String> {
+public class EltgnrService implements CrudService<Eltgnr> {
 
     private final EltgnrMapper eltgnrMapper;
 
@@ -25,8 +25,8 @@ public class EltgnrService implements CrudService<Eltgnr, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Eltgnr findOne(String eltgnr_no){ return eltgnrMapper.findOne(eltgnr_no); }
+//    @Override
+//    public Eltgnr findOne(String eltgnr_no){ return eltgnrMapper.findOne(eltgnr_no); }
 
     @Override
     public void enroll(Eltgnr eltgnr){
@@ -39,8 +39,8 @@ public class EltgnrService implements CrudService<Eltgnr, String> {
     }
 
     @Override
-    public void delete(String eltgnr_no){
-        eltgnrMapper.delete(eltgnr_no);
+    public void delete(Eltgnr eltgnr){
+        eltgnrMapper.delete(eltgnr);
     }
 
     public Result<EltgnrSttus> monitor(int page, int size) {

@@ -21,7 +21,7 @@ public interface EmgncTlphonMapper {
     void update(EmgncTlphon emgncTlphonDTO);
 
     //데이터 삭제
-    void delete(String emgnc_tlphon_no);
+    void delete(EmgncTlphon emgncTlphonDTO);
 
     List<EmgncTlphonSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

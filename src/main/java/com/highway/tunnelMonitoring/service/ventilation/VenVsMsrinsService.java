@@ -4,6 +4,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsMsrins;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsSttus;
 import com.highway.tunnelMonitoring.mapper.ventilation.VenVsMsrinsMapper;
+import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,11 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class VenVsMsrinsService {
+public class VenVsMsrinsService implements CrudService<VenVsMsrins> {
 
     private final VenVsMsrinsMapper venVsMsrinsMapper;
 
+    @Override
     public Result<VenVsMsrins> findAll(int page, int size) {
         int offset = (page - 1) * size;
         List<VenVsMsrins> list = venVsMsrinsMapper.findAll(offset, size);
@@ -23,18 +25,21 @@ public class VenVsMsrinsService {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public VenVsMsrins findOne(String ven_vs_msrins_no){ return venVsMsrinsMapper.findOne(ven_vs_msrins_no); }
+//    public VenVsMsrins findOne(String ven_vs_msrins_no){ return venVsMsrinsMapper.findOne(ven_vs_msrins_no); }
 
+    @Override
     public void enroll(VenVsMsrins venVsMsrins){
         venVsMsrinsMapper.enroll(venVsMsrins);
     }
 
+    @Override
     public void update(VenVsMsrins venVsMsrins){
         venVsMsrinsMapper.update(venVsMsrins);
     }
 
-    public void delete(String ven_vs_msrins_no){
-        venVsMsrinsMapper.delete(ven_vs_msrins_no);
+    @Override
+    public void delete(VenVsMsrins venVsMsrins){
+        venVsMsrinsMapper.delete(venVsMsrins);
     }
 
     public Result<VenVsSttus> monitor(int page, int size) {

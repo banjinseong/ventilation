@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class RectService implements CrudService<Rect, String> {
+public class RectService implements CrudService<Rect> {
 
     private final RectMapper rectMapper;
 
@@ -25,8 +25,8 @@ public class RectService implements CrudService<Rect, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Rect findOne(String rect_no){ return rectMapper.findOne(rect_no); }
+//    @Override
+//    public Rect findOne(String rect_no){ return rectMapper.findOne(rect_no); }
 
     @Override
     public void enroll(Rect rect){
@@ -39,8 +39,8 @@ public class RectService implements CrudService<Rect, String> {
     }
 
     @Override
-    public void delete(String rect_no){
-        rectMapper.delete(rect_no);
+    public void delete(Rect rect){
+        rectMapper.delete(rect);
     }
 
     public Result<RectSttus> monitor(int page, int size) {

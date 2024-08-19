@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class FrplgService implements CrudService<Frplg, String> {
+public class FrplgService implements CrudService<Frplg> {
 
     private final FrplgMapper frplgMapper;
 
@@ -25,8 +25,8 @@ public class FrplgService implements CrudService<Frplg, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Frplg findOne(String frplg_no){ return frplgMapper.findOne(frplg_no); }
+//    @Override
+//    public Frplg findOne(String frplg_no){ return frplgMapper.findOne(frplg_no); }
 
     @Override
     public void enroll(Frplg frplg){
@@ -39,8 +39,8 @@ public class FrplgService implements CrudService<Frplg, String> {
     }
 
     @Override
-    public void delete(String frplg_no){
-        frplgMapper.delete(frplg_no);
+    public void delete(Frplg frplg){
+        frplgMapper.delete(frplg);
     }
 
     public Result<FrplgSttus> monitor(int page, int size) {

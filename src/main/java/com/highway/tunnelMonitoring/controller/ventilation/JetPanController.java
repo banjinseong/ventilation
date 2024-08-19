@@ -1,98 +1,27 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
+import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPan;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanSttus;
 import com.highway.tunnelMonitoring.service.ventilation.JetPanService;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
 @RequestMapping("/ventilation/jetPan/*")
-public class JetPanController {
+public class JetPanController extends BaseCrudController<JetPan> {
 
     private final JetPanService jetPanService;
 
-    //조회시
-    @GetMapping("config/list")
-    public ResponseEntity<Result<JetPan>> findAll(@RequestParam(defaultValue = "1") int page,
-                                                  @RequestParam(defaultValue = "10") int size) {
-        Result<JetPan> result = jetPanService.findAll(page, size);
-        return ResponseEntity.status(HttpStatus.OK).body(result);
-    }
+    public JetPanController(JetPanService jetPanService) {
+        super(jetPanService);
+        this.jetPanService = jetPanService;
 
-    //방화문 등록시
-    @PostMapping("config/create")
-    @Transactional
-    public ResponseEntity<String> postJetPan(@RequestBody @Valid JetPan jetPan, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            StringBuilder errorMessage = new StringBuilder();
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                errorMessage.append(error.getDefaultMessage()).append("; ");
-            }
-            return ResponseEntity.badRequest().body(errorMessage.toString());
-        }
-        try {
-            jetPanService.enroll(jetPan);
-            String message = "등록에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "등록에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
-
-    }
-
-
-    @PutMapping("config/update/")
-    @Transactional
-    public ResponseEntity<String> putJetPan(@RequestBody @Valid JetPan jetPan, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            StringBuilder errorMessage = new StringBuilder();
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                errorMessage.append(error.getDefaultMessage()).append("; ");
-            }
-            return ResponseEntity.badRequest().body(errorMessage.toString());
-        }
-        try {
-            jetPanService.update(jetPan);
-            String message = "업데이트에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "업데이트에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
-
-    }
-
-    @DeleteMapping("config/delete")
-    @Transactional
-    public ResponseEntity<String> deleteJetPan(@RequestBody List<String> jet_pan_nos){
-        try {
-            for (String jet_pan_no : jet_pan_nos) {
-                jetPanService.delete(jet_pan_no);
-            }
-            String message = "삭제에 성공하셨습니다.";
-            return ResponseEntity.ok(message);
-        }catch (IllegalAccessError error){
-            String errorMessage = "삭제에 실패하였습니다: " + error.getMessage(); // 오류 메시지 포맷
-            //500으로 메시지 고정, 위에서 유효성검사 하기때문에
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-        }
     }
 
     /**

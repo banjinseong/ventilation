@@ -21,7 +21,7 @@ public interface LghtMapper {
     void update(Lght lght);
 
     //데이터 삭제
-    void delete(String lght_group_no, String lght_knd);
+    void delete(Lght lght);
 
     List<LghtSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

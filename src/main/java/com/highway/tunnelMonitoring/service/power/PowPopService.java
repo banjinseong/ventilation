@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PowPopService implements CrudService<PowPop, String> {
+public class PowPopService implements CrudService<PowPop> {
 
     private final PowPopMapper powPopMapper;
 
@@ -25,8 +25,8 @@ public class PowPopService implements CrudService<PowPop, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public PowPop findOne(String pow_pop_no){ return powPopMapper.findOne(pow_pop_no); }
+//    @Override
+//    public PowPop findOne(String pow_pop_no){ return powPopMapper.findOne(pow_pop_no); }
 
     @Override
     public void enroll(PowPop powPop){
@@ -39,8 +39,8 @@ public class PowPopService implements CrudService<PowPop, String> {
     }
 
     @Override
-    public void delete(String pow_pop_no){
-        powPopMapper.delete(pow_pop_no);
+    public void delete(PowPop powPop){
+        powPopMapper.delete(powPop);
     }
 
     public Result<PowPopSttus> monitor(int page, int size) {

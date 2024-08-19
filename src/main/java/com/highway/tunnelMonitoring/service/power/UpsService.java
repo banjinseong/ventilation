@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UpsService implements CrudService<Ups, String> {
+public class UpsService implements CrudService<Ups> {
 
     private final UpsMapper upsMapper;
 
@@ -25,8 +25,8 @@ public class UpsService implements CrudService<Ups, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public Ups findOne(String ups_no){ return upsMapper.findOne(ups_no); }
+//    @Override
+//    public Ups findOne(String ups_no){ return upsMapper.findOne(ups_no); }
 
     @Override
     public void enroll(Ups ups){
@@ -39,8 +39,8 @@ public class UpsService implements CrudService<Ups, String> {
     }
 
     @Override
-    public void delete(String ups_no){
-        upsMapper.delete(ups_no);
+    public void delete(Ups ups){
+        upsMapper.delete(ups);
     }
 
     public Result<UpsSttus> monitor(int page, int size) {

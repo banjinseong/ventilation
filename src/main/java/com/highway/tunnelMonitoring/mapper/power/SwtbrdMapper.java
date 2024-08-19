@@ -21,7 +21,7 @@ public interface SwtbrdMapper {
     void update(Swtbrd swtbrd);
 
     //데이터 삭제
-    void delete(String swtbrd_no);
+    void delete(Swtbrd swtbrd);
 
     List<SwtbrdSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

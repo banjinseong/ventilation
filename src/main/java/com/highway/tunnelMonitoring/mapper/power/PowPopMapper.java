@@ -21,7 +21,7 @@ public interface PowPopMapper {
     void update(PowPop powPop);
 
     //데이터 삭제
-    void delete(String pow_pop_no);
+    void delete(PowPop powPop);
 
     List<PowPopSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

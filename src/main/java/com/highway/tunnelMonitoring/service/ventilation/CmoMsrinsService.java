@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CmoMsrinsService implements CrudService<CmoMsrins, String> {
+public class CmoMsrinsService implements CrudService<CmoMsrins> {
 
     private final CmoMsrinsMapper cmoMsrinsMapper;
 
@@ -25,8 +25,8 @@ public class CmoMsrinsService implements CrudService<CmoMsrins, String> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    @Override
-    public CmoMsrins findOne(String cmo_msrins_no){ return cmoMsrinsMapper.findOne(cmo_msrins_no); }
+//    @Override
+//    public CmoMsrins findOne(String cmo_msrins_no){ return cmoMsrinsMapper.findOne(cmo_msrins_no); }
 
     @Override
     public void enroll(CmoMsrins cmoMsrins){
@@ -39,8 +39,8 @@ public class CmoMsrinsService implements CrudService<CmoMsrins, String> {
     }
 
     @Override
-    public void delete(String cmo_msrins_no){
-        cmoMsrinsMapper.delete(cmo_msrins_no);
+    public void delete(CmoMsrins cmoMsrins){
+        cmoMsrinsMapper.delete(cmoMsrins);
     }
 
     public Result<CmoSttus> monitor(int page, int size) {

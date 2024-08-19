@@ -21,7 +21,7 @@ public interface VenAxfnMapper {
     void update(VenAxfn venAxfn);
 
     //데이터 삭제
-    void delete(String ven_axfn_no);
+    void delete(VenAxfn venAxfn);
 
     List<VenAxfnSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

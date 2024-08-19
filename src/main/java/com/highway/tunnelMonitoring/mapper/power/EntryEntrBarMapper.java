@@ -21,7 +21,7 @@ public interface EntryEntrBarMapper {
     void update(EntryEntrBar entryEntrBar);
 
     //데이터 삭제
-    void delete(String entry_entr_bar_no);
+    void delete(EntryEntrBar entryEntrBar);
 
     List<EntryEntrBarSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

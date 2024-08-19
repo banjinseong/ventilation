@@ -21,7 +21,7 @@ public interface FrplgMapper {
     void update(Frplg frplg);
 
     //데이터 삭제
-    void delete(String frplg_no);
+    void delete(Frplg frplg);
 
     List<FrplgSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

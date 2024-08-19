@@ -21,7 +21,7 @@ public interface VenVsMsrinsMapper {
     void update(VenVsMsrins venVsMsrins);
 
     //데이터 삭제
-    void delete(String ven_vs_msrins_no);
+    void delete(VenVsMsrins venVsMsrins);
 
     List<VenVsSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 

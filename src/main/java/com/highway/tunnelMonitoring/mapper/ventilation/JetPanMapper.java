@@ -16,12 +16,12 @@ public interface JetPanMapper {
     //하나만 조회
     JetPan findOne(String jet_pan_no);
     //데이터 등록
-    void enroll(JetPan jetPanGetDTO);
+    void enroll(JetPan jetPan);
     //데이터 업데이트
-    void update(JetPan jetPanGetDTO);
+    void update(JetPan jetPan);
 
     //데이터 삭제
-    void delete(String jet_pan_no);
+    void delete(JetPan jetPan);
 
     List<JetPanSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
