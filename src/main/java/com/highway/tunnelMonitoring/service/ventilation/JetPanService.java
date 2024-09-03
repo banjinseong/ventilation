@@ -50,4 +50,17 @@ public class JetPanService implements CrudService<JetPan> {
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
+
+    /**
+     * 현재 상태 기록
+     */
+    public void currentSttus(JetPanSttus jetPanSttus){
+
+
+    }
+
+
+
+
+
 }
