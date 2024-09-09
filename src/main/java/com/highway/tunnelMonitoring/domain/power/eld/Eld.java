@@ -1,16 +1,19 @@
-package com.highway.tunnelMonitoring.domain.power.rect;
+package com.highway.tunnelMonitoring.domain.power.eld;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 누전
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Rect {
-    private String rect_no; // 정류기 번호 (Primary Key)
+public class Eld {
+    private String eld_id;
     private String link_id;
     private String instl_lc; // 설치 위치
     private String instl_de; // 설치 날짜
-
+    private String model_nm;
 }

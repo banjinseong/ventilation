@@ -1,17 +1,17 @@
-package com.highway.tunnelMonitoring.domain.power.eltgnr;
+package com.highway.tunnelMonitoring.domain.power.acb;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 발전기
+ * 기중 차단기
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Eltgnr {
-    private String eltgnr_no; //기본키
+public class Acb {
+    private String acb_no; //기본키
     private String link_id; //링크아이디
     private String instl_lc; //설치위치
     private String instl_de; //설치일자

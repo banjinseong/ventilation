@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.domain.power.eltgnr;
+package com.highway.tunnelMonitoring.domain.power.vcb;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EltgnrSttus {
-    private String eltgnr_no; //기본키
+public class VcbSttus {
+    private String vcb_no; //기본키
     private String link_id;
     private boolean auto_remote_sttus; //원격 수동 상태
     private boolean run_sttus; //운전 상태

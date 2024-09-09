@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class EntryEntrBarSttus {
     private String entry_entr_bar_no; //pk
     private String link_id; //fk
-    private String change_dt; //변경일시
-    private char intrcp_at; //차단여부
-    private char rising_at; //상승여부
-    private char desn_at; //하강여부
-
+    private boolean auto_remote_sttus; //원격 수동 상태
+    private boolean run_sttus; //동작중
+    private boolean rising_sttus; //상승여부
+    private boolean desn_sttus; //하강여부
+    private boolean fault_sttus;//고장여부
 }

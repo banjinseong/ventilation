@@ -4,16 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 발전기
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Eltgnr {
+public class EltgnrAlarmHistory {
     private String eltgnr_no; //기본키
-    private String link_id; //링크아이디
-    private String instl_lc; //설치위치
-    private String instl_de; //설치일자
-    private String model_nm; //모델넘버(이름)
+    private String link_id;
+    private String alarm_datetime; //경보시작시간
+    private String alarm_type; //경보 종류
+    private String release_datetime;//경보 종료 시간
 }

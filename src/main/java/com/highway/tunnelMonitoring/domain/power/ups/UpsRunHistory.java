@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpsSttus {
+public class UpsRunHistory {
     private String ups_no;
     private String link_id;
-    private boolean run_sttus;  //동작여부
-    private boolean fault_sttus;  //고장여부
-    private boolean bypsss_sttus; //bypsss여부
+    private String run_start_datetime;
+    private String run_end_datetime;
 }
