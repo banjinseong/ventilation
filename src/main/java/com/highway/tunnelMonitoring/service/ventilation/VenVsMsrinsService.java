@@ -3,7 +3,6 @@ package com.highway.tunnelMonitoring.service.ventilation;
 import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsMsrins;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.venmsrins.VenVsSttus;
-import com.highway.tunnelMonitoring.mapper.ventilation.VenVsMsrinsMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

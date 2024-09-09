@@ -3,7 +3,6 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.powpop.PowPop;
 import com.highway.tunnelMonitoring.domain.power.powpop.PowPopSttus;
-import com.highway.tunnelMonitoring.mapper.power.PowPopMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

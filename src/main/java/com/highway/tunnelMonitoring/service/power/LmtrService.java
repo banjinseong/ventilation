@@ -2,7 +2,6 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.lmtr.Lmtr;
-import com.highway.tunnelMonitoring.mapper.power.LmtrMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

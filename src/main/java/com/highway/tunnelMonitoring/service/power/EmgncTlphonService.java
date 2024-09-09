@@ -3,7 +3,6 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphon;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphonSttus;
-import com.highway.tunnelMonitoring.mapper.power.EmgncTlphonMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
