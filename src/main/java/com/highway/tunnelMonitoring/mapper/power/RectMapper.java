@@ -1,10 +1,12 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.rect.Rect;
+import com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -25,4 +27,9 @@ public interface RectMapper {
 
     List<RectSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+    int alarmCountAll();
+
+    List<RectAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

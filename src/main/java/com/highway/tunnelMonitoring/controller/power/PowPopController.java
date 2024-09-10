@@ -4,7 +4,6 @@ import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.powpop.PowPop;
 import com.highway.tunnelMonitoring.domain.power.powpop.PowPopSttus;
-import com.highway.tunnelMonitoring.service.power.PowPopService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

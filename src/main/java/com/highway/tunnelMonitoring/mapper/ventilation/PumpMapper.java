@@ -1,10 +1,11 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
-import com.highway.tunnelMonitoring.domain.ventilation.pump.Pump;
-import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpSttus;
+import com.highway.tunnelMonitoring.domain.ventilation.pump.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -23,4 +24,18 @@ public interface PumpMapper {
     void delete(Pump pump);
 
     List<PumpSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+
+    int monitorCountAll();
+
+    int faultCountAll();
+
+    int runCountAll();
+
+    int statCountAll();
+
+    List<PumpFaultHistory> faultHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<PumpRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<PumpStat> stat(String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

@@ -47,4 +47,52 @@
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
+
+    <insert id="stat">
+        INSERT INTO jet_pan_stat (jet_pan_id, link_id, record_date, run_time_hours, fault_count, run_count)
+        SELECT
+            r.jet_pan_id,
+            r.link_id,
+            TRUNC(SYSDATE) AS record_date,  -- 오늘 날짜 기준으로 기록
+
+            -- 정확한 가동 시간 계산 (시간 단위)
+            SUM(
+                CASE
+                -- 오늘 시작되고 오늘 종료된 경우
+                WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE) AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE) THEN
+                    (r.run_end_datetime - r.run_start_datetime) * 24 * 60
+
+                -- 오늘 시작되고 아직 종료되지 않은 경우
+                WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE) AND r.run_end_datetime IS NULL THEN
+                    (SYSDATE - r.run_start_datetime) * 24 * 60
+
+                -- 전날 시작되어 오늘 종료된 경우
+                WHEN TRUNC(r.run_start_datetime) < TRUNC(SYSDATE) AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE) THEN
+                    (r.run_end_datetime - TRUNC(SYSDATE)) * 24 * 60
+
+                -- 전날 시작되어 아직 종료되지 않은 경우 (현재까지 가동 중)
+                WHEN TRUNC(r.run_start_datetime) < TRUNC(SYSDATE) AND r.run_end_datetime IS NULL THEN
+                    (SYSDATE - TRUNC(SYSDATE)) * 24 * 60
+
+                    ELSE 0
+                END
+            ) / 60 AS run_time_hours,  -- 시간 단위로 변환
+
+            -- 가동 횟수 계산 (오늘 시작된 가동만 카운트)
+            COUNT(CASE WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE) THEN 1 END) AS run_count,
+
+            -- 고장 횟수 계산 (오늘 발생한 고장만 카운트)
+            (SELECT COUNT(f.fault_start_datetime)
+            FROM jet_pan_fault_history f
+            WHERE f.jet_pan_id = r.jet_pan_id
+                AND f.link_id = r.link_id
+                AND TRUNC(f.fault_start_datetime) = TRUNC(SYSDATE)) AS fault_count
+
+        FROM jet_pan_run_history r
+        WHERE (TRUNC(r.run_start_datetime) <= TRUNC(SYSDATE) AND TRUNC(r.run_end_datetime) >= TRUNC(SYSDATE))
+            OR (TRUNC(r.run_start_datetime) <= TRUNC(SYSDATE) AND r.run_end_datetime IS NULL)
+        GROUP BY r.jet_pan_id, r.link_id;
+
+    </insert>
+
 </mapper>

@@ -1,13 +1,16 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy;
 import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
+import com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import com.highway.tunnelMonitoring.mapper.power.FrplgMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,8 +49,17 @@ public class FrplgService implements CrudService<Frplg> {
     public Result<FrplgSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
         List<FrplgSttus> list = frplgMapper.monitor(offset, size);
-        int total = frplgMapper.countAll();
+        int total = frplgMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
+    }
+
+    public Result<FrplgAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<FrplgAlarmHistory> list = frplgMapper.alarmHistory(offset, size, startDate, endDate);
+        int total = frplgMapper.alarmCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
     }
 }

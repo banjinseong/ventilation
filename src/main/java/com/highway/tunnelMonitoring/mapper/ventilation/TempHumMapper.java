@@ -1,7 +1,8 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
-import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCable;
-import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableSttus;
+
+import com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHum;
+import com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHumSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,12 +13,19 @@ import java.util.List;
  */
 @Mapper
 public interface TempHumMapper {
-    List<HeatingCable> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<TempHum> findAll(@Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
 
+    //하나만 조회
+//    JetPan findOne(String jet_pan_no);
+    //데이터 등록
+    void enroll(TempHum tempHum);
     //데이터 업데이트
-    void update(HeatingCable venAxfn);
+    void update(TempHum tempHum);
 
-    List<HeatingCableSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    //데이터 삭제
+    void delete(TempHum tempHum);
+
+    List<TempHumSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 }

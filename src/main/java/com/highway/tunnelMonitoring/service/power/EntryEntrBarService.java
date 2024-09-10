@@ -2,12 +2,15 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,8 +49,17 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
         List<EntryEntrBarSttus> list = entryEntrBarMapper.monitor(offset, size);
-        int total = entryEntrBarMapper.countAll();
+        int total = entryEntrBarMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
+    }
+
+    public Result<EntryEntrBarFaultHistory> faultHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.faultHistory(offset, size, startDate, endDate);
+        int total = entryEntrBarMapper.faultCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
     }
 }

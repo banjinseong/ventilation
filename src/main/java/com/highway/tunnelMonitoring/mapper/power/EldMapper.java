@@ -1,11 +1,13 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.eld.Eld;
+import com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy;
 import com.highway.tunnelMonitoring.domain.power.eld.EldSttus;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -24,4 +26,10 @@ public interface EldMapper {
     void delete(Eld eld);
 
     List<EldSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+
+    int monitorCountAll();
+
+    List<EldAlarmHistroy> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int alarmCountAll();
 }

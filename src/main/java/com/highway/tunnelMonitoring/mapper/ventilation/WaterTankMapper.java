@@ -1,10 +1,12 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTank;
+import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -24,4 +26,9 @@ public interface WaterTankMapper {
 
     List<WaterTankSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+    int alarmCountAll();
+
+    List<WaterTankAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

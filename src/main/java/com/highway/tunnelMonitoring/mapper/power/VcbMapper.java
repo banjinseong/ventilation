@@ -1,10 +1,13 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.Vcb;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -23,4 +26,10 @@ public interface VcbMapper {
     void delete(Vcb vcb);
 
     List<VcbSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+
+    List<VcbAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int alarmCountAll();
+
+    int monitorCountAll();
 }

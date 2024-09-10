@@ -1,10 +1,13 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -25,4 +28,9 @@ public interface EntryEntrBarMapper {
 
     List<EntryEntrBarSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+    List<EntryEntrBarFaultHistory> faultHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int faultCountAll();
 }

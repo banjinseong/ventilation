@@ -1,9 +1,12 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
-import com.highway.tunnelMonitoring.domain.ventilation.jetpan.*;
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanFaultHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanStat;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.*;
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.service.ventilation.JetPanService;
+import com.highway.tunnelMonitoring.service.ventilation.VenAxFnService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +15,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/jetPan/*")
-public class JetPanController extends BaseCrudController<JetPan> {
+@RequestMapping("/ventilation/venAxFn/*")
+public class VenAxFnController extends BaseCrudController<VenAxFn> {
 
-    private final JetPanService jetPanService;
+    private final VenAxFnService venAxfnService;
 
-    public JetPanController(JetPanService jetPanService) {
-        super(jetPanService);
-        this.jetPanService = jetPanService;
-
+    public VenAxFnController(VenAxFnService venAxfnService) {
+        super(venAxfnService);
+        this.venAxfnService = venAxfnService;
     }
 
 
@@ -33,16 +34,19 @@ public class JetPanController extends BaseCrudController<JetPan> {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<JetPanSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<JetPanSttus> result = jetPanService.monitor(page, size);
+    public ResponseEntity<Result<VenAxFnSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                               @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<VenAxFnSttus> result = venAxfnService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
 
 
+    /**
+     * 고장이력
+     */
     @GetMapping("/faultHistory")
-    public ResponseEntity<Result<JetPanFaultHistory>> faultHistory(
+    public ResponseEntity<Result<VenAxFnFaultHistory>> faultHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -58,13 +62,15 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.faultHistory(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.faultHistory(linkId, page, size, startDate, endDate));
     }
 
 
-
+    /**
+     * 가동이력
+     */
     @GetMapping("/runHistory")
-    public ResponseEntity<Result<JetPanRunHistory>> runHistory(
+    public ResponseEntity<Result<VenAxFnRunHistory>> runHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -80,11 +86,15 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.runHistory(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.runHistory(linkId, page, size, startDate, endDate));
     }
 
+
+    /**
+     * 통계
+     */
     @GetMapping("/stat")
-    public ResponseEntity<Result<JetPanStat>> stat(
+    public ResponseEntity<Result<VenAxFnStat>> stat(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -100,8 +110,6 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.stat(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.stat(linkId, page, size, startDate, endDate));
     }
-
-
 }

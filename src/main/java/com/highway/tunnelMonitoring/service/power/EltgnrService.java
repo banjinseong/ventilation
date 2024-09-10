@@ -2,12 +2,14 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,8 +48,17 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrSttus> monitor(int page, int size) {
         int offset = (page - 1) * size;
         List<EltgnrSttus> list = eltgnrMapper.monitor(offset, size);
-        int total = eltgnrMapper.countAll();
+        int total = eltgnrMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
+    }
+
+    public Result<EltgnrAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<EltgnrAlarmHistory> list = eltgnrMapper.alarmHistory(offset, size, startDate, endDate);
+        int total = eltgnrMapper.alarmCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
     }
 }

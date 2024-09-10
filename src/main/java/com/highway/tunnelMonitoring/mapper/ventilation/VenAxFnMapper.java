@@ -1,10 +1,11 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFn;
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnSttus;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -25,4 +26,17 @@ public interface VenAxFnMapper {
 
     List<VenAxFnSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+    int faultCountAll();
+
+    int runCountAll();
+
+    int statCountAll();
+
+    List<VenAxFnFaultHistory> faultHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<VenAxFnRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    List<VenAxFnStat> stat(String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

@@ -1,10 +1,12 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
+import com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -25,4 +27,9 @@ public interface FrplgMapper {
 
     List<FrplgSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+    List<FrplgAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int alarmCountAll();
 }

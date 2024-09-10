@@ -1,10 +1,13 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.ups.Ups;
+import com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory;
+import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -25,4 +28,14 @@ public interface UpsMapper {
 
     List<UpsSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
+    int monitorCountAll();
+
+
+    List<UpsFaultHistory> faultHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int faultCountAll();
+
+    List<UpsRunHistory> runHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int runCountAll();
 }

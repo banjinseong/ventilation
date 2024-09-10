@@ -26,7 +26,7 @@ public abstract class BaseCrudController<T> {
     //조회시
     @GetMapping("config/list")
     public ResponseEntity<Result<T>> findAll(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                     @RequestParam(defaultValue = "10", name = "size") int size) {
+                                             @RequestParam(defaultValue = "10", name = "size") int size) {
         Result<T> result = service.findAll(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
     }

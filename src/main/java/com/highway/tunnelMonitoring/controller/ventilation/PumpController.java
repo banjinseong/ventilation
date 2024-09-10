@@ -1,31 +1,36 @@
 package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
-import com.highway.tunnelMonitoring.domain.ventilation.jetpan.*;
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.service.ventilation.JetPanService;
+import com.highway.tunnelMonitoring.domain.ventilation.pump.*;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnFaultHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnRunHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnStat;
+import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnSttus;
+import com.highway.tunnelMonitoring.service.CrudService;
+import com.highway.tunnelMonitoring.service.ventilation.PumpService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/jetPan/*")
-public class JetPanController extends BaseCrudController<JetPan> {
-
-    private final JetPanService jetPanService;
-
-    public JetPanController(JetPanService jetPanService) {
-        super(jetPanService);
-        this.jetPanService = jetPanService;
-
+@RequestMapping("/ventilation/pump/*")
+public class PumpController extends BaseCrudController<Pump> {
+    
+    private final PumpService pumpService;
+    
+    public PumpController(PumpService pumpService) {
+        super(pumpService);
+        this.pumpService = pumpService;
     }
 
 
@@ -33,16 +38,19 @@ public class JetPanController extends BaseCrudController<JetPan> {
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<JetPanSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<JetPanSttus> result = jetPanService.monitor(page, size);
+    public ResponseEntity<Result<PumpSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                            @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<PumpSttus> result = pumpService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
 
 
+    /**
+     * 고장이력
+     */
     @GetMapping("/faultHistory")
-    public ResponseEntity<Result<JetPanFaultHistory>> faultHistory(
+    public ResponseEntity<Result<PumpFaultHistory>> faultHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -58,13 +66,15 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.faultHistory(linkId, page, size, startDate, endDate));
+                .body(pumpService.faultHistory(linkId, page, size, startDate, endDate));
     }
 
 
-
+    /**
+     * 가동이력
+     */
     @GetMapping("/runHistory")
-    public ResponseEntity<Result<JetPanRunHistory>> runHistory(
+    public ResponseEntity<Result<PumpRunHistory>> runHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -80,11 +90,15 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.runHistory(linkId, page, size, startDate, endDate));
+                .body(pumpService.runHistory(linkId, page, size, startDate, endDate));
     }
 
+
+    /**
+     * 통계
+     */
     @GetMapping("/stat")
-    public ResponseEntity<Result<JetPanStat>> stat(
+    public ResponseEntity<Result<PumpStat>> stat(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -100,8 +114,6 @@ public class JetPanController extends BaseCrudController<JetPan> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(jetPanService.stat(linkId, page, size, startDate, endDate));
+                .body(pumpService.stat(linkId, page, size, startDate, endDate));
     }
-
-
 }

@@ -4,7 +4,6 @@ import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphon;
 import com.highway.tunnelMonitoring.domain.power.emgnctlphon.EmgncTlphonSttus;
-import com.highway.tunnelMonitoring.service.power.EmgncTlphonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;

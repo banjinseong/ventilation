@@ -1,10 +1,12 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper;
+import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -23,4 +25,10 @@ public interface DamperMapper {
     void delete(ExhaustDamper exhaustDamper);
 
     List<ExhaustDamperSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+
+    List<ExhaustDamperRunHistory> runHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int runCountAll();
+
+    int monitorCountAll();
 }
