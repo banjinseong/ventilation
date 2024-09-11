@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EltgnrSttus {
-    private String eltgnr_no; //기본키
+    private String eltgnr_id; //기본키
     private String link_id;
     private boolean auto_remote_sttus; //원격 수동 상태
     private boolean run_sttus; //운전 상태

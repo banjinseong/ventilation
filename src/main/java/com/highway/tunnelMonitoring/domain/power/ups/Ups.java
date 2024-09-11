@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ups {
-    private String ups_no; // UPS 번호 (Primary Key)
+    private String ups_id; // UPS 번호 (Primary Key)
     private String link_id;
     private String instl_lc; // 설치 위치
     private String instl_de; // 설치 날짜

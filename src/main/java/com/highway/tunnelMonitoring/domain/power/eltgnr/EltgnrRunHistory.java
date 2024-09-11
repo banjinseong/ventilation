@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EltgnrRunHistory {
-    private String eltgnr_no; //기본키
+    private String eltgnr_id; //기본키
     private String link_id;
     private String run_start_datetime;
     private String run_end_datetime;

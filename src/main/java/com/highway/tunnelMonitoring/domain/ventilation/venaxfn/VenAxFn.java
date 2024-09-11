@@ -9,7 +9,7 @@ import lombok.*;
  * 축류팬 정보
  */
 public class VenAxFn {
-    private String ven_axfn_no; //기본키
+    private String ven_axfn_id; //기본키
     private String link_id; //링크(fk)키
     private String fan_type; //배기/급기 타입
     private String instl_lc; //설치위치

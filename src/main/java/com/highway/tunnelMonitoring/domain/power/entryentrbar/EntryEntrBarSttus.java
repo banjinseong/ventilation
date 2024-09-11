@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EntryEntrBarSttus {
-    private String entry_entr_bar_no; //pk
+    private String entry_entr_bar_id; //pk
     private String link_id; //fk
     private boolean auto_remote_sttus; //원격 수동 상태
     private boolean run_sttus; //동작중

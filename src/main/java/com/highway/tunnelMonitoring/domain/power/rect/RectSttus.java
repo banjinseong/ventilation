@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RectSttus {
-    private String rect_no;
+    private String rect_id;
     private String link_id;
     private String change_dt; //변경일시
     private char low_vltge_alarm;//저 전압 경보 여부

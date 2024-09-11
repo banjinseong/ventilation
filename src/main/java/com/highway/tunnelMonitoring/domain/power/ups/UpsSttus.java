@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpsSttus {
-    private String ups_no;
+    private String ups_id;
     private String link_id;
     private boolean run_sttus;  //동작여부
     private boolean fault_sttus;  //고장여부

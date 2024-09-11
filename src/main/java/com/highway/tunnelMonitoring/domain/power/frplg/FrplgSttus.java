@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FrplgSttus {
-    private String frplg_no; //pk
+    private String frplg_id; //pk
     private String link_id; //fk
     private boolean frplg_alarm;//소화전 발신기 경보
     private boolean frplg_lifted;//소화기 들림

@@ -9,7 +9,7 @@ import lombok.*;
  * 제트팬 현황
  */
 public class JetPanSttus {
-    private String jet_pan_no;// 제트팬번호(fk)
+    private String jet_pan_id;// 제트팬번호(fk)
     private String link_id;//링크키(fk)
     private boolean remote_mode; //원격/수동
     private boolean forward_mode; //정방향

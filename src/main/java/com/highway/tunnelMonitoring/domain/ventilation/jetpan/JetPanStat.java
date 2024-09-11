@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
  * 통계
  */
 public class JetPanStat {
-    private String jet_pan_no;// 제트팬번호(fk)
+    private String jet_pan_id;// 제트팬번호(fk)
     private String link_id;//링크키(fk)
     private String recore_date; //기록일(통계일)
     private float run_time_hours; //하루 누적 시간
