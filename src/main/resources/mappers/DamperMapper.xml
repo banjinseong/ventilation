@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.ventilation.DamperMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper">
+    <select id="damperFindAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -15,34 +15,34 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <select id="countAll" resultType="int">
+    <select id="damperCountAll" resultType="int">
         SELECT COUNT(*) FROM EXHAUST_DAMPER
     </select>
 
-    <select id="monitorCountAll" resultType="int">
+    <select id="damperMonitorCountAll" resultType="int">
         SELECT COUNT(*) FROM EXHAUST_DAMPER_STTUS
     </select>
 
-    <select id="runCountAll" resultType="int">
+    <select id="damperRunCountAll" resultType="int">
         SELECT COUNT(*) FROM EXHAUST_DAMPER_RUN_HISTORY
     </select>
 
 
-    <insert id="enroll">
+    <insert id="damperEnroll">
         insert into EXHAUST_DAMPER(DAMPER_ID, LINK_ID, model_nm, instl_lc, instl_de)
         values(#{DAMPER_ID}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
     </insert>
 
-    <update id="update">
+    <update id="damperUpdate">
         update EXHAUST_DAMPER set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where DAMPER_ID = #{DAMPER_ID} and LINK_ID = #{link_id}
     </update>
 
-    <delete id="delete">
+    <delete id="damperDelete">
         delete from EXHAUST_DAMPER where DAMPER_ID = #{DAMPER_ID} and LINK_ID = #{link_id}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus">
+    <select id="damperMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -54,7 +54,7 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <select id="runHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory">
+    <select id="damperRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

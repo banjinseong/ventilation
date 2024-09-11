@@ -22,8 +22,8 @@ public class RectService implements CrudService<Rect> {
     @Override
     public Result<Rect> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Rect> list = rectMapper.findAll(linkId, offset, size);
-        int total = rectMapper.countAll();
+        List<Rect> list = rectMapper.rectFindAll(linkId, offset, size);
+        int total = rectMapper.rectCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -33,31 +33,31 @@ public class RectService implements CrudService<Rect> {
 
     @Override
     public void enroll(Rect rect){
-        rectMapper.enroll(rect);
+        rectMapper.rectEnroll(rect);
     }
 
     @Override
     public void update(Rect rect){
-        rectMapper.update(rect);
+        rectMapper.rectUpdate(rect);
     }
 
     @Override
     public void delete(Rect rect){
-        rectMapper.delete(rect);
+        rectMapper.rectDelete(rect);
     }
 
     public Result<RectSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<RectSttus> list = rectMapper.monitor(linkId, offset, size);
-        int total = rectMapper.monitorCountAll();
+        List<RectSttus> list = rectMapper.rectMonitor(linkId, offset, size);
+        int total = rectMapper.rectMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<RectAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<RectAlarmHistory> list = rectMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = rectMapper.alarmCountAll();
+        List<RectAlarmHistory> list = rectMapper.rectAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = rectMapper.rectAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

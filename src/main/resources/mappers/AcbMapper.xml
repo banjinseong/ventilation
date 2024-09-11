@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.AcbMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.acb.Acb">
+    <select id="acbFindAll" resultType="com.highway.tunnelMonitoring.domain.power.acb.Acb">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -15,37 +15,37 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <select id="countAll" resultType="int">
+    <select id="acbCountAll" resultType="int">
         SELECT COUNT(*) FROM acb
     </select>
 
-    <select id="monitorCountAll" resultType="int">
+    <select id="acbMonitorCountAll" resultType="int">
         SELECT COUNT(*) FROM ACB_STTUS
     </select>
 
-    <select id="alarmCountAll" resultType="int">
+    <select id="acbAlarmCountAll" resultType="int">
         SELECT COUNT(*) FROM ACB_ALARM_HISTORY
     </select>
 
-    <select id="runCountAll" resultType="int">
+    <select id="acbRunCountAll" resultType="int">
         SELECT COUNT(*) FROM ACB_RUN_HISTORY
     </select>
 
-    <insert id="enroll">
+    <insert id="acbEnroll">
         insert into acb(acb_id, LINK_ID, model_nm, instl_lc, instl_de)
         values(#{acb_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
     </insert>
 
-    <update id="update">
+    <update id="acbUpdate">
         update acb set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where acb_id = #{acb_id} and LINK_ID = #{link_id}
     </update>
 
-    <delete id="delete">
+    <delete id="acbDelete">
         delete from acb where acb_id = #{acb_id} and LINK_ID = #{link_id}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbSttus">
+    <select id="acbMonitor" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -57,7 +57,7 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <select id="alarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory">
+    <select id="acbAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -70,7 +70,7 @@
     </select>
 
 
-    <select id="runHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory">
+    <select id="acbRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

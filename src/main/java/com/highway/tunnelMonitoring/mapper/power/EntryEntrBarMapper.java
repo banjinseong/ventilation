@@ -14,28 +14,28 @@ import java.util.List;
 @Mapper
 public interface EntryEntrBarMapper {
     
-    List<EntryEntrBar> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<EntryEntrBar> entryEntrBarFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int entryEntrBarCountAll();
     //데이터 등록
-    void enroll(EntryEntrBar entryEntrBar);
+    void entryEntrBarEnroll(EntryEntrBar entryEntrBar);
     //데이터 업데이트
-    void update(EntryEntrBar entryEntrBar);
+    void entryEntrBarUpdate(EntryEntrBar entryEntrBar);
 
     //데이터 삭제
-    void delete(EntryEntrBar entryEntrBar);
+    void entryEntrBarDelete(EntryEntrBar entryEntrBar);
 
-    List<EntryEntrBarSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<EntryEntrBarSttus> entryEntrBarMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int entryEntrBarMonitorCountAll();
 
-    List<EntryEntrBarFaultHistory> faultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int faultCountAll();
+    int entryEntrBarFaultCountAll();
 
 
-    List<EntryEntrBarRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int entryEntrBarRunCountAll();
 
 }

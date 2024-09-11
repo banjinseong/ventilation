@@ -14,28 +14,28 @@ import java.util.List;
 
 @Mapper
 public interface AcbMapper {
-    List<Acb> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Acb> acbFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int acbCountAll();
     //하나만 조회
 
     //데이터 등록
-    void enroll(Acb acb);
+    void acbEnroll(Acb acb);
     //데이터 업데이트
-    void update(Acb acb);
+    void acbUpdate(Acb acb);
 
     //데이터 삭제
-    void delete(Acb acb);
+    void acbDelete(Acb acb);
 
-    List<AcbSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<AcbSttus> acbMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<AcbAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbAlarmHistory> acbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int monitorCountAll();
+    int acbMonitorCountAll();
 
-    int alarmCountAll();
+    int acbAlarmCountAll();
 
-    List<AcbRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbRunHistory> acbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int acbRunCountAll();
 }

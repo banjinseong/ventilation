@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/ventilation/cable/*")
+@RequestMapping("/ventilation/waterTank/*")
 public class WaterTankController extends BaseCrudController<WaterTank> {
 
     private final WaterTankService waterTankService;

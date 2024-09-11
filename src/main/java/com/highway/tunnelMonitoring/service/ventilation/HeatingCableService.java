@@ -25,8 +25,8 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     @Override
     public Result<HeatingCable> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<HeatingCable> list = heatingCableMapper.findAll(linkId, offset, size);
-        int total = heatingCableMapper.countAll();
+        List<HeatingCable> list = heatingCableMapper.heatingCableFindAll(linkId, offset, size);
+        int total = heatingCableMapper.heatingCableCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -35,32 +35,32 @@ public class HeatingCableService implements CrudService<HeatingCable> {
 
     @Override
     public void enroll(HeatingCable heatingCable){
-        heatingCableMapper.enroll(heatingCable);
+        heatingCableMapper.heatingCableEnroll(heatingCable);
     }
 
     @Override
     public void update(HeatingCable heatingCable){
-        heatingCableMapper.update(heatingCable);
+        heatingCableMapper.heatingCableUpdate(heatingCable);
     }
 
     @Override
     public void delete(HeatingCable heatingCable){
-        heatingCableMapper.delete(heatingCable);
+        heatingCableMapper.heatingCableDelete(heatingCable);
     }
 
 
     public Result<HeatingCableSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<HeatingCableSttus> list = heatingCableMapper.monitor(linkId, offset, size);
-        int total = heatingCableMapper.monitorCountAll();
+        List<HeatingCableSttus> list = heatingCableMapper.heatingCableMonitor(linkId, offset, size);
+        int total = heatingCableMapper.heatingCableMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<HeatingCableRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<HeatingCableRunHistory> list = heatingCableMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = heatingCableMapper.runCountAll();
+        List<HeatingCableRunHistory> list = heatingCableMapper.heatingCableRunHistory(linkId, offset, size, startDate, endDate);
+        int total = heatingCableMapper.heatingCableRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -69,8 +69,8 @@ public class HeatingCableService implements CrudService<HeatingCable> {
 
     public Result<HeatingCableAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<HeatingCableAlarmHistory> list = heatingCableMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = heatingCableMapper.alarmCountAll();
+        List<HeatingCableAlarmHistory> list = heatingCableMapper.heatingCableAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = heatingCableMapper.heatingCableAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

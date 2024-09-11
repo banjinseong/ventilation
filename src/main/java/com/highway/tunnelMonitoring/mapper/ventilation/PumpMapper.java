@@ -10,32 +10,32 @@ import java.util.List;
 
 @Mapper
 public interface PumpMapper {
-    List<Pump> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Pump> pumpFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int pumpCountAll();
     //하나만 조회
 
     //데이터 등록
-    void enroll(Pump pump);
+    void pumpEnroll(Pump pump);
     //데이터 업데이트
-    void update(Pump pump);
+    void pumpUpdate(Pump pump);
 
     //데이터 삭제
-    void delete(Pump pump);
+    void pumpDelete(Pump pump);
 
-    List<PumpSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<PumpSttus> pumpMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int pumpMonitorCountAll();
 
-    int faultCountAll();
+    int pumpFaultCountAll();
 
-    int runCountAll();
+    int pumpRunCountAll();
 
-    int statCountAll();
+    int pumpStatCountAll();
 
-    List<PumpFaultHistory> faultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<PumpFaultHistory> pumpFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<PumpRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<PumpRunHistory> pumpRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<PumpStat> stat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
+    List<PumpStat> pumpStat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

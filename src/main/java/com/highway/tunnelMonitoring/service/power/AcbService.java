@@ -25,8 +25,8 @@ public class AcbService implements CrudService<Acb> {
     @Override
     public Result<Acb> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Acb> list = acbMapper.findAll(linkId, offset, size);
-        int total = acbMapper.countAll();
+        List<Acb> list = acbMapper.acbFindAll(linkId, offset, size);
+        int total = acbMapper.acbCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -36,31 +36,31 @@ public class AcbService implements CrudService<Acb> {
 
     @Override
     public void enroll(Acb acb){
-        acbMapper.enroll(acb);
+        acbMapper.acbEnroll(acb);
     }
 
     @Override
     public void update(Acb acb){
-        acbMapper.update(acb);
+        acbMapper.acbUpdate(acb);
     }
 
     @Override
     public void delete(Acb acb){
-        acbMapper.delete(acb);
+        acbMapper.acbDelete(acb);
     }
 
     public Result<AcbSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<AcbSttus> list = acbMapper.monitor(linkId, offset, size);
-        int total = acbMapper.monitorCountAll();
+        List<AcbSttus> list = acbMapper.acbMonitor(linkId, offset, size);
+        int total = acbMapper.acbMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<AcbAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<AcbAlarmHistory> list = acbMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = acbMapper.alarmCountAll();
+        List<AcbAlarmHistory> list = acbMapper.acbAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = acbMapper.acbAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -68,8 +68,8 @@ public class AcbService implements CrudService<Acb> {
 
     public Result<AcbRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<AcbRunHistory> list = acbMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = acbMapper.runCountAll();
+        List<AcbRunHistory> list = acbMapper.acbRunHistory(linkId, offset, size, startDate, endDate);
+        int total = acbMapper.acbRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.ventilation.TempHumMapper">
-    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHum">
+    <select id="tempHumFindAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHum">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
@@ -15,26 +15,26 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <select id="countAll" resultType="int">
+    <select id="tempHumCountAll" resultType="int">
         SELECT COUNT(*) FROM TEMP_HUM
     </select>
 
 
-    <insert id="enroll">
+    <insert id="tempHumEnroll">
         insert into TEMP_HUM(TEMP_HUM_ID, LINK_ID, model_nm)
         values(#{TEMP_HUM_ID}, #{link_id}, #{model_nm})
     </insert>
 
-    <update id="update">
+    <update id="tempHumUpdate">
         update TEMP_HUM set model_nm = #{model_nm}
         where TEMP_HUM_ID = #{TEMP_HUM_ID} and LINK_ID = #{link_id}
     </update>
 
-    <delete id="delete">
+    <delete id="tempHumDelete">
         delete from TEMP_HUM where TEMP_HUM_ID = #{TEMP_HUM_ID} and LINK_ID = #{link_id}
     </delete>
 
-    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHumSttus">
+    <select id="tempHumMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHumSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (

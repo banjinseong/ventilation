@@ -22,8 +22,8 @@ public class DamperService implements CrudService<ExhaustDamper> {
     @Override
     public Result<ExhaustDamper> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<ExhaustDamper> list = damperMapper.findAll(linkId, offset, size);
-        int total = damperMapper.countAll();
+        List<ExhaustDamper> list = damperMapper.damperFindAll(linkId, offset, size);
+        int total = damperMapper.damperCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -32,32 +32,32 @@ public class DamperService implements CrudService<ExhaustDamper> {
 
     @Override
     public void enroll(ExhaustDamper exhaustDamper){
-        damperMapper.enroll(exhaustDamper);
+        damperMapper.damperEnroll(exhaustDamper);
     }
 
     @Override
     public void update(ExhaustDamper exhaustDamper){
-        damperMapper.update(exhaustDamper);
+        damperMapper.damperUpdate(exhaustDamper);
     }
 
     @Override
     public void delete(ExhaustDamper exhaustDamper){
-        damperMapper.delete(exhaustDamper);
+        damperMapper.damperDelete(exhaustDamper);
     }
 
 
     public Result<ExhaustDamperSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperSttus> list = damperMapper.monitor(linkId, offset, size);
-        int total = damperMapper.monitorCountAll();
+        List<ExhaustDamperSttus> list = damperMapper.damperMonitor(linkId, offset, size);
+        int total = damperMapper.damperMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<ExhaustDamperRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperRunHistory> list = damperMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = damperMapper.runCountAll();
+        List<ExhaustDamperRunHistory> list = damperMapper.damperRunHistory(linkId, offset, size, startDate, endDate);
+        int total = damperMapper.damperRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

@@ -22,8 +22,8 @@ public class FrplgService implements CrudService<Frplg> {
     @Override
     public Result<Frplg> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Frplg> list = frplgMapper.findAll(linkId, offset, size);
-        int total = frplgMapper.countAll();
+        List<Frplg> list = frplgMapper.frplgFindAll(linkId, offset, size);
+        int total = frplgMapper.frplgCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -33,31 +33,31 @@ public class FrplgService implements CrudService<Frplg> {
 
     @Override
     public void enroll(Frplg frplg){
-        frplgMapper.enroll(frplg);
+        frplgMapper.frplgEnroll(frplg);
     }
 
     @Override
     public void update(Frplg frplg){
-        frplgMapper.update(frplg);
+        frplgMapper.frplgUpdate(frplg);
     }
 
     @Override
     public void delete(Frplg frplg){
-        frplgMapper.delete(frplg);
+        frplgMapper.frplgDelete(frplg);
     }
 
     public Result<FrplgSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<FrplgSttus> list = frplgMapper.monitor(linkId, offset, size);
-        int total = frplgMapper.monitorCountAll();
+        List<FrplgSttus> list = frplgMapper.frplgMonitor(linkId, offset, size);
+        int total = frplgMapper.frplgMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<FrplgAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<FrplgAlarmHistory> list = frplgMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = frplgMapper.alarmCountAll();
+        List<FrplgAlarmHistory> list = frplgMapper.frplgAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = frplgMapper.frplgAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

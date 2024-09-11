@@ -11,31 +11,31 @@ import java.util.List;
 @Mapper
 public interface VenAxFnMapper {
     
-    List<VenAxFn> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<VenAxFn> venAxFnFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int venAxFnCountAll();
 
     //데이터 등록
-    void enroll(VenAxFn venAxfn);
+    void venAxFnEnroll(VenAxFn venAxfn);
     //데이터 업데이트
-    void update(VenAxFn venAxfn);
+    void venAxFnUpdate(VenAxFn venAxfn);
 
     //데이터 삭제
-    void delete(VenAxFn venAxfn);
+    void venAxFnDelete(VenAxFn venAxfn);
 
-    List<VenAxFnSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<VenAxFnSttus> venAxFnMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int venAxFnMonitorCountAll();
 
-    int faultCountAll();
+    int venAxFnFaultCountAll();
 
-    int runCountAll();
+    int venAxFnRunCountAll();
 
-    int statCountAll();
+    int venAxFnStatCountAll();
 
-    List<VenAxFnFaultHistory> faultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VenAxFnFaultHistory> venAxFnFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<VenAxFnRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VenAxFnRunHistory> venAxFnRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<VenAxFnStat> stat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
+    List<VenAxFnStat> venAxFnStat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

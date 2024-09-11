@@ -23,8 +23,8 @@ public class UpsService implements CrudService<Ups> {
     @Override
     public Result<Ups> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Ups> list = upsMapper.findAll(linkId, offset, size);
-        int total = upsMapper.countAll();
+        List<Ups> list = upsMapper.upsFindAll(linkId, offset, size);
+        int total = upsMapper.upsCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -34,31 +34,31 @@ public class UpsService implements CrudService<Ups> {
 
     @Override
     public void enroll(Ups ups){
-        upsMapper.enroll(ups);
+        upsMapper.upsEnroll(ups);
     }
 
     @Override
     public void update(Ups ups){
-        upsMapper.update(ups);
+        upsMapper.upsUpdate(ups);
     }
 
     @Override
     public void delete(Ups ups){
-        upsMapper.delete(ups);
+        upsMapper.upsDelete(ups);
     }
 
     public Result<UpsSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<UpsSttus> list = upsMapper.monitor(linkId, offset, size);
-        int total = upsMapper.monitorCountAll();
+        List<UpsSttus> list = upsMapper.upsMonitor(linkId, offset, size);
+        int total = upsMapper.upsMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<UpsFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<UpsFaultHistory> list = upsMapper.faultHistory(linkId, offset, size, startDate, endDate);
-        int total = upsMapper.faultCountAll();
+        List<UpsFaultHistory> list = upsMapper.upsFaultHistory(linkId, offset, size, startDate, endDate);
+        int total = upsMapper.upsFaultCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -66,8 +66,8 @@ public class UpsService implements CrudService<Ups> {
 
     public Result<UpsRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<UpsRunHistory> list = upsMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = upsMapper.runCountAll();
+        List<UpsRunHistory> list = upsMapper.upsRunHistory(linkId, offset, size, startDate, endDate);
+        int total = upsMapper.upsRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

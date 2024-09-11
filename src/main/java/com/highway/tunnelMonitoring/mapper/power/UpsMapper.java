@@ -13,28 +13,28 @@ import java.util.List;
 @Mapper
 public interface UpsMapper {
     
-    List<Ups> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Ups> upsFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int upsCountAll();
 
     //데이터 등록
-    void enroll(Ups ups);
+    void upsEnroll(Ups ups);
     //데이터 업데이트
-    void update(Ups ups);
+    void upsUpdate(Ups ups);
 
     //데이터 삭제
-    void delete(Ups ups);
+    void upsDelete(Ups ups);
 
-    List<UpsSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<UpsSttus> upsMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int upsMonitorCountAll();
 
 
-    List<UpsFaultHistory> faultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int faultCountAll();
+    int upsFaultCountAll();
 
-    List<UpsRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int upsRunCountAll();
 }

@@ -11,24 +11,24 @@ import java.util.List;
 
 @Mapper
 public interface DamperMapper {
-    List<ExhaustDamper> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<ExhaustDamper> damperFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int damperCountAll();
     //하나만 조회
 //    ExhaustDamper findOne(String cmo_msrins_no);
     //데이터 등록
-    void enroll(ExhaustDamper exhaustDamper);
+    void damperEnroll(ExhaustDamper exhaustDamper);
     //데이터 업데이트
-    void update(ExhaustDamper exhaustDamper);
+    void damperUpdate(ExhaustDamper exhaustDamper);
 
     //데이터 삭제
-    void delete(ExhaustDamper exhaustDamper);
+    void damperDelete(ExhaustDamper exhaustDamper);
 
-    List<ExhaustDamperSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<ExhaustDamperSttus> damperMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<ExhaustDamperRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int damperRunCountAll();
 
-    int monitorCountAll();
+    int damperMonitorCountAll();
 }

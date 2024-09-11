@@ -14,27 +14,27 @@ import java.util.List;
 @Mapper
 public interface EltgnrMapper {
     
-    List<Eltgnr> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Eltgnr> eltgnrFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int eltgnrCountAll();
     //데이터 등록
-    void enroll(Eltgnr eltgnr);
+    void eltgnrEnroll(Eltgnr eltgnr);
     //데이터 업데이트
-    void update(Eltgnr eltgnr);
+    void eltgnrUpdate(Eltgnr eltgnr);
 
     //데이터 삭제
-    void delete(Eltgnr eltgnr);
+    void eltgnrDelete(Eltgnr eltgnr);
 
-    List<EltgnrSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<EltgnrSttus> eltgnrMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int eltgnrMonitorCountAll();
 
-    int alarmCountAll();
+    int eltgnrAlarmCountAll();
 
-    List<EltgnrAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
 
-    List<EltgnrRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int eltgnrRunCountAll();
 }

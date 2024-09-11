@@ -14,29 +14,29 @@ import java.util.List;
 
 @Mapper
 public interface VcbMapper {
-    List<Vcb> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Vcb> vcbFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int vcbCountAll();
     //하나만 조회
 
     //데이터 등록
-    void enroll(Vcb vcb);
+    void vcbEnroll(Vcb vcb);
     //데이터 업데이트
-    void update(Vcb vcb);
+    void vcbUpdate(Vcb vcb);
 
     //데이터 삭제
-    void delete(Vcb vcb);
+    void vcbDelete(Vcb vcb);
 
-    List<VcbSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<VcbSttus> vcbMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<VcbAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbAlarmHistory> vcbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int alarmCountAll();
+    int vcbAlarmCountAll();
 
-    int monitorCountAll();
+    int vcbMonitorCountAll();
 
 
-    List<VcbRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbRunHistory> vcbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int vcbRunCountAll();
 }

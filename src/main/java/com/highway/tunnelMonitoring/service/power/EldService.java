@@ -23,8 +23,8 @@ public class EldService implements CrudService<Eld> {
     @Override
     public Result<Eld> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Eld> list = eldMapper.findAll(linkId, offset, size);
-        int total = eldMapper.countAll();
+        List<Eld> list = eldMapper.eldFindAll(linkId, offset, size);
+        int total = eldMapper.eldCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -34,31 +34,31 @@ public class EldService implements CrudService<Eld> {
 
     @Override
     public void enroll(Eld eld){
-        eldMapper.enroll(eld);
+        eldMapper.eldEnroll(eld);
     }
 
     @Override
     public void update(Eld eld){
-        eldMapper.update(eld);
+        eldMapper.eldUpdate(eld);
     }
 
     @Override
     public void delete(Eld eld){
-        eldMapper.delete(eld);
+        eldMapper.eldDelete(eld);
     }
 
     public Result<EldSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<EldSttus> list = eldMapper.monitor(linkId, offset, size);
-        int total = eldMapper.monitorCountAll();
+        List<EldSttus> list = eldMapper.eldMonitor(linkId, offset, size);
+        int total = eldMapper.eldMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<EldAlarmHistroy> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<EldAlarmHistroy> list = eldMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = eldMapper.alarmCountAll();
+        List<EldAlarmHistroy> list = eldMapper.eldAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = eldMapper.eldAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

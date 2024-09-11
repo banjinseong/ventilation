@@ -11,24 +11,24 @@ import java.util.List;
 
 @Mapper
 public interface WaterTankMapper {
-    List<WaterTank> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<WaterTank> waterTankFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int waterTankCountAll();
     //하나만 조회
 
     //데이터 등록
-    void enroll(WaterTank waterTank);
+    void waterTankEnroll(WaterTank waterTank);
     //데이터 업데이트
-    void update(WaterTank waterTank);
+    void waterTankUpdate(WaterTank waterTank);
 
     //데이터 삭제
-    void delete(WaterTank waterTank);
+    void waterTankDelete(WaterTank waterTank);
 
-    List<WaterTankSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<WaterTankSttus> waterTankMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int waterTankMonitorCountAll();
 
-    int alarmCountAll();
+    int waterTankAlarmCountAll();
 
-    List<WaterTankAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

@@ -13,28 +13,28 @@ import java.util.List;
 @Mapper
 public interface HeatingCableMapper {
 
-    List<HeatingCable> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<HeatingCable> heatingCableFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int heatingCableCountAll();
     //하나만 조회
 
     //데이터 등록
-    void enroll(HeatingCable heatingCable);
+    void heatingCableEnroll(HeatingCable heatingCable);
     //데이터 업데이트
-    void update(HeatingCable heatingCable);
+    void heatingCableUpdate(HeatingCable heatingCable);
 
     //데이터 삭제
-    void delete(HeatingCable heatingCable);
+    void heatingCableDelete(HeatingCable heatingCable);
 
-    List<HeatingCableSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<HeatingCableSttus> heatingCableMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int heatingCableMonitorCountAll();
 
-    List<HeatingCableRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<HeatingCableAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int runCountAll();
+    int heatingCableRunCountAll();
 
-    int alarmCountAll();
+    int heatingCableAlarmCountAll();
 }

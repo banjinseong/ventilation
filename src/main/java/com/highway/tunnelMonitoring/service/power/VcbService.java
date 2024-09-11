@@ -24,8 +24,8 @@ public class VcbService implements CrudService<Vcb> {
     @Override
     public Result<Vcb> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Vcb> list = vcbMapper.findAll(linkId, offset, size);
-        int total = vcbMapper.countAll();
+        List<Vcb> list = vcbMapper.vcbFindAll(linkId, offset, size);
+        int total = vcbMapper.vcbCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -35,30 +35,30 @@ public class VcbService implements CrudService<Vcb> {
 
     @Override
     public void enroll(Vcb vcb){
-        vcbMapper.enroll(vcb);
+        vcbMapper.vcbEnroll(vcb);
     }
 
     @Override
     public void update(Vcb vcb){
-        vcbMapper.update(vcb);
+        vcbMapper.vcbUpdate(vcb);
     }
 
     @Override
     public void delete(Vcb vcb){
-        vcbMapper.delete(vcb);
+        vcbMapper.vcbDelete(vcb);
     }
 
     public Result<VcbSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<VcbSttus> list = vcbMapper.monitor(linkId, offset, size);
-        int total = vcbMapper.monitorCountAll();
+        List<VcbSttus> list = vcbMapper.vcbMonitor(linkId, offset, size);
+        int total = vcbMapper.vcbMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
     public Result<VcbAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<VcbAlarmHistory> list = vcbMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = vcbMapper.alarmCountAll();
+        List<VcbAlarmHistory> list = vcbMapper.vcbAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = vcbMapper.vcbAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -66,8 +66,8 @@ public class VcbService implements CrudService<Vcb> {
 
     public Result<VcbRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<VcbRunHistory> list = vcbMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = vcbMapper.runCountAll();
+        List<VcbRunHistory> list = vcbMapper.vcbRunHistory(linkId, offset, size, startDate, endDate);
+        int total = vcbMapper.vcbRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

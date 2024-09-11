@@ -22,8 +22,8 @@ public class TempHumService implements CrudService<TempHum> {
     @Override
     public Result<TempHum> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<TempHum> list = tempHumMapper.findAll(linkId, offset, size);
-        int total = tempHumMapper.countAll();
+        List<TempHum> list = tempHumMapper.tempHumFindAll(linkId, offset, size);
+        int total = tempHumMapper.tempHumCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -32,24 +32,24 @@ public class TempHumService implements CrudService<TempHum> {
 
     @Override
     public void enroll(TempHum tempHum){
-        tempHumMapper.enroll(tempHum);
+        tempHumMapper.tempHumEnroll(tempHum);
     }
 
     @Override
     public void update(TempHum tempHum){
-        tempHumMapper.update(tempHum);
+        tempHumMapper.tempHumUpdate(tempHum);
     }
 
     @Override
     public void delete(TempHum tempHum){
-        tempHumMapper.delete(tempHum);
+        tempHumMapper.tempHumDelete(tempHum);
     }
 
 
     public Result<TempHumSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<TempHumSttus> list = tempHumMapper.monitor(linkId, offset, size);
-        int total = tempHumMapper.countAll();
+        List<TempHumSttus> list = tempHumMapper.tempHumMonitor(linkId, offset, size);
+        int total = tempHumMapper.tempHumCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }

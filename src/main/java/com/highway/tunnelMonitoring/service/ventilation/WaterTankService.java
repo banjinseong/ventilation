@@ -22,8 +22,8 @@ public class WaterTankService implements CrudService<WaterTank> {
     @Override
     public Result<WaterTank> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<WaterTank> list = waterTankMapper.findAll(linkId, offset, size);
-        int total = waterTankMapper.countAll();
+        List<WaterTank> list = waterTankMapper.waterTankFindAll(linkId, offset, size);
+        int total = waterTankMapper.waterTankCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -32,32 +32,32 @@ public class WaterTankService implements CrudService<WaterTank> {
 
     @Override
     public void enroll(WaterTank waterTank){
-        waterTankMapper.enroll(waterTank);
+        waterTankMapper.waterTankEnroll(waterTank);
     }
 
     @Override
     public void update(WaterTank waterTank){
-        waterTankMapper.update(waterTank);
+        waterTankMapper.waterTankUpdate(waterTank);
     }
 
     @Override
     public void delete(WaterTank waterTank){
-        waterTankMapper.delete(waterTank);
+        waterTankMapper.waterTankDelete(waterTank);
     }
 
 
     public Result<WaterTankSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<WaterTankSttus> list = waterTankMapper.monitor(linkId, offset, size);
-        int total = waterTankMapper.monitorCountAll();
+        List<WaterTankSttus> list = waterTankMapper.waterTankMonitor(linkId, offset, size);
+        int total = waterTankMapper.waterTankMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<WaterTankAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<WaterTankAlarmHistory> list = waterTankMapper.alarmHistory(linkId, offset, size, startDate, endDate);
-        int total = waterTankMapper.alarmCountAll();
+        List<WaterTankAlarmHistory> list = waterTankMapper.waterTankAlarmHistory(linkId, offset, size, startDate, endDate);
+        int total = waterTankMapper.waterTankAlarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

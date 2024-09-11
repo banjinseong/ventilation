@@ -12,23 +12,23 @@ import java.util.List;
 @Mapper
 public interface RectMapper {
     
-    List<Rect> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Rect> rectFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int rectCountAll();
 
     //데이터 등록
-    void enroll(Rect rect);
+    void rectEnroll(Rect rect);
     //데이터 업데이트
-    void update(Rect rect);
+    void rectUpdate(Rect rect);
 
     //데이터 삭제
-    void delete(Rect rect);
+    void rectDelete(Rect rect);
 
-    List<RectSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<RectSttus> rectMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int monitorCountAll();
+    int rectMonitorCountAll();
 
-    int alarmCountAll();
+    int rectAlarmCountAll();
 
-    List<RectAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

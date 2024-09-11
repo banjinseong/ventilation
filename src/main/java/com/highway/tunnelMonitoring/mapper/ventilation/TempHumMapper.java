@@ -13,19 +13,19 @@ import java.util.List;
  */
 @Mapper
 public interface TempHumMapper {
-    List<TempHum> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<TempHum> tempHumFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int countAll();
+    int tempHumCountAll();
 
     //하나만 조회
 //    JetPan findOne(String jet_pan_no);
     //데이터 등록
-    void enroll(TempHum tempHum);
+    void tempHumEnroll(TempHum tempHum);
     //데이터 업데이트
-    void update(TempHum tempHum);
+    void tempHumUpdate(TempHum tempHum);
 
     //데이터 삭제
-    void delete(TempHum tempHum);
+    void tempHumDelete(TempHum tempHum);
 
-    List<TempHumSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<TempHumSttus> tempHumMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 }

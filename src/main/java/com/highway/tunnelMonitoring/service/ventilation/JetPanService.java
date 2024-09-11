@@ -22,8 +22,8 @@ public class JetPanService implements CrudService<JetPan> {
     @Override
     public Result<JetPan> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<JetPan> list = jetPanMapper.findAll(linkId, offset, size);
-        int total = jetPanMapper.countAll();
+        List<JetPan> list = jetPanMapper.jetPanFindAll(linkId, offset, size);
+        int total = jetPanMapper.jetPanCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -32,32 +32,32 @@ public class JetPanService implements CrudService<JetPan> {
 
     @Override
     public void enroll(JetPan jetPan){
-        jetPanMapper.enroll(jetPan);
+        jetPanMapper.jetPanEnroll(jetPan);
     }
 
     @Override
     public void update(JetPan jetPan){
-        jetPanMapper.update(jetPan);
+        jetPanMapper.jetPanUpdate(jetPan);
     }
 
     @Override
     public void delete(JetPan jetPan){
-        jetPanMapper.delete(jetPan);
+        jetPanMapper.jetPanDelete(jetPan);
     }
 
 
     public Result<JetPanSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<JetPanSttus> list = jetPanMapper.monitor(linkId, offset, size);
-        int total = jetPanMapper.monitorCountAll();
+        List<JetPanSttus> list = jetPanMapper.jetPanMonitor(linkId, offset, size);
+        int total = jetPanMapper.jetPanMonitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
     public Result<JetPanFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<JetPanFaultHistory> list = jetPanMapper.faultHistory(linkId, offset, size, startDate, endDate);
-        int total = jetPanMapper.faultCountAll();
+        List<JetPanFaultHistory> list = jetPanMapper.jetPanFaultHistory(linkId, offset, size, startDate, endDate);
+        int total = jetPanMapper.jetPanFaultCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -65,8 +65,8 @@ public class JetPanService implements CrudService<JetPan> {
 
     public Result<JetPanRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<JetPanRunHistory> list = jetPanMapper.runHistory(linkId, offset, size, startDate, endDate);
-        int total = jetPanMapper.runCountAll();
+        List<JetPanRunHistory> list = jetPanMapper.jetPanRunHistory(linkId, offset, size, startDate, endDate);
+        int total = jetPanMapper.jetPanRunCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -74,8 +74,8 @@ public class JetPanService implements CrudService<JetPan> {
 
     public Result<JetPanStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate) {
         int offset = (page - 1) * size;
-        List<JetPanStat> list = jetPanMapper.stat(linkId, offset, size, startDate, endDate);
-        int total = jetPanMapper.statCountAll();
+        List<JetPanStat> list = jetPanMapper.jetPanStat(linkId, offset, size, startDate, endDate);
+        int total = jetPanMapper.jetPanStatCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
