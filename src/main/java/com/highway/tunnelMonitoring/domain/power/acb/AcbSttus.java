@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AcbSttus {
-    private String acb_no; //기본키
+    private String acb_id; //기본키
     private String link_id;
     private boolean auto_remote_sttus; //원격 수동 상태
     private boolean run_sttus; //운전 상태

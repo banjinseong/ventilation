@@ -1,43 +1,42 @@
-package com.highway.tunnelMonitoring.controller.power;
+package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
-import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
-import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
-import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory;
-import com.highway.tunnelMonitoring.service.power.EltgnrService;
+import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTank;
+import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankSttus;
+import com.highway.tunnelMonitoring.service.ventilation.WaterTankService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-/**
- * 발전기
- */
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/power/eltgnr/*")
-public class EltgnrController extends BaseCrudController<Eltgnr> {
+@RequestMapping("/ventilation/cable/*")
+public class WaterTankController extends BaseCrudController<WaterTank> {
 
-    private final EltgnrService eltgnrService;
+    private final WaterTankService waterTankService;
 
-    public EltgnrController(EltgnrService eltgnrService) {
-        super(eltgnrService);
-        this.eltgnrService = eltgnrService;
+    public WaterTankController(WaterTankService waterTankService) {
+        super(waterTankService);
+        this.waterTankService = waterTankService;
     }
+
 
     /**
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<EltgnrSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EltgnrSttus> result = eltgnrService.monitor(page, size);
+    public ResponseEntity<Result<WaterTankSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                                @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<WaterTankSttus> result = waterTankService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -47,7 +46,7 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
      * 경보이력
      */
     @GetMapping("/alarmHistory")
-    public ResponseEntity<Result<EltgnrAlarmHistory>> alarmHistory(
+    public ResponseEntity<Result<WaterTankAlarmHistory>> alarmHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -62,6 +61,6 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(eltgnrService.alarmHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(waterTankService.alarmHistory(linkId, page, size, startDate, endDate));
     }
 }

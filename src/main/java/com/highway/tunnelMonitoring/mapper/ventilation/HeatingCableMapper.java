@@ -30,9 +30,9 @@ public interface HeatingCableMapper {
 
     int monitorCountAll();
 
-    List<HeatingCableRunHistory> runHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableRunHistory> runHistory(String linkID, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<HeatingCableAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableAlarmHistory> alarmHistory(String linkID, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Acb {
-    private String acb_no; //기본키
+    private String acb_id; //기본키
     private String link_id; //링크아이디
     private String instl_lc; //설치위치
     private String instl_de; //설치일자

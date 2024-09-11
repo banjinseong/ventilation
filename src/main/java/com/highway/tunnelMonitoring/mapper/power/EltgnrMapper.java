@@ -31,5 +31,5 @@ public interface EltgnrMapper {
 
     int alarmCountAll();
 
-    List<EltgnrAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

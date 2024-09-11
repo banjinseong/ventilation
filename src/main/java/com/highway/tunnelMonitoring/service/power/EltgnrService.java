@@ -53,9 +53,9 @@ public class EltgnrService implements CrudService<Eltgnr> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<EltgnrAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EltgnrAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<EltgnrAlarmHistory> list = eltgnrMapper.alarmHistory(offset, size, startDate, endDate);
+        List<EltgnrAlarmHistory> list = eltgnrMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = eltgnrMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AcbAlarmHistory {
-    private String acb_no; //기본키
+    private String acb_id; //기본키
     private String link_id;
     private String alarm_datetime; //경보시작시간
     private String alarm_type; //경보 종류

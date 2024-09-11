@@ -54,9 +54,9 @@ public class WaterTankService implements CrudService<WaterTank> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<WaterTankAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<WaterTankAlarmHistory> alarmHistory(String linkID, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<WaterTankAlarmHistory> list = waterTankMapper.alarmHistory(offset, size, startDate, endDate);
+        List<WaterTankAlarmHistory> list = waterTankMapper.alarmHistory(linkID, offset, size, startDate, endDate);
         int total = waterTankMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
