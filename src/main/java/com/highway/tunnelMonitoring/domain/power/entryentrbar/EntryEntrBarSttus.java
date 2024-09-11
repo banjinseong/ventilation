@@ -15,4 +15,5 @@ public class EntryEntrBarSttus {
     private boolean rising_sttus; //상승여부
     private boolean desn_sttus; //하강여부
     private boolean fault_sttus;//고장여부
+    private boolean comn_fault; //통신고장
 }

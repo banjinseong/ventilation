@@ -29,7 +29,7 @@ public interface EldMapper {
 
     int monitorCountAll();
 
-    List<EldAlarmHistroy> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EldAlarmHistroy> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int alarmCountAll();
 }

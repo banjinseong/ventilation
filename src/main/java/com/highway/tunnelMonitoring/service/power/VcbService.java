@@ -2,8 +2,10 @@ package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.Vcb;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.mapper.power.VcbMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
@@ -53,10 +55,19 @@ public class VcbService implements CrudService<Vcb> {
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
-    public Result<VcbAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<VcbAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<VcbAlarmHistory> list = vcbMapper.alarmHistory(offset, size, startDate, endDate);
+        List<VcbAlarmHistory> list = vcbMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = vcbMapper.alarmCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
+    }
+
+    public Result<VcbRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<VcbRunHistory> list = vcbMapper.runHistory(linkId, offset, size, startDate, endDate);
+        int total = vcbMapper.runCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

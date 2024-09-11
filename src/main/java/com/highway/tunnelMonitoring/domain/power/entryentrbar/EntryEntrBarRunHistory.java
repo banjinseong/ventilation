@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EntryEntrBar {
-    private String entry_entr_bar_id; //기본키
+public class EntryEntrBarRunHistory {
+    private String entry_entr_bar_id; //pk
     private String link_id;
-    private String instl_lc; //설치위치
-    private String instl_de; //설치일자
+    private String run_start_datetime;
+    private String run_end_datetime;
 }

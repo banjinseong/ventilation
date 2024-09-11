@@ -2,6 +2,7 @@ package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarRunHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,7 +31,13 @@ public interface EntryEntrBarMapper {
 
     int monitorCountAll();
 
-    List<EntryEntrBarFaultHistory> faultHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarFaultHistory> faultHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int faultCountAll();
+
+
+    List<EntryEntrBarRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int runCountAll();
+
 }

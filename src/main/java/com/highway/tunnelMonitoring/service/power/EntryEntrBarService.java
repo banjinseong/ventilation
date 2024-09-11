@@ -1,8 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
+import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarRunHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
@@ -54,10 +56,19 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<EntryEntrBarFaultHistory> faultHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EntryEntrBarFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.faultHistory(offset, size, startDate, endDate);
+        List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.faultHistory(linkId, offset, size, startDate, endDate);
         int total = entryEntrBarMapper.faultCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
+    }
+
+    public Result<EntryEntrBarRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<EntryEntrBarRunHistory> list = entryEntrBarMapper.runHistory(linkId, offset, size, startDate, endDate);
+        int total = entryEntrBarMapper.runCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

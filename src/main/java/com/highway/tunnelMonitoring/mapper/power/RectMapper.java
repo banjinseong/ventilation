@@ -31,5 +31,5 @@ public interface RectMapper {
 
     int alarmCountAll();
 
-    List<RectAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<RectAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

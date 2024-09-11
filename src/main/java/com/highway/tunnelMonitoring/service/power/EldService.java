@@ -55,9 +55,9 @@ public class EldService implements CrudService<Eld> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<EldAlarmHistroy> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EldAlarmHistroy> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<EldAlarmHistroy> list = eldMapper.alarmHistory(offset, size, startDate, endDate);
+        List<EldAlarmHistroy> list = eldMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = eldMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

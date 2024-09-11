@@ -54,9 +54,9 @@ public class FrplgService implements CrudService<Frplg> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<FrplgAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<FrplgAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<FrplgAlarmHistory> list = frplgMapper.alarmHistory(offset, size, startDate, endDate);
+        List<FrplgAlarmHistory> list = frplgMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = frplgMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

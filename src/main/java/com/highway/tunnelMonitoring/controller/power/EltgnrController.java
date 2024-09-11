@@ -4,8 +4,10 @@ import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory;
+import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpRunHistory;
 import com.highway.tunnelMonitoring.service.power.EltgnrService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -63,5 +65,29 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(eltgnrService.alarmHistory(linkId, page, size, startDate, endDate));
+    }
+
+
+    /**
+     * 가동이력
+     */
+    @GetMapping("/runHistory")
+    public ResponseEntity<Result<EltgnrRunHistory>> runHistory(
+            @RequestParam(value = "linkId") String linkId,
+            @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
+            @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
+
+        // 기본값 설정 (startDate 또는 endDate가 null인 경우)
+        if (startDate == null) {
+            startDate = LocalDateTime.now().minusDays(30);  // 기본적으로 30일간의 데이터 제공
+        }
+        if (endDate == null) {
+            endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(eltgnrService.runHistory(linkId, page, size, startDate, endDate));
     }
 }

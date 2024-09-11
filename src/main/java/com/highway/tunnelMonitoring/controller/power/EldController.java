@@ -2,51 +2,53 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.eld.Eld;
+import com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy;
+import com.highway.tunnelMonitoring.domain.power.eld.EldSttus;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
-import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
-import com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory;
-import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
-import com.highway.tunnelMonitoring.service.power.FrplgService;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
+import com.highway.tunnelMonitoring.service.power.EldService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
-
-/**
- * 소화전
- */
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/power/frplg/*")
-public class FrplgController extends BaseCrudController<Frplg> {
+@RequestMapping("/power/eld/*")
+public class EldController extends BaseCrudController<Eld> {
 
-    private final FrplgService frplgService;
+    private final EldService eldService;
 
-    public FrplgController(FrplgService frplgService) {
-        super(frplgService);
-        this.frplgService = frplgService;
+    public EldController(EldService eldService) {
+        super(eldService);
+        this.eldService = eldService;
     }
 
     /**
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<FrplgSttus>> monitorFrplg(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                           @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<FrplgSttus> result = frplgService.monitor(page, size);
+    public ResponseEntity<Result<EldSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
+                                                          @RequestParam(defaultValue = "10", name = "size") int size) {
+        Result<EldSttus> result = eldService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
+
 
     /**
      * 경보이력
      */
     @GetMapping("/alarmHistory")
-    public ResponseEntity<Result<FrplgAlarmHistory>> alarmHistory(
+    public ResponseEntity<Result<EldAlarmHistroy>> alarmHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -61,6 +63,7 @@ public class FrplgController extends BaseCrudController<Frplg> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(frplgService.alarmHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(eldService.alarmHistory(linkId, page, size, startDate, endDate));
     }
+
 }

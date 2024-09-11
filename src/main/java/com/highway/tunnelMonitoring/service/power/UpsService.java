@@ -55,18 +55,18 @@ public class UpsService implements CrudService<Ups> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<UpsFaultHistory> faultHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<UpsFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<UpsFaultHistory> list = upsMapper.faultHistory(offset, size, startDate, endDate);
+        List<UpsFaultHistory> list = upsMapper.faultHistory(linkId, offset, size, startDate, endDate);
         int total = upsMapper.faultCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<UpsRunHistory> runHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<UpsRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<UpsRunHistory> list = upsMapper.runHistory(offset, size, startDate, endDate);
+        List<UpsRunHistory> list = upsMapper.runHistory(linkId, offset, size, startDate, endDate);
         int total = upsMapper.runCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

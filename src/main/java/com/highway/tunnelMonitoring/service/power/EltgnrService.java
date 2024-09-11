@@ -1,8 +1,10 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
+import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
@@ -61,4 +63,14 @@ public class EltgnrService implements CrudService<Eltgnr> {
         return new Result<>(list, total, page, totalPages);
 
     }
+
+    public Result<EltgnrRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<EltgnrRunHistory> list = eltgnrMapper.runHistory(linkId, offset, size, startDate, endDate);
+        int total = eltgnrMapper.runCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
+    }
+
 }

@@ -2,8 +2,10 @@ package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.acb.Acb;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbSttus;
 
+import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,9 +29,13 @@ public interface AcbMapper {
 
     List<AcbSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
 
-    List<AcbAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int monitorCountAll();
 
     int alarmCountAll();
+
+    List<AcbRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int runCountAll();
 }

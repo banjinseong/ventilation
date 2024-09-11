@@ -2,53 +2,55 @@ package com.highway.tunnelMonitoring.controller.power;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
-import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarRunHistory;
-import com.highway.tunnelMonitoring.domain.power.ups.Ups;
-import com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory;
-import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
-import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
-import com.highway.tunnelMonitoring.service.power.UpsService;
+
+import com.highway.tunnelMonitoring.domain.power.vcb.Vcb;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory;
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
+import com.highway.tunnelMonitoring.service.power.VcbService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
 
-
 /**
- * UPS (Uninterruptible Power Supply)
+ * 기중차단기
  */
 @RestController
 @Transactional(readOnly = true)
-@RequestMapping("/power/ups/*")
-public class UpsController extends BaseCrudController<Ups> {
+@RequestMapping("/power/vcb/*")
+public class VcbController extends BaseCrudController<Vcb> {
 
-    private final UpsService upsService;
+    private final VcbService vcbService;
 
-    public UpsController(UpsService upsService) {
-        super(upsService);
-        this.upsService = upsService;
+    public VcbController(VcbService vcbService) {
+        super(vcbService);
+        this.vcbService = vcbService;
     }
 
     /**
      * 모니터링
      */
     @GetMapping("monitor")
-    public ResponseEntity<Result<UpsSttus>> monitorUps(@RequestParam(defaultValue = "1", name = "page") int page,
+    public ResponseEntity<Result<VcbSttus>> monitorVcb(@RequestParam(defaultValue = "1", name = "page") int page,
                                                        @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<UpsSttus> result = upsService.monitor(page, size);
+        Result<VcbSttus> result = vcbService.monitor(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
 
+
     /**
-     * 고장이력
+     * 경보이력
      */
-    @GetMapping("/faultHistory")
-    public ResponseEntity<Result<UpsFaultHistory>> faultHistory(
+    @GetMapping("/alarmHistory")
+    public ResponseEntity<Result<VcbAlarmHistory>> alarmHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -63,17 +65,15 @@ public class UpsController extends BaseCrudController<Ups> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(upsService.faultHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(vcbService.alarmHistory(linkId, page, size, startDate, endDate));
     }
-
 
 
     /**
      * 가동이력
      */
     @GetMapping("/runHistory")
-    public ResponseEntity<Result<UpsRunHistory>> runHistory(
+    public ResponseEntity<Result<VcbRunHistory>> runHistory(
             @RequestParam(value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
@@ -88,7 +88,6 @@ public class UpsController extends BaseCrudController<Ups> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(upsService.runHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(vcbService.runHistory(linkId, page, size, startDate, endDate));
     }
 }

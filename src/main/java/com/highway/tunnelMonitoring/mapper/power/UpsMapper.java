@@ -31,11 +31,11 @@ public interface UpsMapper {
     int monitorCountAll();
 
 
-    List<UpsFaultHistory> faultHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsFaultHistory> faultHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int faultCountAll();
 
-    List<UpsRunHistory> runHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 }

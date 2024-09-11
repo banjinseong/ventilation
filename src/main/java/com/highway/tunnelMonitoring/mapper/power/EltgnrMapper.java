@@ -1,7 +1,9 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -32,4 +34,9 @@ public interface EltgnrMapper {
     int alarmCountAll();
 
     List<EltgnrAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+
+    List<EltgnrRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+
+    int runCountAll();
 }

@@ -54,9 +54,9 @@ public class RectService implements CrudService<Rect> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<RectAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<RectAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<RectAlarmHistory> list = rectMapper.alarmHistory(offset, size, startDate, endDate);
+        List<RectAlarmHistory> list = rectMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = rectMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

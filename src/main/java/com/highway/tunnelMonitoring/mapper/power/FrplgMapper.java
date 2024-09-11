@@ -29,7 +29,7 @@ public interface FrplgMapper {
 
     int monitorCountAll();
 
-    List<FrplgAlarmHistory> alarmHistory(int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<FrplgAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int alarmCountAll();
 }

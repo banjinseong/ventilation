@@ -3,8 +3,10 @@ package com.highway.tunnelMonitoring.service.power;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.power.acb.Acb;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory;
+import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbSttus;
 
+import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
 import com.highway.tunnelMonitoring.mapper.power.AcbMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -55,10 +57,19 @@ public class AcbService implements CrudService<Acb> {
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<AcbAlarmHistory> alarmHistory(int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<AcbAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<AcbAlarmHistory> list = acbMapper.alarmHistory(offset, size, startDate, endDate);
+        List<AcbAlarmHistory> list = acbMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = acbMapper.alarmCountAll();
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
+    }
+
+    public Result<AcbRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+        int offset = (page - 1) * size;
+        List<AcbRunHistory> list = acbMapper.runHistory(linkId, offset, size, startDate, endDate);
+        int total = acbMapper.runCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
