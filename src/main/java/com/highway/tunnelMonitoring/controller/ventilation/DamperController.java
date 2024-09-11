@@ -8,6 +8,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHi
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory;
 import com.highway.tunnelMonitoring.service.ventilation.DamperService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,9 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
 
     private final DamperService damperService;
 
+    @Autowired
     public DamperController(DamperService damperService) {
-        super(damperService);
+        this.service = damperService;
         this.damperService = damperService;
     }
 
@@ -37,8 +39,9 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<ExhaustDamperSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                    @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<ExhaustDamperSttus> result = damperService.monitor(page, size);
+                                                                    @RequestParam(defaultValue = "10", name = "size") int size,
+                                                                    @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<ExhaustDamperSttus> result = damperService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

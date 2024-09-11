@@ -27,9 +27,10 @@ public class EldController extends BaseCrudController<Eld> {
 
     private final EldService eldService;
 
+    @Autowired
     public EldController(EldService eldService) {
-        super(eldService);
         this.eldService = eldService;
+        this.service = eldService;
     }
 
     /**
@@ -37,8 +38,9 @@ public class EldController extends BaseCrudController<Eld> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<EldSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                          @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EldSttus> result = eldService.monitor(page, size);
+                                                          @RequestParam(defaultValue = "10", name = "size") int size,
+                                                          @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<EldSttus> result = eldService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

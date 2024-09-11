@@ -9,6 +9,7 @@ import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpRunHistory;
 import com.highway.tunnelMonitoring.service.power.EltgnrService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,10 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
 
     private final EltgnrService eltgnrService;
 
+    @Autowired
     public EltgnrController(EltgnrService eltgnrService) {
-        super(eltgnrService);
         this.eltgnrService = eltgnrService;
+        this.service = eltgnrService;
     }
 
     /**
@@ -39,8 +41,8 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
     @GetMapping("monitor")
     public ResponseEntity<Result<EltgnrSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "5공구", name = "link_id") String link_id) {
-        Result<EltgnrSttus> result = eltgnrService.monitor(link_id, page, size);
+                                                             @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<EltgnrSttus> result = eltgnrService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

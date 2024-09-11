@@ -7,6 +7,7 @@ import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import com.highway.tunnelMonitoring.service.power.FrplgService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,9 @@ public class FrplgController extends BaseCrudController<Frplg> {
 
     private final FrplgService frplgService;
 
+    @Autowired
     public FrplgController(FrplgService frplgService) {
-        super(frplgService);
+        this.service = frplgService;
         this.frplgService = frplgService;
     }
 
@@ -36,8 +38,9 @@ public class FrplgController extends BaseCrudController<Frplg> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<FrplgSttus>> monitorFrplg(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                           @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<FrplgSttus> result = frplgService.monitor(page, size);
+                                                           @RequestParam(defaultValue = "10", name = "size") int size,
+                                                           @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<FrplgSttus> result = frplgService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

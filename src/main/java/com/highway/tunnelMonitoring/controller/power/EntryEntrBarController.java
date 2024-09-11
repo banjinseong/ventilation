@@ -9,6 +9,7 @@ import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanFaultHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory;
 import com.highway.tunnelMonitoring.service.power.EntryEntrBarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,10 @@ public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
 
     private final EntryEntrBarService entryEntrBarService;
 
+    @Autowired
     public EntryEntrBarController(EntryEntrBarService entryEntrBarService) {
-        super(entryEntrBarService);
         this.entryEntrBarService = entryEntrBarService;
+        this.service = entryEntrBarService;
     }
 
     /**
@@ -38,8 +40,9 @@ public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<EntryEntrBarSttus>> monitorEntryEntrBar(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                         @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<EntryEntrBarSttus> result = entryEntrBarService.monitor(page, size);
+                                                                         @RequestParam(defaultValue = "10", name = "size") int size,
+                                                                         @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<EntryEntrBarSttus> result = entryEntrBarService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

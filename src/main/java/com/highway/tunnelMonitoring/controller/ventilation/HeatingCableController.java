@@ -9,6 +9,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCable
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableSttus;
 import com.highway.tunnelMonitoring.service.ventilation.HeatingCableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,9 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
 
     private final HeatingCableService heatingCableService;
 
+    @Autowired
     public HeatingCableController(HeatingCableService heatingCableService) {
-        super(heatingCableService);
+        this.service = heatingCableService;
         this.heatingCableService = heatingCableService;
     }
 
@@ -38,8 +40,9 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<HeatingCableSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                   @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<HeatingCableSttus> result = heatingCableService.monitor(page, size);
+                                                                   @RequestParam(defaultValue = "10", name = "size") int size,
+                                                                   @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<HeatingCableSttus> result = heatingCableService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

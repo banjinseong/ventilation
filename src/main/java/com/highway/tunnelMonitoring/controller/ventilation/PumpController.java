@@ -9,6 +9,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnStat;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnSttus;
 import com.highway.tunnelMonitoring.service.CrudService;
 import com.highway.tunnelMonitoring.service.ventilation.PumpService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,10 @@ import java.time.LocalDateTime;
 public class PumpController extends BaseCrudController<Pump> {
     
     private final PumpService pumpService;
-    
+
+    @Autowired
     public PumpController(PumpService pumpService) {
-        super(pumpService);
+        this.service = pumpService;
         this.pumpService = pumpService;
     }
 
@@ -39,8 +41,9 @@ public class PumpController extends BaseCrudController<Pump> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<PumpSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                            @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<PumpSttus> result = pumpService.monitor(page, size);
+                                                            @RequestParam(defaultValue = "10", name = "size") int size,
+                                                            @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<PumpSttus> result = pumpService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

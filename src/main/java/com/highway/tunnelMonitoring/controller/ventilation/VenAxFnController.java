@@ -7,6 +7,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanStat;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.*;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.service.ventilation.VenAxFnService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,9 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
 
     private final VenAxFnService venAxfnService;
 
+    @Autowired
     public VenAxFnController(VenAxFnService venAxfnService) {
-        super(venAxfnService);
+        this.service = venAxfnService;
         this.venAxfnService = venAxfnService;
     }
 
@@ -35,8 +37,9 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<VenAxFnSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                               @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<VenAxFnSttus> result = venAxfnService.monitor(page, size);
+                                                               @RequestParam(defaultValue = "10", name = "size") int size,
+                                                               @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<VenAxFnSttus> result = venAxfnService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

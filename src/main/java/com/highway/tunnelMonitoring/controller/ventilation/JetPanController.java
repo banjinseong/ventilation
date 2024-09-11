@@ -4,6 +4,7 @@ import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.*;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.service.ventilation.JetPanService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +23,9 @@ public class JetPanController extends BaseCrudController<JetPan> {
 
     private final JetPanService jetPanService;
 
+    @Autowired
     public JetPanController(JetPanService jetPanService) {
-        super(jetPanService);
+        this.service = jetPanService;
         this.jetPanService = jetPanService;
 
     }
@@ -34,8 +36,9 @@ public class JetPanController extends BaseCrudController<JetPan> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<JetPanSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                             @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<JetPanSttus> result = jetPanService.monitor(page, size);
+                                                             @RequestParam(defaultValue = "10", name = "size") int size,
+                                                             @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<JetPanSttus> result = jetPanService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

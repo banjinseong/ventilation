@@ -7,6 +7,7 @@ import com.highway.tunnelMonitoring.domain.power.rect.Rect;
 import com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
 import com.highway.tunnelMonitoring.service.power.RectService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,8 +27,9 @@ public class RectController extends BaseCrudController<Rect> {
 
     private final RectService rectService;
 
+    @Autowired
     public RectController(RectService rectService) {
-        super(rectService);
+        this.service = rectService;
         this.rectService = rectService;
     }
 
@@ -36,8 +38,9 @@ public class RectController extends BaseCrudController<Rect> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<RectSttus>> monitorRect(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                         @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<RectSttus> result = rectService.monitor(page, size);
+                                                         @RequestParam(defaultValue = "10", name = "size") int size,
+                                                         @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<RectSttus> result = rectService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

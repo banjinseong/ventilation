@@ -9,6 +9,7 @@ import com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
 import com.highway.tunnelMonitoring.service.power.UpsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +29,9 @@ public class UpsController extends BaseCrudController<Ups> {
 
     private final UpsService upsService;
 
+    @Autowired
     public UpsController(UpsService upsService) {
-        super(upsService);
+        this.service = upsService;
         this.upsService = upsService;
     }
 
@@ -38,8 +40,9 @@ public class UpsController extends BaseCrudController<Ups> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<UpsSttus>> monitorUps(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<UpsSttus> result = upsService.monitor(page, size);
+                                                       @RequestParam(defaultValue = "10", name = "size") int size,
+                                                       @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<UpsSttus> result = upsService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

@@ -6,6 +6,7 @@ import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTank;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankSttus;
 import com.highway.tunnelMonitoring.service.ventilation.WaterTankService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +25,9 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
 
     private final WaterTankService waterTankService;
 
+    @Autowired
     public WaterTankController(WaterTankService waterTankService) {
-        super(waterTankService);
+        this.service = waterTankService;
         this.waterTankService = waterTankService;
     }
 
@@ -35,8 +37,9 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<WaterTankSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                                @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<WaterTankSttus> result = waterTankService.monitor(page, size);
+                                                                @RequestParam(defaultValue = "10", name = "size") int size,
+                                                                @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<WaterTankSttus> result = waterTankService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

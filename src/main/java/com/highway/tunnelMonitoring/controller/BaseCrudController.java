@@ -17,11 +17,11 @@ import java.util.List;
  * 조명은 기본키가 복합키라 따로 작성.
  *
  */
-@RequiredArgsConstructor
 public abstract class BaseCrudController<T> {
 
 
-    protected final CrudService<T> service;
+    protected CrudService<T> service;
+
 
     //조회시
     @GetMapping("config/list")

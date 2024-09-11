@@ -2,6 +2,7 @@ package com.highway.tunnelMonitoring;
 
 //import com.highway.tunnelMonitoring.socket.SocketServer;
 import lombok.RequiredArgsConstructor;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,18 +10,20 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
+@MapperScan("com.highway.tunnelMonitoring.mapper.power")
+@MapperScan("com.highway.tunnelMonitoring.mapper.ventilation")
 public class TunnelMonitoringApplication {
 
 
 
-//	private final SocketServer socketServer;
+
 
 
 	public static void main(String[] args) {
 		SpringApplication.run(TunnelMonitoringApplication.class, args);
 	}
 
-
+//	private final SocketServer socketServer;
 
 //
 //	@Override

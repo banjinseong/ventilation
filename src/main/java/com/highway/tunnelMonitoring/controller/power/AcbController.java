@@ -8,6 +8,7 @@ import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbSttus;
 
 import com.highway.tunnelMonitoring.service.power.AcbService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +28,12 @@ import java.time.LocalDateTime;
 @RequestMapping("/power/acb/*")
 public class AcbController extends BaseCrudController<Acb> {
 
-    private final AcbService acbService;
+    public final AcbService acbService;
 
+    @Autowired
     public AcbController(AcbService acbService) {
-        super(acbService);
         this.acbService = acbService;
+        this.service = acbService;
     }
 
     /**
@@ -39,8 +41,9 @@ public class AcbController extends BaseCrudController<Acb> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<AcbSttus>> monitorAcb(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<AcbSttus> result = acbService.monitor(page, size);
+                                                       @RequestParam(defaultValue = "10", name = "size") int size,
+                                                       @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<AcbSttus> result = acbService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

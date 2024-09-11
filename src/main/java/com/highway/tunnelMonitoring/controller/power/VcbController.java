@@ -8,6 +8,7 @@ import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.service.power.VcbService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,9 @@ public class VcbController extends BaseCrudController<Vcb> {
 
     private final VcbService vcbService;
 
+    @Autowired
     public VcbController(VcbService vcbService) {
-        super(vcbService);
+        this.service = vcbService;
         this.vcbService = vcbService;
     }
 
@@ -39,8 +41,9 @@ public class VcbController extends BaseCrudController<Vcb> {
      */
     @GetMapping("monitor")
     public ResponseEntity<Result<VcbSttus>> monitorVcb(@RequestParam(defaultValue = "1", name = "page") int page,
-                                                       @RequestParam(defaultValue = "10", name = "size") int size) {
-        Result<VcbSttus> result = vcbService.monitor(page, size);
+                                                       @RequestParam(defaultValue = "10", name = "size") int size,
+                                                       @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+        Result<VcbSttus> result = vcbService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
