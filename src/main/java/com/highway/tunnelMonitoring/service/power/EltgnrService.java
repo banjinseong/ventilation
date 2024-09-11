@@ -21,9 +21,9 @@ public class EltgnrService implements CrudService<Eltgnr> {
     private final EltgnrMapper eltgnrMapper;
 
     @Override
-    public Result<Eltgnr> findAll(int page, int size) {
+    public Result<Eltgnr> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Eltgnr> list = eltgnrMapper.findAll(offset, size);
+        List<Eltgnr> list = eltgnrMapper.findAll(linkId, offset, size);
         int total = eltgnrMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -47,9 +47,9 @@ public class EltgnrService implements CrudService<Eltgnr> {
         eltgnrMapper.delete(eltgnr);
     }
 
-    public Result<EltgnrSttus> monitor(int page, int size) {
+    public Result<EltgnrSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<EltgnrSttus> list = eltgnrMapper.monitor(offset, size);
+        List<EltgnrSttus> list = eltgnrMapper.monitor(linkId, offset, size);
         int total = eltgnrMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

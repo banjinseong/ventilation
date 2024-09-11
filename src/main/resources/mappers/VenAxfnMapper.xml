@@ -7,43 +7,95 @@
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
-                                   SELECT * FROM VEN_AXFN
-                                   ORDER BY VEN_AXFN_NO
+                                   SELECT * FROM VEN_AX_FN
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY VEN_AX_FN_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
     <select id="countAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AXFN
-    </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfn">
-        SELECT * FROM VEN_AXFN
-        where VEN_AXFN_NO = #{VEN_AXFN_NO}
+        SELECT COUNT(*) FROM VEN_AX_FN
     </select>
 
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM VEN_AX_FN_STTUS
+    </select>
+
+    <select id="faultCountAll" resultType="int">
+        SELECT COUNT(*) FROM VEN_AX_FN_FAULT_HISTORY
+    </select>
+
+    <select id="runCountAll" resultType="int">
+        SELECT COUNT(*) FROM VEN_AX_FN_RUN_HISTORY
+    </select>
+
+    <select id="statCountAll" resultType="int">
+        SELECT COUNT(*) FROM VEN_AX_FN_STAT
+    </select>
+
+
     <insert id="enroll">
-        insert into VEN_AXFN(VEN_AXFN_NO, link_id, makr_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
-        values(#{VEN_AXFN_NO}, 'link2', #{makr_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+        insert into VEN_AX_FN(VEN_AX_FN_ID, link_id, FAN_TYPE, instl_lc, instl_de)
+        values(#{VEN_AX_FN_ID}, #{link_id}, #{fan_type}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="update">
-        update VEN_AXFN set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
-        where VEN_AXFN_NO = #{VEN_AXFN_NO}
+        update VEN_AX_FN set instl_lc = #{instl_lc}, instl_de = #{instl_de}
+        where VEN_AX_FN_ID = #{VEN_AX_FN_ID} and LINK_ID = #{link_id}
     </update>
 
     <delete id="delete">
-        delete from VEN_AXFN where VEN_AXFN_NO = #{VEN_AXFN_NO}
+        delete from VEN_AX_FN where VEN_AX_FN_ID = #{VEN_AX_FN_ID} and LINK_ID = #{link_id}
     </delete>
 
     <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxfnSttus">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
                           FROM (
-                                   SELECT * FROM VEN_AXFN_STTUS
-                                   ORDER BY VEN_AXFN_NO
+                                   SELECT * FROM VEN_AX_FN_STTUS
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY VEN_AX_FN_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
+
+    <select id="faultHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnFaultHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM VEN_AX_FN_FAULT_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY VEN_AX_FN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="runHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnRunHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM VEN_AX_FN_RUN_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY VEN_AX_FN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="stat" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnStat">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM VEN_AX_FN_STAT
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY VEN_AX_FN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
 </mapper>

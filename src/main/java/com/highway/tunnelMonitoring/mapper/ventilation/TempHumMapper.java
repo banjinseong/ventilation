@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Mapper
 public interface TempHumMapper {
-    List<TempHum> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<TempHum> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
 
@@ -27,5 +27,5 @@ public interface TempHumMapper {
     //데이터 삭제
     void delete(TempHum tempHum);
 
-    List<TempHumSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<TempHumSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.ventilation.WaterTankMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTank">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM WATER_TANK
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY TANK_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM WATER_TANK
+    </select>
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM WATER_TANK_STTUS
+    </select>
+
+    <select id="alarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM WATER_TANK_ALARM_HISTORY
+    </select>
+
+    <insert id="enroll">
+        insert into WATER_TANK(TANK_ID, LINK_ID, instl_lc, instl_de)
+        values(#{TANK_ID}, #{link_id}, #{instl_lc}, #{instl_de})
+    </insert>
+
+    <update id="update">
+        update WATER_TANK set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
+        where TANK_ID = #{TANK_ID} and LINK_ID = #{link_id}
+    </update>
+
+    <delete id="delete">
+        delete from WATER_TANK where TANK_ID = #{TANK_ID} and LINK_ID = #{link_id}
+    </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankSttus">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM WATER_TANK_STTUS
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY TANK_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+    <select id="alarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM WATER_TANK_ALARM_HISTORY
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY TANK_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+</mapper>

@@ -22,9 +22,9 @@ public class VcbService implements CrudService<Vcb> {
     private final VcbMapper vcbMapper;
 
     @Override
-    public Result<Vcb> findAll(int page, int size) {
+    public Result<Vcb> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Vcb> list = vcbMapper.findAll(offset, size);
+        List<Vcb> list = vcbMapper.findAll(linkId, offset, size);
         int total = vcbMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -48,9 +48,9 @@ public class VcbService implements CrudService<Vcb> {
         vcbMapper.delete(vcb);
     }
 
-    public Result<VcbSttus> monitor(int page, int size) {
+    public Result<VcbSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<VcbSttus> list = vcbMapper.monitor(offset, size);
+        List<VcbSttus> list = vcbMapper.monitor(linkId, offset, size);
         int total = vcbMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

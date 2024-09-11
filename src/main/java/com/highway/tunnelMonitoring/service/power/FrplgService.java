@@ -20,9 +20,9 @@ public class FrplgService implements CrudService<Frplg> {
     private final FrplgMapper frplgMapper;
 
     @Override
-    public Result<Frplg> findAll(int page, int size) {
+    public Result<Frplg> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Frplg> list = frplgMapper.findAll(offset, size);
+        List<Frplg> list = frplgMapper.findAll(linkId, offset, size);
         int total = frplgMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,9 +46,9 @@ public class FrplgService implements CrudService<Frplg> {
         frplgMapper.delete(frplg);
     }
 
-    public Result<FrplgSttus> monitor(int page, int size) {
+    public Result<FrplgSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<FrplgSttus> list = frplgMapper.monitor(offset, size);
+        List<FrplgSttus> list = frplgMapper.monitor(linkId, offset, size);
         int total = frplgMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

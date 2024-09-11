@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
  * 통계
  */
 public class VenAxFnStat {
-    private String ven_axfn_id; //기본키
+    private String ven_ax_fn_id; //기본키
     private String link_id; //링크(fk)키
     private String recore_date; //기록일(통계일)
     private float run_time_hours; //하루 누적 시간

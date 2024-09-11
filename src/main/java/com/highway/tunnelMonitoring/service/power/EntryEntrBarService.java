@@ -22,9 +22,9 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     private final EntryEntrBarMapper entryEntrBarMapper;
 
     @Override
-    public Result<EntryEntrBar> findAll(int page, int size) {
+    public Result<EntryEntrBar> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<EntryEntrBar> list = entryEntrBarMapper.findAll(offset, size);
+        List<EntryEntrBar> list = entryEntrBarMapper.findAll(linkId, offset, size);
         int total = entryEntrBarMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -48,9 +48,9 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
         entryEntrBarMapper.delete(entryEntrBar);
     }
 
-    public Result<EntryEntrBarSttus> monitor(int page, int size) {
+    public Result<EntryEntrBarSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<EntryEntrBarSttus> list = entryEntrBarMapper.monitor(offset, size);
+        List<EntryEntrBarSttus> list = entryEntrBarMapper.monitor(linkId, offset, size);
         int total = entryEntrBarMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

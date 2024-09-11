@@ -20,9 +20,9 @@ public class RectService implements CrudService<Rect> {
     private final RectMapper rectMapper;
 
     @Override
-    public Result<Rect> findAll(int page, int size) {
+    public Result<Rect> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Rect> list = rectMapper.findAll(offset, size);
+        List<Rect> list = rectMapper.findAll(linkId, offset, size);
         int total = rectMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,9 +46,9 @@ public class RectService implements CrudService<Rect> {
         rectMapper.delete(rect);
     }
 
-    public Result<RectSttus> monitor(int page, int size) {
+    public Result<RectSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<RectSttus> list = rectMapper.monitor(offset, size);
+        List<RectSttus> list = rectMapper.monitor(linkId, offset, size);
         int total = rectMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface DamperMapper {
-    List<ExhaustDamper> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<ExhaustDamper> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -24,9 +24,9 @@ public interface DamperMapper {
     //데이터 삭제
     void delete(ExhaustDamper exhaustDamper);
 
-    List<ExhaustDamperSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<ExhaustDamperSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<ExhaustDamperRunHistory> runHistory(String linkID, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<ExhaustDamperRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 

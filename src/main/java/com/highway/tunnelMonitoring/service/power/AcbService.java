@@ -23,9 +23,9 @@ public class AcbService implements CrudService<Acb> {
     private final AcbMapper acbMapper;
 
     @Override
-    public Result<Acb> findAll(int page, int size) {
+    public Result<Acb> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Acb> list = acbMapper.findAll(offset, size);
+        List<Acb> list = acbMapper.findAll(linkId, offset, size);
         int total = acbMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -49,9 +49,9 @@ public class AcbService implements CrudService<Acb> {
         acbMapper.delete(acb);
     }
 
-    public Result<AcbSttus> monitor(int page, int size) {
+    public Result<AcbSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<AcbSttus> list = acbMapper.monitor(offset, size);
+        List<AcbSttus> list = acbMapper.monitor(linkId, offset, size);
         int total = acbMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

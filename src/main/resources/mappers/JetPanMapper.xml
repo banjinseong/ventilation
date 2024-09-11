@@ -8,7 +8,8 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM JET_PAN
-                                   ORDER BY JET_PAN_NO
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY JET_PAN_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -17,23 +18,41 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM JET_PAN
     </select>
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM JET_PAN_STTUS
+    </select>
+
+    <select id="faultCountAll" resultType="int">
+        SELECT COUNT(*) FROM JET_PAN_FAULT_HISTORY
+    </select>
+
+    <select id="runCountAll" resultType="int">
+        SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY
+    </select>
+
+    <select id="statCountAll" resultType="int">
+        SELECT COUNT(*) FROM JET_PAN_STAT
+    </select>
+
+
     <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPan">
         SELECT * FROM JET_PAN
-        where JET_PAN_NO = #{JET_PAN_NO}
+        where JET_PAN_ID = #{JET_PAN_ID}
     </select>
 
     <insert id="enroll">
-        insert into JET_PAN(JET_PAN_NO, link_id, makr_nm, instl_lc, instl_de, instl_milg, x_crdnt, y_crdnt)
-        values(#{JET_PAN_NO}, 'link2', #{makr_nm}, #{instl_lc}, #{instl_de}, #{instl_milg}, #{x_crdnt}, #{y_crdnt})
+        insert into JET_PAN(JET_PAN_ID, link_id,  instl_lc, instl_de)
+        values(#{JET_PAN_ID}, #{link_id}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="update">
-        update JET_PAN set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
-        where JET_PAN_NO = #{JET_PAN_NO}
+        update JET_PAN set instl_lc = #{instl_lc}, instl_de = #{instl_de}
+        where JET_PAN_ID = #{JET_PAN_ID} and LINK_ID = #{link_id}
     </update>
 
     <delete id="delete">
-        delete from JET_PAN where JET_PAN_NO = #{JET_PAN_NO}
+        delete from JET_PAN where JET_PAN_ID = #{JET_PAN_ID} and LINK_ID = #{link_id}
     </delete>
 
 
@@ -42,13 +61,53 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM JET_PAN_STTUS
-                                   ORDER BY JET_PAN_NO
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY JET_PAN_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
-    <insert id="stat">
+    <select id="faultHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanFaultHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM JET_PAN_FAULT_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY JET_PAN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="runHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM JET_PAN_RUN_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY JET_PAN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="stat" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanStat">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM JET_PAN_STAT
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY JET_PAN_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+
+
+    <insert id="recordStat">
         INSERT INTO jet_pan_stat (jet_pan_id, link_id, record_date, run_time_hours, fault_count, run_count)
         SELECT
             r.jet_pan_id,
@@ -67,11 +126,11 @@
                     (SYSDATE - r.run_start_datetime) * 24 * 60
 
                 -- 전날 시작되어 오늘 종료된 경우
-                WHEN TRUNC(r.run_start_datetime) < TRUNC(SYSDATE) AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE) THEN
+                WHEN TRUNC(r.run_start_datetime) &lt; TRUNC(SYSDATE) AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE) THEN
                     (r.run_end_datetime - TRUNC(SYSDATE)) * 24 * 60
 
                 -- 전날 시작되어 아직 종료되지 않은 경우 (현재까지 가동 중)
-                WHEN TRUNC(r.run_start_datetime) < TRUNC(SYSDATE) AND r.run_end_datetime IS NULL THEN
+                WHEN TRUNC(r.run_start_datetime) &lt; TRUNC(SYSDATE) AND r.run_end_datetime IS NULL THEN
                     (SYSDATE - TRUNC(SYSDATE)) * 24 * 60
 
                     ELSE 0

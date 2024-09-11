@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 public interface EldMapper {
-    List<Eld> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<Eld> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -25,11 +25,11 @@ public interface EldMapper {
     //데이터 삭제
     void delete(Eld eld);
 
-    List<EldSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<EldSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
     int monitorCountAll();
 
-    List<EldAlarmHistroy> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EldAlarmHistroy> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int alarmCountAll();
 }

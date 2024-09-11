@@ -21,9 +21,9 @@ public class UpsService implements CrudService<Ups> {
     private final UpsMapper upsMapper;
 
     @Override
-    public Result<Ups> findAll(int page, int size) {
+    public Result<Ups> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Ups> list = upsMapper.findAll(offset, size);
+        List<Ups> list = upsMapper.findAll(linkId, offset, size);
         int total = upsMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -47,9 +47,9 @@ public class UpsService implements CrudService<Ups> {
         upsMapper.delete(ups);
     }
 
-    public Result<UpsSttus> monitor(int page, int size) {
+    public Result<UpsSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<UpsSttus> list = upsMapper.monitor(offset, size);
+        List<UpsSttus> list = upsMapper.monitor(linkId, offset, size);
         int total = upsMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

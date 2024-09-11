@@ -8,7 +8,8 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM rect
-                                   ORDER BY rect_no
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY rect_id
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -17,23 +18,28 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM rect
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.rect.Rect">
-        SELECT * FROM rect
-        where rect_no = #{rect_no}
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM RECT_STTUS
     </select>
 
+    <select id="alarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM RECT_ALARM_HISTORY
+    </select>
+
+
     <insert id="enroll">
-        insert into rect(rect_no, makr_nm, model_nm, instl_lc, instl_de, pero, x_crdnt, y_crdnt)
-        values(#{rect_no}, #{makr_nm}, #{model_nm}, #{instl_lc}, #{instl_de}, #{pero}, #{x_crdnt}, #{y_crdnt})
+        insert into rect(rect_id, LINK_ID, instl_lc, instl_de)
+        values(#{rect_id}, #{link_id}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="update">
-        update rect set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
-        where rect_no = #{rect_no}
+        update rect set instl_lc = #{instl_lc}, instl_de = #{instl_de}
+        where rect_id = #{rect_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="delete">
-        delete from rect where rect_no = #{rect_no}
+        delete from rect where rect_id = #{rect_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.rect.RectSttus">
@@ -41,7 +47,20 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM RECT_STTUS
-                                   ORDER BY RECT_NO
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY RECT_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM RECT_ALARM_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY RECT_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}

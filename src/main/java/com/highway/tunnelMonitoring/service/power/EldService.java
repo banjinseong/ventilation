@@ -21,9 +21,9 @@ public class EldService implements CrudService<Eld> {
     private final EldMapper eldMapper;
 
     @Override
-    public Result<Eld> findAll(int page, int size) {
+    public Result<Eld> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Eld> list = eldMapper.findAll(offset, size);
+        List<Eld> list = eldMapper.findAll(linkId, offset, size);
         int total = eldMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -47,9 +47,9 @@ public class EldService implements CrudService<Eld> {
         eldMapper.delete(eld);
     }
 
-    public Result<EldSttus> monitor(int page, int size) {
+    public Result<EldSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<EldSttus> list = eldMapper.monitor(offset, size);
+        List<EldSttus> list = eldMapper.monitor(linkId, offset, size);
         int total = eldMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

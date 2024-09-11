@@ -20,9 +20,9 @@ public class JetPanService implements CrudService<JetPan> {
     private final JetPanMapper jetPanMapper;
 
     @Override
-    public Result<JetPan> findAll(int page, int size) {
+    public Result<JetPan> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<JetPan> list = jetPanMapper.findAll(offset, size);
+        List<JetPan> list = jetPanMapper.findAll(linkId, offset, size);
         int total = jetPanMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,9 +46,9 @@ public class JetPanService implements CrudService<JetPan> {
     }
 
 
-    public Result<JetPanSttus> monitor(int page, int size) {
+    public Result<JetPanSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<JetPanSttus> list = jetPanMapper.monitor(offset, size);
+        List<JetPanSttus> list = jetPanMapper.monitor(linkId, offset, size);
         int total = jetPanMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

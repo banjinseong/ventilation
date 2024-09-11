@@ -8,7 +8,8 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM ups
-                                   ORDER BY ups_no
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY ups_id
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -17,23 +18,31 @@
     <select id="countAll" resultType="int">
         SELECT COUNT(*) FROM ups
     </select>
-    <select id="findOne" resultType="com.highway.tunnelMonitoring.domain.power.ups.Ups">
-        SELECT * FROM ups
-        where ups_no = #{ups_no}
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM UPS_STTUS
+    </select>
+
+    <select id="faultCountAll" resultType="int">
+        SELECT COUNT(*) FROM UPS_FAULT_HISTORY
+    </select>
+
+    <select id="runCountAll" resultType="int">
+        SELECT COUNT(*) FROM UPS_RUN_HISTORY
     </select>
 
     <insert id="enroll">
-        insert into ups(ups_no, makr_nm, model_nm, instl_lc, instl_de, pero, x_crdnt, y_crdnt)
-        values(#{ups_no}, #{makr_nm}, #{model_nm}, #{instl_lc}, #{instl_de},#{pero}, #{x_crdnt}, #{y_crdnt})
+        insert into ups(ups_id, LINK_ID, model_nm, instl_lc, instl_de)
+        values(#{ups_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="update">
-        update ups set instl_lc = #{instl_lc}, x_crdnt = #{x_crdnt}
-        where ups_no = #{ups_no}
+        update ups set instl_lc = #{instl_lc}, instl_de = #{instl_de}
+        where ups_id = #{ups_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="delete">
-        delete from ups where ups_no = #{ups_no}
+        delete from ups where ups_id = #{ups_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsSttus">
@@ -41,7 +50,32 @@
                           SELECT a.*, ROWNUM rnum
                           FROM (
                                    SELECT * FROM UPS_STTUS
-                                   ORDER BY UPS_NO
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY UPS_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="faultCountAll" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM UPS_FAULT_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY UPS_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="runCountAll" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM UPS_RUN_HISTORY
+                                   where LINK_ID = #{link_id}
+                                   ORDER BY UPS_ID
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}

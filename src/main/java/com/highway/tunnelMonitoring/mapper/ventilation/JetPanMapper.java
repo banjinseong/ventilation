@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface JetPanMapper {
     
-    List<JetPan> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<JetPan> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -24,7 +24,7 @@ public interface JetPanMapper {
     //데이터 삭제
     void delete(JetPan jetPan);
 
-    List<JetPanSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<JetPanSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
     int monitorCountAll();
 
@@ -32,11 +32,11 @@ public interface JetPanMapper {
 
     int runCountAll();
 
-    List<JetPanFaultHistory> faultHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanFaultHistory> faultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<JetPanRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int statCountAll();
 
-    List<JetPanStat> stat(String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
+    List<JetPanStat> stat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.ventilation.HeatingCableMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCable">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM HEATING_CABLE
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY CABLE_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM HEATING_CABLE
+    </select>
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM HEATING_CABLE_STTUS
+    </select>
+
+    <select id="runCountAll" resultType="int">
+        SELECT COUNT(*) FROM HEATING_CABLE_RUN_HISTORY
+    </select>
+
+    <select id="alarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM HEATING_CABLE_ALARM_HISTORY
+    </select>
+
+    <insert id="enroll">
+        insert into HEATING_CABLE(CABLE_ID, LINK_ID, model_nm, instl_de)
+        values(#{CABLE_ID}, #{link_id}, #{model_nm}, #{instl_de})
+    </insert>
+
+    <update id="update">
+        update HEATING_CABLE set INSTL_DE = #{instl_de}
+        where CABLE_ID = #{CABLE_ID} and LINK_ID = #{link_id}
+    </update>
+
+    <delete id="delete">
+        delete from HEATING_CABLE where CABLE_ID = #{CABLE_ID} and LINK_ID = #{link_id}
+    </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableSttus">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM HEATING_CABLE_STTUS
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY CABLE_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+    <select id="alarmCountAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM HEATING_CABLE_ALARM_HISTORY
+
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY CABLE_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="runCountAll" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM HEATING_CABLE_RUN_HISTORY
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY CABLE_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+</mapper>

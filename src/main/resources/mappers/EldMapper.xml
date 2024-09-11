@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.EldMapper">
+    <select id="findAll" resultType="com.highway.tunnelMonitoring.domain.power.eld.Eld">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM Eld
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY ELD_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM Eld
+    </select>
+
+    <select id="monitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM ELD_STTUS
+    </select>
+
+    <select id="alarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM ELD_ALARM_HISTORY
+    </select>
+
+
+    <insert id="enroll">
+        insert into Eld(ELD_ID, LINK_ID, model_nm, instl_lc, instl_de)
+        values(#{ELD_ID}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+    </insert>
+
+    <update id="update">
+        update Eld set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
+        where ELD_ID = #{ELD_ID} and LINK_ID = #{link_id}
+    </update>
+
+    <delete id="delete">
+        delete from Eld where ELD_ID = #{ELD_ID} and LINK_ID = #{link_id}
+    </delete>
+
+    <select id="monitor" resultType="com.highway.tunnelMonitoring.domain.power.eld.EldSttus">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM ELD_STTUS
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY ELD_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="alarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy">
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM ELD_ALARM_HISTORY
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY ELD_ID
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+
+
+</mapper>

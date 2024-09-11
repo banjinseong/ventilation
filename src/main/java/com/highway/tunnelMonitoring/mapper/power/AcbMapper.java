@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper
 public interface AcbMapper {
-    List<Acb> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<Acb> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -27,15 +27,15 @@ public interface AcbMapper {
     //데이터 삭제
     void delete(Acb acb);
 
-    List<AcbSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<AcbSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<AcbAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int monitorCountAll();
 
     int alarmCountAll();
 
-    List<AcbRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 }

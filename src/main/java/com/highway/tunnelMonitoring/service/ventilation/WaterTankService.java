@@ -20,9 +20,9 @@ public class WaterTankService implements CrudService<WaterTank> {
     private final WaterTankMapper waterTankMapper;
 
     @Override
-    public Result<WaterTank> findAll(int page, int size) {
+    public Result<WaterTank> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<WaterTank> list = waterTankMapper.findAll(offset, size);
+        List<WaterTank> list = waterTankMapper.findAll(linkId, offset, size);
         int total = waterTankMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,17 +46,17 @@ public class WaterTankService implements CrudService<WaterTank> {
     }
 
 
-    public Result<WaterTankSttus> monitor(int page, int size) {
+    public Result<WaterTankSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<WaterTankSttus> list = waterTankMapper.monitor(offset, size);
+        List<WaterTankSttus> list = waterTankMapper.monitor(linkId, offset, size);
         int total = waterTankMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<WaterTankAlarmHistory> alarmHistory(String linkID, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<WaterTankAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<WaterTankAlarmHistory> list = waterTankMapper.alarmHistory(linkID, offset, size, startDate, endDate);
+        List<WaterTankAlarmHistory> list = waterTankMapper.alarmHistory(linkId, offset, size, startDate, endDate);
         int total = waterTankMapper.alarmCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

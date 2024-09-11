@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface HeatingCableMapper {
 
-    List<HeatingCable> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<HeatingCable> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -26,13 +26,13 @@ public interface HeatingCableMapper {
     //데이터 삭제
     void delete(HeatingCable heatingCable);
 
-    List<HeatingCableSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<HeatingCableSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
     int monitorCountAll();
 
-    List<HeatingCableRunHistory> runHistory(String linkID, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<HeatingCableAlarmHistory> alarmHistory(String linkID, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 

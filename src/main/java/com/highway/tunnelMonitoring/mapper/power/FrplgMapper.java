@@ -12,11 +12,9 @@ import java.util.List;
 @Mapper
 public interface FrplgMapper {
     
-    List<Frplg> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<Frplg> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
-    //하나만 조회
-    Frplg findOne(String frplg_no);
     //데이터 등록
     void enroll(Frplg frplg);
     //데이터 업데이트
@@ -25,11 +23,11 @@ public interface FrplgMapper {
     //데이터 삭제
     void delete(Frplg frplg);
 
-    List<FrplgSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<FrplgSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
     int monitorCountAll();
 
-    List<FrplgAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<FrplgAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int alarmCountAll();
 }

@@ -20,9 +20,9 @@ public class DamperService implements CrudService<ExhaustDamper> {
     private final DamperMapper damperMapper;
 
     @Override
-    public Result<ExhaustDamper> findAll(int page, int size) {
+    public Result<ExhaustDamper> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<ExhaustDamper> list = damperMapper.findAll(offset, size);
+        List<ExhaustDamper> list = damperMapper.findAll(linkId, offset, size);
         int total = damperMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,17 +46,17 @@ public class DamperService implements CrudService<ExhaustDamper> {
     }
 
 
-    public Result<ExhaustDamperSttus> monitor(int page, int size) {
+    public Result<ExhaustDamperSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperSttus> list = damperMapper.monitor(offset, size);
+        List<ExhaustDamperSttus> list = damperMapper.monitor(linkId, offset, size);
         int total = damperMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<ExhaustDamperRunHistory> runHistory(String linkID, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<ExhaustDamperRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperRunHistory> list = damperMapper.runHistory(linkID, offset, size, startDate, endDate);
+        List<ExhaustDamperRunHistory> list = damperMapper.runHistory(linkId, offset, size, startDate, endDate);
         int total = damperMapper.runCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

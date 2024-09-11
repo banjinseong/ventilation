@@ -20,9 +20,9 @@ public class TempHumService implements CrudService<TempHum> {
     private final TempHumMapper tempHumMapper;
 
     @Override
-    public Result<TempHum> findAll(int page, int size) {
+    public Result<TempHum> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<TempHum> list = tempHumMapper.findAll(offset, size);
+        List<TempHum> list = tempHumMapper.findAll(linkId, offset, size);
         int total = tempHumMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -46,9 +46,9 @@ public class TempHumService implements CrudService<TempHum> {
     }
 
 
-    public Result<TempHumSttus> monitor(int page, int size) {
+    public Result<TempHumSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<TempHumSttus> list = tempHumMapper.monitor(offset, size);
+        List<TempHumSttus> list = tempHumMapper.monitor(linkId, offset, size);
         int total = tempHumMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

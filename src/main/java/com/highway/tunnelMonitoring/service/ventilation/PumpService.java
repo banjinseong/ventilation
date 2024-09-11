@@ -24,9 +24,9 @@ public class PumpService implements CrudService<Pump> {
     private final PumpMapper pumpMapper;
 
     @Override
-    public Result<Pump> findAll(int page, int size) {
+    public Result<Pump> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<Pump> list = pumpMapper.findAll(offset, size);
+        List<Pump> list = pumpMapper.findAll(linkId, offset, size);
         int total = pumpMapper.countAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
@@ -50,9 +50,9 @@ public class PumpService implements CrudService<Pump> {
     }
 
 
-    public Result<PumpSttus> monitor(int page, int size) {
+    public Result<PumpSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
-        List<PumpSttus> list = pumpMapper.monitor(offset, size);
+        List<PumpSttus> list = pumpMapper.monitor(linkId, offset, size);
         int total = pumpMapper.monitorCountAll();
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

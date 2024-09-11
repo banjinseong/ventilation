@@ -14,7 +14,7 @@ import java.util.List;
 
 @Mapper
 public interface VcbMapper {
-    List<Vcb> findAll(@Param("offset") int offset, @Param("limit") int limit);
+    List<Vcb> findAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int countAll();
     //하나만 조회
@@ -27,16 +27,16 @@ public interface VcbMapper {
     //데이터 삭제
     void delete(Vcb vcb);
 
-    List<VcbSttus> monitor(@Param("offset") int offset, @Param("limit") int size);
+    List<VcbSttus> monitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<VcbAlarmHistory> alarmHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbAlarmHistory> alarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int alarmCountAll();
 
     int monitorCountAll();
 
 
-    List<VcbRunHistory> runHistory(String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbRunHistory> runHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int runCountAll();
 }
