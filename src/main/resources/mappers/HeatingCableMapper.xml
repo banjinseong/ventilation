@@ -33,16 +33,16 @@
 
     <insert id="heatingCableEnroll">
         insert into HEATING_CABLE(CABLE_ID, LINK_ID, model_nm, instl_de)
-        values(#{CABLE_ID}, #{link_id}, #{model_nm}, #{instl_de})
+        values(#{cable_id}, #{link_id}, #{model_nm}, #{instl_de})
     </insert>
 
     <update id="heatingCableUpdate">
         update HEATING_CABLE set INSTL_DE = #{instl_de}
-        where CABLE_ID = #{CABLE_ID} and LINK_ID = #{link_id}
+        where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="heatingCableDelete">
-        delete from HEATING_CABLE where CABLE_ID = #{CABLE_ID} and LINK_ID = #{link_id}
+        delete from HEATING_CABLE where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="heatingCableMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableSttus">

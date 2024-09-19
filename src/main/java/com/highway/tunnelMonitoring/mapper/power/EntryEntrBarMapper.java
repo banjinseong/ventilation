@@ -29,12 +29,12 @@ public interface EntryEntrBarMapper {
 
     int entryEntrBarMonitorCountAll(@Param("link_id") String linkId);
 
-    List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int entryEntrBarFaultCountAll(@Param("link_id") String linkId);
 
 
-    List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int entryEntrBarRunCountAll(@Param("link_id") String linkId);
 

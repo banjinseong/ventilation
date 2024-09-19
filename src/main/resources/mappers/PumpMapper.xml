@@ -38,16 +38,16 @@
 
     <insert id="pumpEnroll">
         insert into PUMP(PUMP_ID, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{PUMP_ID}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        values(#{pump_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="pumpUpdate">
         update PUMP set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
-        where PUMP_ID = #{PUMP_ID} and LINK_ID = #{link_id}
+        where PUMP_ID = #{pump_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="pumpDelete">
-        delete from PUMP where PUMP_ID = #{PUMP_ID} and LINK_ID = #{link_id}
+        delete from PUMP where PUMP_ID = #{pump_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="pumpMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.pump.PumpSttus">

@@ -30,16 +30,16 @@
 
     <insert id="damperEnroll">
         insert into EXHAUST_DAMPER(DAMPER_ID, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{DAMPER_ID}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        values(#{damper_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="damperUpdate">
         update EXHAUST_DAMPER set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
-        where DAMPER_ID = #{DAMPER_ID} and LINK_ID = #{link_id}
+        where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="damperDelete">
-        delete from EXHAUST_DAMPER where DAMPER_ID = #{DAMPER_ID} and LINK_ID = #{link_id}
+        delete from EXHAUST_DAMPER where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="damperMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus">

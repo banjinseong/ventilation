@@ -27,7 +27,7 @@ public interface FrplgMapper {
 
     int frplgMonitorCountAll(@Param("link_id") String linkId);
 
-    List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int frplgAlarmCountAll(@Param("link_id") String linkId);
 }

@@ -53,10 +53,10 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
      */
     @GetMapping("/alarmHistory")
     public ResponseEntity<Result<EltgnrAlarmHistory>> alarmHistory(
-            @RequestParam(value = "linkId") String linkId,
+            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
-            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
@@ -76,10 +76,10 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<EltgnrRunHistory>> runHistory(
-            @RequestParam(value = "linkId") String linkId,
+            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
-            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class HeatingCable {
     private String cable_id;
     private String link_id;
-    private String instl_de;
+    private String instl_lc;
+    private LocalDate instl_de;
     private String model_nm;
 }

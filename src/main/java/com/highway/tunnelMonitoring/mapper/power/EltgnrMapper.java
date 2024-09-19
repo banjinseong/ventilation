@@ -31,10 +31,10 @@ public interface EltgnrMapper {
 
     int eltgnrAlarmCountAll(@Param("link_id") String linkId);
 
-    List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
 
-    List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int eltgnrRunCountAll(@Param("link_id") String linkId);
 }

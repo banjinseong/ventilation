@@ -26,7 +26,7 @@ public interface DamperMapper {
 
     List<ExhaustDamperSttus> damperMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int damperRunCountAll(@Param("link_id") String linkId);
 

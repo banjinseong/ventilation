@@ -29,14 +29,14 @@ public interface VcbMapper {
 
     List<VcbSttus> vcbMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<VcbAlarmHistory> vcbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbAlarmHistory> vcbAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int vcbAlarmCountAll(@Param("link_id") String linkId);
 
     int vcbMonitorCountAll(@Param("link_id") String linkId);
 
 
-    List<VcbRunHistory> vcbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VcbRunHistory> vcbRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int vcbRunCountAll(@Param("link_id") String linkId);
 }

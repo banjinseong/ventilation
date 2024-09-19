@@ -29,13 +29,13 @@ public interface AcbMapper {
 
     List<AcbSttus> acbMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    List<AcbAlarmHistory> acbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbAlarmHistory> acbAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int acbMonitorCountAll(@Param("link_id") String linkId);
 
     int acbAlarmCountAll(@Param("link_id") String linkId);
 
-    List<AcbRunHistory> acbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<AcbRunHistory> acbRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int acbRunCountAll(@Param("link_id") String linkId);
 }

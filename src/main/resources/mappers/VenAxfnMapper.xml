@@ -38,16 +38,16 @@
 
     <insert id="venAxFnEnroll">
         insert into VEN_AX_FN(VEN_AX_FN_ID, link_id, FAN_TYPE, instl_lc, instl_de)
-        values(#{VEN_AX_FN_ID}, #{link_id}, #{fan_type}, #{instl_lc}, #{instl_de})
+        values(#{ven_ax_fn_id}, #{link_id}, #{fan_type}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="venAxFnUpdate">
         update VEN_AX_FN set instl_lc = #{instl_lc}, instl_de = #{instl_de}
-        where VEN_AX_FN_ID = #{VEN_AX_FN_ID} and LINK_ID = #{link_id}
+        where VEN_AX_FN_ID = #{ven_ax_fn_id} and LINK_ID = #{link_id}
     </update>
 
     <delete id="venAxFnDelete">
-        delete from VEN_AX_FN where VEN_AX_FN_ID = #{VEN_AX_FN_ID} and LINK_ID = #{link_id}
+        delete from VEN_AX_FN where VEN_AX_FN_ID = #{ven_ax_fn_id} and LINK_ID = #{link_id}
     </delete>
 
     <select id="venAxFnMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnSttus">

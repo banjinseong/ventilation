@@ -31,11 +31,11 @@ public interface JetPanMapper {
 
     int jetPanRunCountAll(@Param("link_id") String linkId);
 
-    List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<JetPanRunHistory> jetPanRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanRunHistory> jetPanRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int jetPanStatCountAll(@Param("link_id") String linkId);
 
-    List<JetPanStat> jetPanStat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
+    List<JetPanStat> jetPanStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
 }

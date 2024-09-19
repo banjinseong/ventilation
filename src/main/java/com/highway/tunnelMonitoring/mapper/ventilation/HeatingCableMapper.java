@@ -30,9 +30,9 @@ public interface HeatingCableMapper {
 
     int heatingCableMonitorCountAll(@Param("link_id") String linkId);
 
-    List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int heatingCableRunCountAll(@Param("link_id") String linkId);
 

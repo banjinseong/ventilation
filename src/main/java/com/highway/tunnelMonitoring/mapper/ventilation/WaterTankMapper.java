@@ -30,5 +30,5 @@ public interface WaterTankMapper {
 
     int waterTankAlarmCountAll(@Param("link_id") String linkId);
 
-    List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 }

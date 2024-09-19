@@ -30,11 +30,11 @@ public interface UpsMapper {
     int upsMonitorCountAll(@Param("link_id") String linkId);
 
 
-    List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int upsFaultCountAll(@Param("link_id") String linkId);
 
-    List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int upsRunCountAll(@Param("link_id") String linkId);
 }
