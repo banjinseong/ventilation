@@ -24,7 +24,7 @@ public class UpsService implements CrudService<Ups> {
     public Result<Ups> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Ups> list = upsMapper.upsFindAll(linkId, offset, size);
-        int total = upsMapper.upsCountAll();
+        int total = upsMapper.upsCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -50,7 +50,7 @@ public class UpsService implements CrudService<Ups> {
     public Result<UpsSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<UpsSttus> list = upsMapper.upsMonitor(linkId, offset, size);
-        int total = upsMapper.upsMonitorCountAll();
+        int total = upsMapper.upsMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -58,7 +58,7 @@ public class UpsService implements CrudService<Ups> {
     public Result<UpsFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<UpsFaultHistory> list = upsMapper.upsFaultHistory(linkId, offset, size, startDate, endDate);
-        int total = upsMapper.upsFaultCountAll();
+        int total = upsMapper.upsFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -67,7 +67,7 @@ public class UpsService implements CrudService<Ups> {
     public Result<UpsRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<UpsRunHistory> list = upsMapper.upsRunHistory(linkId, offset, size, startDate, endDate);
-        int total = upsMapper.upsRunCountAll();
+        int total = upsMapper.upsRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

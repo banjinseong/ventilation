@@ -41,7 +41,7 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
     @GetMapping("monitor")
     public ResponseEntity<Result<EltgnrSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
         Result<EltgnrSttus> result = eltgnrService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 

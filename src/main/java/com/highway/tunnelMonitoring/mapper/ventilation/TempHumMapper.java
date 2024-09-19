@@ -15,7 +15,7 @@ import java.util.List;
 public interface TempHumMapper {
     List<TempHum> tempHumFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int tempHumCountAll();
+    int tempHumCountAll(@Param("link_id") String linkId);
 
     //하나만 조회
 //    JetPan findOne(String jet_pan_no);
@@ -28,4 +28,6 @@ public interface TempHumMapper {
     void tempHumDelete(TempHum tempHum);
 
     List<TempHumSttus> tempHumMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+
+    int tempHumMonitorCountAll(@Param("link_id") String linkId);
 }

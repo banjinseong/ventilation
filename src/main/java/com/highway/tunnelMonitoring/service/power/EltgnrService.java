@@ -24,7 +24,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<Eltgnr> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Eltgnr> list = eltgnrMapper.eltgnrFindAll(linkId, offset, size);
-        int total = eltgnrMapper.eltgnrCountAll();
+        int total = eltgnrMapper.eltgnrCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -50,7 +50,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<EltgnrSttus> list = eltgnrMapper.eltgnrMonitor(linkId, offset, size);
-        int total = eltgnrMapper.eltgnrMonitorCountAll();
+        int total = eltgnrMapper.eltgnrMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -58,7 +58,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<EltgnrAlarmHistory> list = eltgnrMapper.eltgnrAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = eltgnrMapper.eltgnrAlarmCountAll();
+        int total = eltgnrMapper.eltgnrAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -67,7 +67,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<EltgnrRunHistory> list = eltgnrMapper.eltgnrRunHistory(linkId, offset, size, startDate, endDate);
-        int total = eltgnrMapper.eltgnrRunCountAll();
+        int total = eltgnrMapper.eltgnrRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

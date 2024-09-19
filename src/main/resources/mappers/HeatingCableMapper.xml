@@ -16,19 +16,19 @@
     </select>
 
     <select id="heatingCableCountAll" resultType="int">
-        SELECT COUNT(*) FROM HEATING_CABLE
+        SELECT COUNT(*) FROM HEATING_CABLE WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="heatingCableMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM HEATING_CABLE_STTUS
+        SELECT COUNT(*) FROM HEATING_CABLE_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="heatingCableRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM HEATING_CABLE_RUN_HISTORY
+        SELECT COUNT(*) FROM HEATING_CABLE_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="heatingCableAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM HEATING_CABLE_ALARM_HISTORY
+        SELECT COUNT(*) FROM HEATING_CABLE_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <insert id="heatingCableEnroll">

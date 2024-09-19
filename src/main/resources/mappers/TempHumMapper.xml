@@ -16,7 +16,11 @@
     </select>
 
     <select id="tempHumCountAll" resultType="int">
-        SELECT COUNT(*) FROM TEMP_HUM
+        SELECT COUNT(*) FROM TEMP_HUM WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="tempHumMonitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM TEMP_HUM_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
 

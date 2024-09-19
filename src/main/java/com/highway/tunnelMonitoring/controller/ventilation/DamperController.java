@@ -40,7 +40,7 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
     @GetMapping("monitor")
     public ResponseEntity<Result<ExhaustDamperSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                     @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                    @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+                                                                    @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
         Result<ExhaustDamperSttus> result = damperService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 

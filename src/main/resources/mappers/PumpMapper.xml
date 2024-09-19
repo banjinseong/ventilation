@@ -16,23 +16,23 @@
     </select>
 
     <select id="pumpCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP
+        SELECT COUNT(*) FROM PUMP WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="pumpMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_STTUS
+        SELECT COUNT(*) FROM PUMP_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="pumpFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_FAULT_HISTORY
+        SELECT COUNT(*) FROM PUMP_FAULT_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="pumpRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_RUN_HISTORY
+        SELECT COUNT(*) FROM PUMP_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="pumpStatCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_STAT
+        SELECT COUNT(*) FROM PUMP_STAT WHERE LINK_ID = #{link_id}
     </select>
 
 

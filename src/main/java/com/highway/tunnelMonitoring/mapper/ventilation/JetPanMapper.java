@@ -13,7 +13,7 @@ public interface JetPanMapper {
     
     List<JetPan> jetPanFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int jetPanCountAll();
+    int jetPanCountAll(@Param("link_id") String linkId);
 
     //데이터 등록
     void jetPanEnroll(JetPan jetPan);
@@ -25,17 +25,17 @@ public interface JetPanMapper {
 
     List<JetPanSttus> jetPanMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int jetPanMonitorCountAll();
+    int jetPanMonitorCountAll(@Param("link_id") String linkId);
 
-    int jetPanFaultCountAll();
+    int jetPanFaultCountAll(@Param("link_id") String linkId);
 
-    int jetPanRunCountAll();
+    int jetPanRunCountAll(@Param("link_id") String linkId);
 
     List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     List<JetPanRunHistory> jetPanRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int jetPanStatCountAll();
+    int jetPanStatCountAll(@Param("link_id") String linkId);
 
     List<JetPanStat> jetPanStat(@Param("link_id") String linkId, int offset, int size, LocalDate startDate, LocalDate endDate);
 }

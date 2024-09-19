@@ -16,23 +16,23 @@
     </select>
 
     <select id="venAxFnCountAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AX_FN
+        SELECT COUNT(*) FROM VEN_AX_FN WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="venAxFnMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AX_FN_STTUS
+        SELECT COUNT(*) FROM VEN_AX_FN_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="venAxFnFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AX_FN_FAULT_HISTORY
+        SELECT COUNT(*) FROM VEN_AX_FN_FAULT_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="venAxFnRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AX_FN_RUN_HISTORY
+        SELECT COUNT(*) FROM VEN_AX_FN_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="venAxFnStatCountAll" resultType="int">
-        SELECT COUNT(*) FROM VEN_AX_FN_STAT
+        SELECT COUNT(*) FROM VEN_AX_FN_STAT WHERE LINK_ID = #{link_id}
     </select>
 
 

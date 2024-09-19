@@ -13,7 +13,7 @@ import java.util.List;
 public interface WaterTankMapper {
     List<WaterTank> waterTankFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int waterTankCountAll();
+    int waterTankCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -26,9 +26,9 @@ public interface WaterTankMapper {
 
     List<WaterTankSttus> waterTankMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int waterTankMonitorCountAll();
+    int waterTankMonitorCountAll(@Param("link_id") String linkId);
 
-    int waterTankAlarmCountAll();
+    int waterTankAlarmCountAll(@Param("link_id") String linkId);
 
     List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

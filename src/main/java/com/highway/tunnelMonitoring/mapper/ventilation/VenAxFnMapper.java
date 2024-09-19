@@ -13,7 +13,7 @@ public interface VenAxFnMapper {
     
     List<VenAxFn> venAxFnFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int venAxFnCountAll();
+    int venAxFnCountAll(@Param("link_id") String linkId);
 
     //데이터 등록
     void venAxFnEnroll(VenAxFn venAxfn);
@@ -25,13 +25,13 @@ public interface VenAxFnMapper {
 
     List<VenAxFnSttus> venAxFnMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int venAxFnMonitorCountAll();
+    int venAxFnMonitorCountAll(@Param("link_id") String linkId);
 
-    int venAxFnFaultCountAll();
+    int venAxFnFaultCountAll(@Param("link_id") String linkId);
 
-    int venAxFnRunCountAll();
+    int venAxFnRunCountAll(@Param("link_id") String linkId);
 
-    int venAxFnStatCountAll();
+    int venAxFnStatCountAll(@Param("link_id") String linkId);
 
     List<VenAxFnFaultHistory> venAxFnFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 

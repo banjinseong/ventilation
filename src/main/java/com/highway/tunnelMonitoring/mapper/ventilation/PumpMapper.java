@@ -12,7 +12,7 @@ import java.util.List;
 public interface PumpMapper {
     List<Pump> pumpFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int pumpCountAll();
+    int pumpCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -25,13 +25,13 @@ public interface PumpMapper {
 
     List<PumpSttus> pumpMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int pumpMonitorCountAll();
+    int pumpMonitorCountAll(@Param("link_id") String linkId);
 
-    int pumpFaultCountAll();
+    int pumpFaultCountAll(@Param("link_id") String linkId);
 
-    int pumpRunCountAll();
+    int pumpRunCountAll(@Param("link_id") String linkId);
 
-    int pumpStatCountAll();
+    int pumpStatCountAll(@Param("link_id") String linkId);
 
     List<PumpFaultHistory> pumpFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 

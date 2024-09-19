@@ -42,8 +42,9 @@ public class AcbController extends BaseCrudController<Acb> {
     @GetMapping("monitor")
     public ResponseEntity<Result<AcbSttus>> monitorAcb(@RequestParam(defaultValue = "1", name = "page") int page,
                                                        @RequestParam(defaultValue = "10", name = "size") int size,
-                                                       @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+                                                       @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
         Result<AcbSttus> result = acbService.monitor(linkId, page, size);
+        System.out.println(result);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

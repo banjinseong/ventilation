@@ -23,7 +23,7 @@ public class FrplgService implements CrudService<Frplg> {
     public Result<Frplg> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Frplg> list = frplgMapper.frplgFindAll(linkId, offset, size);
-        int total = frplgMapper.frplgCountAll();
+        int total = frplgMapper.frplgCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -49,7 +49,7 @@ public class FrplgService implements CrudService<Frplg> {
     public Result<FrplgSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<FrplgSttus> list = frplgMapper.frplgMonitor(linkId, offset, size);
-        int total = frplgMapper.frplgMonitorCountAll();
+        int total = frplgMapper.frplgMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -57,7 +57,7 @@ public class FrplgService implements CrudService<Frplg> {
     public Result<FrplgAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<FrplgAlarmHistory> list = frplgMapper.frplgAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = frplgMapper.frplgAlarmCountAll();
+        int total = frplgMapper.frplgAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

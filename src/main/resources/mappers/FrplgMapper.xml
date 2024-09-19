@@ -16,15 +16,15 @@
     </select>
 
     <select id="frplgCountAll" resultType="int">
-        SELECT COUNT(*) FROM frplg
+        SELECT COUNT(*) FROM frplg WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="frplgMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM FRPLG_STTUS
+        SELECT COUNT(*) FROM FRPLG_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="frplgAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM FRPLG_ALARM_HISTORY
+        SELECT COUNT(*) FROM FRPLG_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
 

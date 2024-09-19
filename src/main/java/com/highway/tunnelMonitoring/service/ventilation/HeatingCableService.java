@@ -26,7 +26,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     public Result<HeatingCable> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<HeatingCable> list = heatingCableMapper.heatingCableFindAll(linkId, offset, size);
-        int total = heatingCableMapper.heatingCableCountAll();
+        int total = heatingCableMapper.heatingCableCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -52,7 +52,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     public Result<HeatingCableSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<HeatingCableSttus> list = heatingCableMapper.heatingCableMonitor(linkId, offset, size);
-        int total = heatingCableMapper.heatingCableMonitorCountAll();
+        int total = heatingCableMapper.heatingCableMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -60,7 +60,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     public Result<HeatingCableRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<HeatingCableRunHistory> list = heatingCableMapper.heatingCableRunHistory(linkId, offset, size, startDate, endDate);
-        int total = heatingCableMapper.heatingCableRunCountAll();
+        int total = heatingCableMapper.heatingCableRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -70,7 +70,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     public Result<HeatingCableAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<HeatingCableAlarmHistory> list = heatingCableMapper.heatingCableAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = heatingCableMapper.heatingCableAlarmCountAll();
+        int total = heatingCableMapper.heatingCableAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

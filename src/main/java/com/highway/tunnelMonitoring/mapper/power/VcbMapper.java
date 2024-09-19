@@ -16,7 +16,7 @@ import java.util.List;
 public interface VcbMapper {
     List<Vcb> vcbFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int vcbCountAll();
+    int vcbCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -31,12 +31,12 @@ public interface VcbMapper {
 
     List<VcbAlarmHistory> vcbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int vcbAlarmCountAll();
+    int vcbAlarmCountAll(@Param("link_id") String linkId);
 
-    int vcbMonitorCountAll();
+    int vcbMonitorCountAll(@Param("link_id") String linkId);
 
 
     List<VcbRunHistory> vcbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int vcbRunCountAll();
+    int vcbRunCountAll(@Param("link_id") String linkId);
 }

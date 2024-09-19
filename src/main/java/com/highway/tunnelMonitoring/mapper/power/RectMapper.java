@@ -14,7 +14,7 @@ public interface RectMapper {
     
     List<Rect> rectFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int rectCountAll();
+    int rectCountAll(@Param("link_id") String linkId);
 
     //데이터 등록
     void rectEnroll(Rect rect);
@@ -26,9 +26,9 @@ public interface RectMapper {
 
     List<RectSttus> rectMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int rectMonitorCountAll();
+    int rectMonitorCountAll(@Param("link_id") String linkId);
 
-    int rectAlarmCountAll();
+    int rectAlarmCountAll(@Param("link_id") String linkId);
 
     List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 }

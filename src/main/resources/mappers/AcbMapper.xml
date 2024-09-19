@@ -3,32 +3,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.highway.tunnelMonitoring.mapper.power.AcbMapper">
+
+
+
+
+
     <select id="acbFindAll" resultType="com.highway.tunnelMonitoring.domain.power.acb.Acb">
-        SELECT * FROM (
-                          SELECT a.*, ROWNUM rnum
-                          FROM (
-                                   SELECT * FROM acb
-                                   WHERE LINK_ID = #{link_id}
-                                   ORDER BY acb_id
-                               ) a
-                      )
-        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+        SELECT * FROM ACB WHERE LINK_ID = #{link_id}
     </select>
 
+
+
     <select id="acbCountAll" resultType="int">
-        SELECT COUNT(*) FROM acb
+        SELECT COUNT(*) FROM ACB WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="acbMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM ACB_STTUS
+        SELECT COUNT(*) FROM ACB_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="acbAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM ACB_ALARM_HISTORY
+        SELECT COUNT(*) FROM ACB_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="acbRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM ACB_RUN_HISTORY
+        SELECT COUNT(*) FROM ACB_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <insert id="acbEnroll">

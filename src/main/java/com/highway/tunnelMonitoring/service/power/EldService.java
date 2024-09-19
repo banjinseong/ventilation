@@ -24,7 +24,7 @@ public class EldService implements CrudService<Eld> {
     public Result<Eld> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Eld> list = eldMapper.eldFindAll(linkId, offset, size);
-        int total = eldMapper.eldCountAll();
+        int total = eldMapper.eldCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -50,7 +50,7 @@ public class EldService implements CrudService<Eld> {
     public Result<EldSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<EldSttus> list = eldMapper.eldMonitor(linkId, offset, size);
-        int total = eldMapper.eldMonitorCountAll();
+        int total = eldMapper.eldMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -58,7 +58,7 @@ public class EldService implements CrudService<Eld> {
     public Result<EldAlarmHistroy> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<EldAlarmHistroy> list = eldMapper.eldAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = eldMapper.eldAlarmCountAll();
+        int total = eldMapper.eldAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

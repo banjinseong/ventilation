@@ -13,7 +13,7 @@ import java.util.List;
 public interface DamperMapper {
     List<ExhaustDamper> damperFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int damperCountAll();
+    int damperCountAll(@Param("link_id") String linkId);
     //하나만 조회
 //    ExhaustDamper findOne(String cmo_msrins_no);
     //데이터 등록
@@ -28,7 +28,7 @@ public interface DamperMapper {
 
     List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int damperRunCountAll();
+    int damperRunCountAll(@Param("link_id") String linkId);
 
-    int damperMonitorCountAll();
+    int damperMonitorCountAll(@Param("link_id") String linkId);
 }

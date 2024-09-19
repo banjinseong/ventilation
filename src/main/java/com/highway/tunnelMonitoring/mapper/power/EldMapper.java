@@ -14,7 +14,7 @@ import java.util.List;
 public interface EldMapper {
     List<Eld> eldFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int eldCountAll();
+    int eldCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -27,9 +27,9 @@ public interface EldMapper {
 
     List<EldSttus> eldMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int eldMonitorCountAll();
+    int eldMonitorCountAll(@Param("link_id") String linkId);
 
     List<EldAlarmHistroy> eldAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int eldAlarmCountAll();
+    int eldAlarmCountAll(@Param("link_id") String linkId);
 }

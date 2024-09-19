@@ -16,19 +16,19 @@
     </select>
 
     <select id="entryEntrBarCountAll" resultType="int">
-        SELECT COUNT(*) FROM entry_entr_bar
+        SELECT COUNT(*) FROM entry_entr_bar WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="entryEntrBarMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_STTUS
+        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="entryEntrBarFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_FAULT_HISTORY
+        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_FAULT_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="entryEntrBarRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_RUN_HISTORY
+        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
 

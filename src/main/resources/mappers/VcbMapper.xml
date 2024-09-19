@@ -16,19 +16,19 @@
     </select>
 
     <select id="vcbCountAll" resultType="int">
-        SELECT COUNT(*) FROM vcb
+        SELECT COUNT(*) FROM vcb WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="vcbMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM VCB_STTUS
+        SELECT COUNT(*) FROM VCB_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="vcbAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM VCB_ALARM_HISTORY
+        SELECT COUNT(*) FROM VCB_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="vcbRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM VCB_RUN_HISTORY
+        SELECT COUNT(*) FROM VCB_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <insert id="vcbEnroll">

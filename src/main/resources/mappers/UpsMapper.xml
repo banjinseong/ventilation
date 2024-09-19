@@ -16,15 +16,15 @@
     </select>
 
     <select id="upsCountAll" resultType="int">
-        SELECT COUNT(*) FROM ups
+        SELECT COUNT(*) FROM ups WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="upsMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM UPS_STTUS
+        SELECT COUNT(*) FROM UPS_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="upsFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM UPS_FAULT_HISTORY
+        SELECT COUNT(*) FROM UPS_FAULT_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="upsRunCountAll" resultType="int">

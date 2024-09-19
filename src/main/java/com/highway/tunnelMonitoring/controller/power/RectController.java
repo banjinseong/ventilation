@@ -39,7 +39,7 @@ public class RectController extends BaseCrudController<Rect> {
     @GetMapping("monitor")
     public ResponseEntity<Result<RectSttus>> monitorRect(@RequestParam(defaultValue = "1", name = "page") int page,
                                                          @RequestParam(defaultValue = "10", name = "size") int size,
-                                                         @RequestParam(defaultValue = "5공구", name = "linkId") String linkId) {
+                                                         @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
         Result<RectSttus> result = rectService.monitor(linkId, page, size);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 

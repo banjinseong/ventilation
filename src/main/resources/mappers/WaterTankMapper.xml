@@ -16,15 +16,15 @@
     </select>
 
     <select id="waterTankCountAll" resultType="int">
-        SELECT COUNT(*) FROM WATER_TANK
+        SELECT COUNT(*) FROM WATER_TANK WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="waterTankMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM WATER_TANK_STTUS
+        SELECT COUNT(*) FROM WATER_TANK_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="waterTankAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM WATER_TANK_ALARM_HISTORY
+        SELECT COUNT(*) FROM WATER_TANK_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <insert id="waterTankEnroll">

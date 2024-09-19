@@ -16,7 +16,7 @@ import java.util.List;
 public interface AcbMapper {
     List<Acb> acbFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int acbCountAll();
+    int acbCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -31,11 +31,11 @@ public interface AcbMapper {
 
     List<AcbAlarmHistory> acbAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int acbMonitorCountAll();
+    int acbMonitorCountAll(@Param("link_id") String linkId);
 
-    int acbAlarmCountAll();
+    int acbAlarmCountAll(@Param("link_id") String linkId);
 
     List<AcbRunHistory> acbRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int acbRunCountAll();
+    int acbRunCountAll(@Param("link_id") String linkId);
 }

@@ -26,7 +26,7 @@ public class AcbService implements CrudService<Acb> {
     public Result<Acb> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Acb> list = acbMapper.acbFindAll(linkId, offset, size);
-        int total = acbMapper.acbCountAll();
+        int total = acbMapper.acbCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -52,7 +52,8 @@ public class AcbService implements CrudService<Acb> {
     public Result<AcbSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<AcbSttus> list = acbMapper.acbMonitor(linkId, offset, size);
-        int total = acbMapper.acbMonitorCountAll();
+        System.out.println(list);
+        int total = acbMapper.acbMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -60,7 +61,7 @@ public class AcbService implements CrudService<Acb> {
     public Result<AcbAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<AcbAlarmHistory> list = acbMapper.acbAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = acbMapper.acbAlarmCountAll();
+        int total = acbMapper.acbAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -69,7 +70,7 @@ public class AcbService implements CrudService<Acb> {
     public Result<AcbRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<AcbRunHistory> list = acbMapper.acbRunHistory(linkId, offset, size, startDate, endDate);
-        int total = acbMapper.acbRunCountAll();
+        int total = acbMapper.acbRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

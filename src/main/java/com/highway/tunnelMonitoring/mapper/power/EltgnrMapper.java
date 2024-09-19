@@ -16,7 +16,7 @@ public interface EltgnrMapper {
     
     List<Eltgnr> eltgnrFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int eltgnrCountAll();
+    int eltgnrCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void eltgnrEnroll(Eltgnr eltgnr);
     //데이터 업데이트
@@ -27,14 +27,14 @@ public interface EltgnrMapper {
 
     List<EltgnrSttus> eltgnrMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int eltgnrMonitorCountAll();
+    int eltgnrMonitorCountAll(@Param("link_id") String linkId);
 
-    int eltgnrAlarmCountAll();
+    int eltgnrAlarmCountAll(@Param("link_id") String linkId);
 
     List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
 
     List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int eltgnrRunCountAll();
+    int eltgnrRunCountAll(@Param("link_id") String linkId);
 }

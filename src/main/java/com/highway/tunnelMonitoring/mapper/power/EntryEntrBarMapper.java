@@ -16,7 +16,7 @@ public interface EntryEntrBarMapper {
     
     List<EntryEntrBar> entryEntrBarFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int entryEntrBarCountAll();
+    int entryEntrBarCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void entryEntrBarEnroll(EntryEntrBar entryEntrBar);
     //데이터 업데이트
@@ -27,15 +27,15 @@ public interface EntryEntrBarMapper {
 
     List<EntryEntrBarSttus> entryEntrBarMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int entryEntrBarMonitorCountAll();
+    int entryEntrBarMonitorCountAll(@Param("link_id") String linkId);
 
     List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int entryEntrBarFaultCountAll();
+    int entryEntrBarFaultCountAll(@Param("link_id") String linkId);
 
 
     List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int entryEntrBarRunCountAll();
+    int entryEntrBarRunCountAll(@Param("link_id") String linkId);
 
 }

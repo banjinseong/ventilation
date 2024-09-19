@@ -24,7 +24,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFn> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<VenAxFn> list = venAxFnMapper.venAxFnFindAll(linkId, offset, size);
-        int total = venAxFnMapper.venAxFnCountAll();
+        int total = venAxFnMapper.venAxFnCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -50,7 +50,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<VenAxFnSttus> list = venAxFnMapper.venAxFnMonitor(linkId, offset, size);
-        int total = venAxFnMapper.venAxFnMonitorCountAll();
+        int total = venAxFnMapper.venAxFnMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -58,7 +58,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<VenAxFnFaultHistory> list = venAxFnMapper.venAxFnFaultHistory(linkId, offset, size, startDate, endDate);
-        int total = venAxFnMapper.venAxFnFaultCountAll();
+        int total = venAxFnMapper.venAxFnFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -67,7 +67,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<VenAxFnRunHistory> list = venAxFnMapper.venAxFnRunHistory(linkId, offset, size, startDate, endDate);
-        int total = venAxFnMapper.venAxFnRunCountAll();
+        int total = venAxFnMapper.venAxFnRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -76,7 +76,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate) {
         int offset = (page - 1) * size;
         List<VenAxFnStat> list = venAxFnMapper.venAxFnStat(linkId, offset, size, startDate, endDate);
-        int total = venAxFnMapper.venAxFnStatCountAll();
+        int total = venAxFnMapper.venAxFnStatCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

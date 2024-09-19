@@ -15,7 +15,7 @@ public interface UpsMapper {
     
     List<Ups> upsFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int upsCountAll();
+    int upsCountAll(@Param("link_id") String linkId);
 
     //데이터 등록
     void upsEnroll(Ups ups);
@@ -27,14 +27,14 @@ public interface UpsMapper {
 
     List<UpsSttus> upsMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int upsMonitorCountAll();
+    int upsMonitorCountAll(@Param("link_id") String linkId);
 
 
     List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int upsFaultCountAll();
+    int upsFaultCountAll(@Param("link_id") String linkId);
 
     List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int upsRunCountAll();
+    int upsRunCountAll(@Param("link_id") String linkId);
 }

@@ -14,7 +14,7 @@ public interface FrplgMapper {
     
     List<Frplg> frplgFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int frplgCountAll();
+    int frplgCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void frplgEnroll(Frplg frplg);
     //데이터 업데이트
@@ -25,9 +25,9 @@ public interface FrplgMapper {
 
     List<FrplgSttus> frplgMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int frplgMonitorCountAll();
+    int frplgMonitorCountAll(@Param("link_id") String linkId);
 
     List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int frplgAlarmCountAll();
+    int frplgAlarmCountAll(@Param("link_id") String linkId);
 }

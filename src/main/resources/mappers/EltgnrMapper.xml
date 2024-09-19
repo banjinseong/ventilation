@@ -16,19 +16,19 @@
     </select>
 
     <select id="eltgnrCountAll" resultType="int">
-        SELECT COUNT(*) FROM eltgnr
+        SELECT COUNT(*) FROM eltgnr WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="eltgnrMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM ELTGNR_STTUS
+        SELECT COUNT(*) FROM ELTGNR_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="eltgnrAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM ELTGNR_ALARM_HISTORY
+        SELECT COUNT(*) FROM ELTGNR_ALARM_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="eltgnrRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM ELTGNR_RUN_HISTORY
+        SELECT COUNT(*) FROM ELTGNR_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <insert id="eltgnrEnroll">

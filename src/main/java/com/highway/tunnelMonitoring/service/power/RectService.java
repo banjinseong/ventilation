@@ -23,7 +23,7 @@ public class RectService implements CrudService<Rect> {
     public Result<Rect> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<Rect> list = rectMapper.rectFindAll(linkId, offset, size);
-        int total = rectMapper.rectCountAll();
+        int total = rectMapper.rectCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -49,7 +49,7 @@ public class RectService implements CrudService<Rect> {
     public Result<RectSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<RectSttus> list = rectMapper.rectMonitor(linkId, offset, size);
-        int total = rectMapper.rectMonitorCountAll();
+        int total = rectMapper.rectMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -57,7 +57,7 @@ public class RectService implements CrudService<Rect> {
     public Result<RectAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<RectAlarmHistory> list = rectMapper.rectAlarmHistory(linkId, offset, size, startDate, endDate);
-        int total = rectMapper.rectAlarmCountAll();
+        int total = rectMapper.rectAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

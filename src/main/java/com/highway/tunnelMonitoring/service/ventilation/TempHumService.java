@@ -23,7 +23,7 @@ public class TempHumService implements CrudService<TempHum> {
     public Result<TempHum> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<TempHum> list = tempHumMapper.tempHumFindAll(linkId, offset, size);
-        int total = tempHumMapper.tempHumCountAll();
+        int total = tempHumMapper.tempHumCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -49,7 +49,7 @@ public class TempHumService implements CrudService<TempHum> {
     public Result<TempHumSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<TempHumSttus> list = tempHumMapper.tempHumMonitor(linkId, offset, size);
-        int total = tempHumMapper.tempHumCountAll();
+        int total = tempHumMapper.tempHumMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }

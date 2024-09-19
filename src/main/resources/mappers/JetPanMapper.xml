@@ -16,23 +16,23 @@
     </select>
 
     <select id="jetPanCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN
+        SELECT COUNT(*) FROM JET_PAN WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="jetPanMonitorCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_STTUS
+        SELECT COUNT(*) FROM JET_PAN_STTUS WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="jetPanFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_FAULT_HISTORY
+        SELECT COUNT(*) FROM JET_PAN_FAULT_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="jetPanRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY
+        SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY WHERE LINK_ID = #{link_id}
     </select>
 
     <select id="jetPanStatCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_STAT
+        SELECT COUNT(*) FROM JET_PAN_STAT WHERE LINK_ID = #{link_id}
     </select>
 
 

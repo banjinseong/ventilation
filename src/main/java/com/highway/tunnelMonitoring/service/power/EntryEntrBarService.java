@@ -25,7 +25,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBar> findAll(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<EntryEntrBar> list = entryEntrBarMapper.entryEntrBarFindAll(linkId, offset, size);
-        int total = entryEntrBarMapper.entryEntrBarCountAll();
+        int total = entryEntrBarMapper.entryEntrBarCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -51,7 +51,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarSttus> monitor(String linkId, int page, int size) {
         int offset = (page - 1) * size;
         List<EntryEntrBarSttus> list = entryEntrBarMapper.entryEntrBarMonitor(linkId, offset, size);
-        int total = entryEntrBarMapper.entryEntrBarMonitorCountAll();
+        int total = entryEntrBarMapper.entryEntrBarMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
@@ -59,7 +59,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.entryEntrBarFaultHistory(linkId, offset, size, startDate, endDate);
-        int total = entryEntrBarMapper.entryEntrBarFaultCountAll();
+        int total = entryEntrBarMapper.entryEntrBarFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -68,7 +68,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
         int offset = (page - 1) * size;
         List<EntryEntrBarRunHistory> list = entryEntrBarMapper.entryEntrBarRunHistory(linkId, offset, size, startDate, endDate);
-        int total = entryEntrBarMapper.entryEntrBarRunCountAll();
+        int total = entryEntrBarMapper.entryEntrBarRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

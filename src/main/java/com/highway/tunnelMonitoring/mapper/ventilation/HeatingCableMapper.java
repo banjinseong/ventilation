@@ -15,7 +15,7 @@ public interface HeatingCableMapper {
 
     List<HeatingCable> heatingCableFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
-    int heatingCableCountAll();
+    int heatingCableCountAll(@Param("link_id") String linkId);
     //하나만 조회
 
     //데이터 등록
@@ -28,13 +28,13 @@ public interface HeatingCableMapper {
 
     List<HeatingCableSttus> heatingCableMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
-    int heatingCableMonitorCountAll();
+    int heatingCableMonitorCountAll(@Param("link_id") String linkId);
 
     List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
     List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, int offset, int size, LocalDateTime startDate, LocalDateTime endDate);
 
-    int heatingCableRunCountAll();
+    int heatingCableRunCountAll(@Param("link_id") String linkId);
 
-    int heatingCableAlarmCountAll();
+    int heatingCableAlarmCountAll(@Param("link_id") String linkId);
 }
