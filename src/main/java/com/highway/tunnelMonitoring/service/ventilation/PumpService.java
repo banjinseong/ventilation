@@ -11,6 +11,7 @@ import com.highway.tunnelMonitoring.mapper.ventilation.HeatingCableMapper;
 import com.highway.tunnelMonitoring.mapper.ventilation.PumpMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -84,5 +85,10 @@ public class PumpService implements CrudService<Pump> {
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
+    }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void pumpRecordStat(){
+        pumpMapper.pumpRecordStat();
     }
 }

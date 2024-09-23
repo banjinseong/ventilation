@@ -38,4 +38,8 @@ public interface JetPanMapper {
     int jetPanStatCountAll(@Param("link_id") String linkId);
 
     List<JetPanStat> jetPanStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+
+
+    //매 자정 통계 기록
+    void jetPanRecordStat();
 }

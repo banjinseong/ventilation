@@ -38,4 +38,8 @@ public interface PumpMapper {
     List<PumpRunHistory> pumpRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     List<PumpStat> pumpStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+
+
+    //매 자정 통계 기록
+    void pumpRecordStat();
 }

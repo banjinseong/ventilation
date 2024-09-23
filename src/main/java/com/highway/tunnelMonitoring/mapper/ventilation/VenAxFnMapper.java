@@ -38,4 +38,8 @@ public interface VenAxFnMapper {
     List<VenAxFnRunHistory> venAxFnRunHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     List<VenAxFnStat> venAxFnStat(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+
+
+    //매 자정 통계 기록
+    void venAxFnRecordStat();
 }

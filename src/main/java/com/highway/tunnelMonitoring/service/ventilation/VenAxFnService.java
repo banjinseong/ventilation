@@ -8,6 +8,7 @@ import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.mapper.ventilation.VenAxFnMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -80,5 +81,10 @@ public class VenAxFnService implements CrudService<VenAxFn> {
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
+    }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void venAxFnRecordStat(){
+        venAxFnMapper.venAxFnRecordStat();
     }
 }

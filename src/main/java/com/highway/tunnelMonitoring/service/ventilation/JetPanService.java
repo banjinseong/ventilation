@@ -7,6 +7,7 @@ import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.mapper.ventilation.JetPanMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -81,6 +82,11 @@ public class JetPanService implements CrudService<JetPan> {
 
     }
 
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void jetPanRecordStat(){
+        jetPanMapper.jetPanRecordStat();
+    }
 
 
 }
