@@ -63,6 +63,8 @@
                           FROM (
                                    SELECT * FROM UPS_FAULT_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND FAULT_START_DATETIME >= #{startDate}
+                                     AND FAULT_START_DATETIME &lt;= #{endData}
                                    ORDER BY UPS_ID
                                ) a
                       )
@@ -75,6 +77,8 @@
                           FROM (
                                    SELECT * FROM UPS_RUN_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY UPS_ID
                                ) a
                       )

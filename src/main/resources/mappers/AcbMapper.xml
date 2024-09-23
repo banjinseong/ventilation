@@ -62,6 +62,8 @@
                           FROM (
                                    SELECT * FROM ACB_ALARM_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                     AND ALARM_DATETIME >= #{startDate}
+                                     AND ALARM_DATETIME &lt;= #{endDate}
                                    ORDER BY acb_id
                                ) a
                       )
@@ -75,6 +77,8 @@
                           FROM (
                                    SELECT * FROM ACB_RUN_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY acb_id
                                ) a
                       )

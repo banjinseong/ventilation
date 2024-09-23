@@ -64,6 +64,8 @@
                           FROM (
                                    SELECT * FROM ENTRY_ENTR_BAR_FAULT_HISTORY
                                    where LINK_ID = #{link_id}
+                                   AND FAULT_START_DATETIME >= #{startDate}
+                                   AND FAULT_START_DATETIME &lt;= #{endData}
                                    ORDER BY ENTRY_ENTR_BAR_ID
                                ) a
                       )
@@ -77,6 +79,8 @@
                           FROM (
                                    SELECT * FROM ENTRY_ENTR_BAR_RUN_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY ENTRY_ENTR_BAR_ID
                                ) a
                       )

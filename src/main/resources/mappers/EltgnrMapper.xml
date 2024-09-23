@@ -63,6 +63,8 @@
                           FROM (
                                    SELECT * FROM ELTGNR_ALARM_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                   AND ALARM_DATETIME >= #{startDate}
+                                   AND ALARM_DATETIME &lt;= #{endDate}
                                    ORDER BY ELTGNR_ID
                                ) a
                       )
@@ -76,6 +78,8 @@
                           FROM (
                                    SELECT * FROM ELTGNR_RUN_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY ELTGNR_ID
                                ) a
                       )

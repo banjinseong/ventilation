@@ -68,6 +68,8 @@
                           FROM (
                                    SELECT * FROM PUMP_FAULT_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                     AND FAULT_START_DATETIME >= #{startDate}
+                                     AND FAULT_START_DATETIME &lt;= #{endData}
                                    ORDER BY PUMP_ID
                                ) a
                       )
@@ -80,6 +82,8 @@
                           FROM (
                                    SELECT * FROM PUMP_RUN_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY PUMP_ID
                                ) a
                       )
@@ -92,6 +96,8 @@
                           FROM (
                                    SELECT * FROM PUMP_STAT
                                    WHERE LINK_ID = #{link_id}
+                                     AND RECORD_DATE >= #{startDate}
+                                     AND RECORD_DATE &lt;= #{endDate}
                                    ORDER BY PUMP_ID
                                ) a
                       )

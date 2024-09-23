@@ -60,6 +60,8 @@
                           FROM (
                                    SELECT * FROM RECT_ALARM_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND ALARM_DATETIME >= #{startDate}
+                                     AND ALARM_DATETIME &lt;= #{endDate}
                                    ORDER BY RECT_ID
                                ) a
                       )

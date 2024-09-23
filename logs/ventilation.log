@@ -972,3 +972,98 @@ org.apache.ibatis.binding.BindingException: Parameter 'offset' not found. Availa
 2024-09-19T13:28:22.797+09:00 DEBUG 16720 --- [http-nio-9999-exec-1] c.h.t.m.v.J.jetPanStatCountAll           : <==      Total: 1
 2024-09-19T13:44:37.875+09:00  INFO 16720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2024-09-19T13:44:37.885+09:00  INFO 16720 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-19T15:36:13.579+09:00  INFO 7368 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Starting TunnelMonitoringApplication using Java 17.0.10 with PID 7368 (C:\서부환기\ventilation\out\production\classes started by hs in C:\서부환기\ventilation)
+2024-09-19T15:36:13.581+09:00 DEBUG 7368 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-09-19T15:36:13.581+09:00  INFO 7368 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-19T15:36:13.711+09:00  INFO 7368 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\hs\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/hs/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+2024-09-19T15:36:13.711+09:00  INFO 7368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-19T15:36:13.711+09:00  INFO 7368 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-19T15:36:15.718+09:00  INFO 7368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9999 (http)
+2024-09-19T15:36:15.742+09:00  INFO 7368 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-19T15:36:15.744+09:00  INFO 7368 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-09-19T15:36:15.862+09:00  INFO 7368 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-19T15:36:15.865+09:00  INFO 7368 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2152 ms
+2024-09-19T15:36:17.202+09:00  INFO 7368 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-09-19T15:36:18.015+09:00  INFO 7368 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-19T15:36:18.090+09:00  INFO 7368 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9999 (http) with context path ''
+2024-09-19T15:36:18.118+09:00  INFO 7368 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Started TunnelMonitoringApplication in 5.039 seconds (process running for 5.768)
+2024-09-19T15:41:02.902+09:00  INFO 7368 --- [http-nio-9999-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-19T15:41:02.903+09:00  INFO 7368 --- [http-nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-19T15:41:02.904+09:00  INFO 7368 --- [http-nio-9999-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-19T15:49:02.185+09:00  INFO 20724 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Starting TunnelMonitoringApplication using Java 17.0.10 with PID 20724 (C:\서부환기\ventilation\out\production\classes started by hs in C:\서부환기\ventilation)
+2024-09-19T15:49:02.192+09:00 DEBUG 20724 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-09-19T15:49:02.195+09:00  INFO 20724 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-19T15:49:02.378+09:00  INFO 20724 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\hs\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/hs/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+2024-09-19T15:49:02.379+09:00  INFO 20724 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-19T15:49:02.379+09:00  INFO 20724 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-19T15:49:06.019+09:00  INFO 20724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9999 (http)
+2024-09-19T15:49:06.037+09:00  INFO 20724 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-19T15:49:06.038+09:00  INFO 20724 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-09-19T15:49:06.113+09:00  INFO 20724 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-19T15:49:06.113+09:00  INFO 20724 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3733 ms
+2024-09-19T15:49:07.067+09:00  INFO 20724 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-09-19T15:49:07.540+09:00  INFO 20724 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-19T15:49:07.585+09:00  INFO 20724 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9999 (http) with context path ''
+2024-09-19T15:49:07.600+09:00  INFO 20724 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Started TunnelMonitoringApplication in 6.768 seconds (process running for 8.695)
+2024-09-19T15:49:33.168+09:00  INFO 20724 --- [http-nio-9999-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-19T15:49:33.169+09:00  INFO 20724 --- [http-nio-9999-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-19T15:49:33.170+09:00  INFO 20724 --- [http-nio-9999-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-19T15:53:31.394+09:00  INFO 8080 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Starting TunnelMonitoringApplication using Java 17.0.10 with PID 8080 (C:\서부환기\ventilation\out\production\classes started by hs in C:\서부환기\ventilation)
+2024-09-19T15:53:31.396+09:00 DEBUG 8080 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-09-19T15:53:31.397+09:00  INFO 8080 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-19T15:53:31.456+09:00  INFO 8080 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\hs\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/hs/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+2024-09-19T15:53:31.457+09:00  INFO 8080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-19T15:53:31.457+09:00  INFO 8080 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-19T15:53:32.727+09:00  INFO 8080 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-19T15:53:32.738+09:00  INFO 8080 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-19T15:53:32.738+09:00  INFO 8080 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-09-19T15:53:32.789+09:00  INFO 8080 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-19T15:53:32.789+09:00  INFO 8080 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1332 ms
+2024-09-19T15:53:33.418+09:00  INFO 8080 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-09-19T15:53:33.787+09:00  INFO 8080 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-19T15:53:33.824+09:00  INFO 8080 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-09-19T15:53:33.834+09:00  INFO 8080 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Started TunnelMonitoringApplication in 2.836 seconds (process running for 3.504)
+2024-09-19T15:53:41.696+09:00  INFO 8080 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-19T15:53:41.696+09:00  INFO 8080 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-19T15:53:41.697+09:00  INFO 8080 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-19T15:54:19.637+09:00  INFO 23836 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Starting TunnelMonitoringApplication using Java 17.0.10 with PID 23836 (C:\서부환기\ventilation\out\production\classes started by hs in C:\서부환기\ventilation)
+2024-09-19T15:54:19.639+09:00 DEBUG 23836 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-09-19T15:54:19.640+09:00  INFO 23836 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-09-19T15:54:19.697+09:00  INFO 23836 --- [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\hs\.gradle\caches\modules-2\files-2.1\com.oracle.database.jdbc\ojdbc11\21.9.0.0\1aad2e20684ee075bb9ebdca2d83f028e4fd35fa\ojdbc11-21.9.0.0.jar referenced one or more files that do not exist: file:/C:/Users/hs/.gradle/caches/modules-2/files-2.1/com.oracle.database.jdbc/ojdbc11/21.9.0.0/1aad2e20684ee075bb9ebdca2d83f028e4fd35fa/oraclepki.jar
+2024-09-19T15:54:19.697+09:00  INFO 23836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-19T15:54:19.697+09:00  INFO 23836 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-19T15:54:20.849+09:00  INFO 23836 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-19T15:54:20.859+09:00  INFO 23836 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-19T15:54:20.859+09:00  INFO 23836 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-09-19T15:54:20.905+09:00  INFO 23836 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-19T15:54:20.906+09:00  INFO 23836 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1208 ms
+2024-09-19T15:54:21.503+09:00  INFO 23836 --- [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-09-19T15:54:21.854+09:00  INFO 23836 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-19T15:54:21.889+09:00  INFO 23836 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-09-19T15:54:21.898+09:00  INFO 23836 --- [restartedMain] c.h.t.TunnelMonitoringApplication        : Started TunnelMonitoringApplication in 2.689 seconds (process running for 3.323)
+2024-09-19T15:54:26.397+09:00  INFO 23836 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-19T15:54:26.397+09:00  INFO 23836 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-19T15:54:26.398+09:00  INFO 23836 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-09-19T15:54:48.249+09:00  INFO 23836 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-19T15:54:48.973+09:00  INFO 23836 --- [http-nio-8080-exec-2] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@702c734e
+2024-09-19T15:54:48.976+09:00  INFO 23836 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-19T15:54:48.983+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanFindAll     : ==>  Preparing: SELECT * FROM ( SELECT a.*, ROWNUM rnum FROM ( SELECT * FROM JET_PAN where LINK_ID = ? ORDER BY JET_PAN_ID ) a ) WHERE rnum BETWEEN ? + 1 AND ? + ?
+2024-09-19T15:54:49.062+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanFindAll     : ==> Parameters: LNK001(String), 0(Integer), 0(Integer), 10(Integer)
+2024-09-19T15:54:49.159+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanFindAll     : <==      Total: 1
+2024-09-19T15:54:49.165+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanCountAll    : ==>  Preparing: SELECT COUNT(*) FROM JET_PAN WHERE LINK_ID = ?
+2024-09-19T15:54:49.166+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanCountAll    : ==> Parameters: LNK001(String)
+2024-09-19T15:54:49.171+09:00 DEBUG 23836 --- [http-nio-8080-exec-2] c.h.t.m.v.JetPanMapper.jetPanCountAll    : <==      Total: 1
+2024-09-19T15:56:51.927+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.JetPanMapper.jetPanRunHistory  : ==>  Preparing: SELECT * FROM ( SELECT a.*, ROWNUM rnum FROM ( SELECT * FROM JET_PAN_RUN_HISTORY where LINK_ID = ? ORDER BY JET_PAN_ID ) a ) WHERE rnum BETWEEN ? + 1 AND ? + ?
+2024-09-19T15:56:51.928+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.JetPanMapper.jetPanRunHistory  : ==> Parameters: LNK001(String), 0(Integer), 0(Integer), 10(Integer)
+2024-09-19T15:56:51.937+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.JetPanMapper.jetPanRunHistory  : <==      Total: 1
+2024-09-19T15:56:51.939+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.J.jetPanRunCountAll            : ==>  Preparing: SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY WHERE LINK_ID = ?
+2024-09-19T15:56:51.940+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.J.jetPanRunCountAll            : ==> Parameters: LNK001(String)
+2024-09-19T15:56:51.943+09:00 DEBUG 23836 --- [http-nio-8080-exec-5] c.h.t.m.v.J.jetPanRunCountAll            : <==      Total: 1
+2024-09-19T15:57:01.714+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.JetPanMapper.jetPanMonitor     : ==>  Preparing: SELECT * FROM ( SELECT a.*, ROWNUM rnum FROM ( SELECT * FROM JET_PAN_STTUS where LINK_ID = ? ORDER BY JET_PAN_ID ) a ) WHERE rnum BETWEEN ? + 1 AND ? + ?
+2024-09-19T15:57:01.715+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.JetPanMapper.jetPanMonitor     : ==> Parameters: LNK001(String), 0(Integer), 0(Integer), 10(Integer)
+2024-09-19T15:57:01.742+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.JetPanMapper.jetPanMonitor     : <==      Total: 1
+2024-09-19T15:57:01.743+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.J.jetPanMonitorCountAll        : ==>  Preparing: SELECT COUNT(*) FROM JET_PAN_STTUS WHERE LINK_ID = ?
+2024-09-19T15:57:01.743+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.J.jetPanMonitorCountAll        : ==> Parameters: LNK001(String)
+2024-09-19T15:57:01.745+09:00 DEBUG 23836 --- [http-nio-8080-exec-6] c.h.t.m.v.J.jetPanMonitorCountAll        : <==      Total: 1
+2024-09-19T16:00:26.797+09:00  INFO 23836 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-19T16:00:26.805+09:00  INFO 23836 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

@@ -69,6 +69,8 @@
                           FROM (
                                    SELECT * FROM JET_PAN_FAULT_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND FAULT_START_DATETIME >= #{startDate}
+                                     AND FAULT_START_DATETIME &lt;= #{endData}
                                    ORDER BY JET_PAN_ID
                                ) a
                       )
@@ -81,6 +83,8 @@
                           FROM (
                                    SELECT * FROM JET_PAN_RUN_HISTORY
                                    where LINK_ID = #{link_id}
+                                     AND RUN_START_DATETIME >= #{startDate}
+                                     AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY JET_PAN_ID
                                ) a
                       )
@@ -93,6 +97,8 @@
                           FROM (
                                    SELECT * FROM JET_PAN_STAT
                                    where LINK_ID = #{link_id}
+                                   AND RECORD_DATE >= #{startDate}
+                                   AND RECORD_DATE &lt;= #{endDate}
                                    ORDER BY JET_PAN_ID
                                ) a
                       )

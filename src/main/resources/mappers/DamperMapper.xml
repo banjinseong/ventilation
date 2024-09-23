@@ -60,6 +60,8 @@
                           FROM (
                                    SELECT * FROM EXHAUST_DAMPER_RUN_HISTORY
                                    WHERE LINK_ID = #{link_id}
+                                   AND RUN_START_DATETIME >= #{startDate}
+                                   AND RUN_START_DATETIME &lt;= #{endDate}
                                    ORDER BY DAMPER_ID
                                ) a
                       )
