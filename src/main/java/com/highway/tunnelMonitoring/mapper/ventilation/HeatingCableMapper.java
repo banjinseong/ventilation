@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCable;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory;
@@ -37,4 +38,10 @@ public interface HeatingCableMapper {
     int heatingCableRunCountAll(@Param("link_id") String linkId);
 
     int heatingCableAlarmCountAll(@Param("link_id") String linkId);
+
+
+    HeatingCableSttus cableFindSttus(@Param("cable_id") String cableId, @Param("link_id") String linkId);
+
+
+    void cableUpdateSttus(HeatingCableSttus heatingCableSttus);
 }

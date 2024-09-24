@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTank;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankSttus;
@@ -31,4 +32,12 @@ public interface WaterTankMapper {
     int waterTankAlarmCountAll(@Param("link_id") String linkId);
 
     List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+
+
+
+
+    WaterTankSttus tankFindSttus(@Param("tank_id") String tankId, @Param("link_id") String linkId);
+
+
+    void tankUpdateSttus(WaterTankSttus waterTankSttus);
 }

@@ -2,6 +2,7 @@ package com.highway.tunnelMonitoring.mapper.power;
 
 import com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
+import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
 import com.highway.tunnelMonitoring.domain.power.vcb.Vcb;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory;
@@ -39,4 +40,11 @@ public interface VcbMapper {
     List<VcbRunHistory> vcbRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int vcbRunCountAll(@Param("link_id") String linkId);
+
+
+
+    VcbSttus vcbFindSttus(@Param("vcb_id") String vcbId, @Param("link_id") String linkId);
+
+
+    void vcbUpdateSttus(VcbSttus vcbSttus);
 }

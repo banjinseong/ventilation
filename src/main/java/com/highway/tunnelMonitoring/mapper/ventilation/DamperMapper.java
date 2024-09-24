@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
@@ -31,4 +32,10 @@ public interface DamperMapper {
     int damperRunCountAll(@Param("link_id") String linkId);
 
     int damperMonitorCountAll(@Param("link_id") String linkId);
+
+
+    ExhaustDamperSttus damperFindSttus(@Param("damper_id") String damperId, @Param("link_id") String linkId);
+
+
+    void damperUpdateSttus(ExhaustDamperSttus exhaustDamperSttus);
 }

@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,4 +43,11 @@ public interface VenAxFnMapper {
 
     //매 자정 통계 기록
     void venAxFnRecordStat();
+
+
+
+    VenAxFnSttus venAxFnFindSttus(@Param("venAxFn_id") String venAxFnId, @Param("link_id") String linkId);
+
+
+    void venAxFnUpdateSttus(VenAxFnSttus venAxFnSttus);
 }

@@ -1,6 +1,7 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
 
+import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHum;
 import com.highway.tunnelMonitoring.domain.ventilation.temphum.TempHumSttus;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,4 +31,11 @@ public interface TempHumMapper {
     List<TempHumSttus> tempHumMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
 
     int tempHumMonitorCountAll(@Param("link_id") String linkId);
+
+
+
+    TempHumSttus tempHumFindSttus(@Param("tempHum_id") String tempHumId, @Param("link_id") String linkId);
+
+
+    void tempHumUpdateSttus(TempHumSttus tempHumSttus);
 }

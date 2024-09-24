@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import com.highway.tunnelMonitoring.domain.power.rect.Rect;
 import com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
@@ -31,4 +32,10 @@ public interface RectMapper {
     int rectAlarmCountAll(@Param("link_id") String linkId);
 
     List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+
+
+    RectSttus rectFindSttus(@Param("rect_id") String rectId, @Param("link_id") String linkId);
+
+
+    void RectUpadate(Rect rect);
 }

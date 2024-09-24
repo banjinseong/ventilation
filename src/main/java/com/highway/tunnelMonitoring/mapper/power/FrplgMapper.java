@@ -30,4 +30,9 @@ public interface FrplgMapper {
     List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int frplgAlarmCountAll(@Param("link_id") String linkId);
+
+
+    FrplgSttus frplgFindSttus(@Param("frplg_id") String frplgId, @Param("link_id") String linkId);
+
+    void FrplgUpdateSttus(FrplgSttus frplgSttus);
 }

@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,4 +43,10 @@ public interface JetPanMapper {
 
     //매 자정 통계 기록
     void jetPanRecordStat();
+
+
+    JetPanSttus jetPanFindSttus(@Param("jetPan_id") String jetPanId, @Param("link_id") String linkId);
+
+
+    void jetPanUpdateSttus(JetPan jetPan);
 }

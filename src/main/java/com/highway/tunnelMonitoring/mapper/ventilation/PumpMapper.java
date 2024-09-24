@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
+import com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.pump.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -42,4 +43,11 @@ public interface PumpMapper {
 
     //매 자정 통계 기록
     void pumpRecordStat();
+
+
+
+    PumpSttus pumpFindSttus(@Param("pump_id") String pumpId, @Param("link_id") String linkId);
+
+
+    void pumpUpdateSttus(PumpSttus pumpSttus);
 }

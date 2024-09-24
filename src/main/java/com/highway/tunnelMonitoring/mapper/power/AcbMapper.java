@@ -38,4 +38,8 @@ public interface AcbMapper {
     List<AcbRunHistory> acbRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int acbRunCountAll(@Param("link_id") String linkId);
+
+    AcbSttus acbFindSttus(@Param("acb_id") String acbId, @Param("link_id") String linkId);
+
+    void acbUpdateSttus(AcbSttus acbSttus);
 }

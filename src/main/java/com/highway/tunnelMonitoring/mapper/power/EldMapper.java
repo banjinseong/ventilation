@@ -32,4 +32,9 @@ public interface EldMapper {
     List<EldAlarmHistroy> eldAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int eldAlarmCountAll(@Param("link_id") String linkId);
+
+    EldSttus eldFindSttus(@Param("eld_id") String eldId, @Param("link_id") String linkId);
+
+
+    void eldUpdateSttus(EldSttus eldSttus);
 }

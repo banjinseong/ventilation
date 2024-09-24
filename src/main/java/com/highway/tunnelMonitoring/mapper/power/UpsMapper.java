@@ -1,5 +1,6 @@
 package com.highway.tunnelMonitoring.mapper.power;
 
+import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
 import com.highway.tunnelMonitoring.domain.power.ups.Ups;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
@@ -37,4 +38,10 @@ public interface UpsMapper {
     List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
 
     int upsRunCountAll(@Param("link_id") String linkId);
+
+
+    UpsSttus upsFindSttus(@Param("ups_id") String upsId, @Param("link_id") String linkId);
+
+
+    void UpsUpdateSttus(UpsSttus upsSttus);
 }
