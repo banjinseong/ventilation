@@ -11,18 +11,18 @@ import org.springframework.stereotype.Component;
 import java.net.InetAddress;
 
 /**
- * 5공구
- * 은산 1터널 rtu 연결
+ * 14공구
+ * 안중유지관리사무소
  */
 
 @Component
 @RequiredArgsConstructor
-public class Eunsan1Tunnel {
+public class AnjungTunnel {
 
     private final AcbMapper acbMapper;
 
 
-    private String ipAddress = "10.20.12.151";
+    private String ipAddress = "10.10.20.151";
     private int port = 502; // Modbus TCP 기본 포트
     private TCPMasterConnection connection;
 
