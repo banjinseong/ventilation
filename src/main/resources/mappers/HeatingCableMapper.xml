@@ -59,6 +59,14 @@
         where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
     </update>
 
+    <update id="heatingCableUpdateSttus">
+        update HEATING_CABLE_STTUS set RUN_STTUS = #{run_sttus},
+                                       ALARM_STTUS = #{alarm_sttus},
+                                       HIGH_TEMP_ALARM = #{high_temp_alarm},
+                                       LOW_TEMP_ALARM = #{low_temp_alarm}
+        where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
+    </update>
+
     <delete id="heatingCableDelete">
         delete from HEATING_CABLE where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
     </delete>
@@ -85,6 +93,12 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
+
+
+    <insert id="heatingCableCreateAlarmHistory">
+        insert into HEATING_CABLE_ALARM_HISTORY(CABLE_ID, LINK_ID, ALARM_DATETIME, ALARM_TYPE)
+        values(#{cable_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
+    </insert>
 
     <select id="heatingCableAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory">
         SELECT * FROM (
@@ -117,6 +131,12 @@
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
+
+    <insert id="heatingCableCreateRunHistory">
+        insert into HEATING_CABLE_RUN_HISTORY(CABLE_ID, LINK_ID, RUN_START_DATETIME)
+        values(#{cable_id}, #{link_id}, #{run_start_datetime})
+    </insert>
+
 
     <select id="heatingCableRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory">
         SELECT * FROM (

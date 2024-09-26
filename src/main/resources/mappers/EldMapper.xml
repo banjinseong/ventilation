@@ -56,6 +56,12 @@
         where ELD_ID = #{eld_id} and LINK_ID = #{link_id}
     </update>
 
+
+    <update id="eldUpdateSttus">
+        update ELD_STTUS set LEAKAGE_ALARM = #{leakage_alarm}
+        where ELD_ID = #{eld_id} and LINK_ID = #{link_id}
+    </update>
+
     <delete id="eldDelete">
         delete from Eld where ELD_ID = #{eld_id} and LINK_ID = #{link_id}
     </delete>
@@ -80,6 +86,12 @@
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
+
+
+    <insert id="eldCreateAlarmHistroy">
+        insert into ELD_ALARM_HISTORY(ELD_ID, LINK_ID, ALARM_DATETIME, ALARM_TYPE)
+        values(#{eld_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
+    </insert>
 
     <select id="eldAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy">
         SELECT * FROM (

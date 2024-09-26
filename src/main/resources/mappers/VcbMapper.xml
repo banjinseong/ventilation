@@ -59,6 +59,18 @@
         where vcb_id = #{vcb_id} and LINK_ID = #{link_id}
     </update>
 
+    <update id="vcbUpdateSttus">
+        update VCB_STTUS set AUTO_REMOTE_STTUS = #{auto_remote_sttus},
+                             RUN_STTUS = #{run_sttus},
+                             OCR_ALARM = #{ocr_alarm},
+                             OCGR_ALARM = #{ocgr_alarm},
+                             OVR_ALARM = #{ovr_alarm},
+                             UVR_ALARM = #{uvr_alarm},
+                             OVGR_ALARM = #{ovgr_alarm},
+                             POR_ALARM = #{por_alarm}
+        where vcb_id = #{vcb_id} and LINK_ID = #{link_id}
+    </update>
+
     <delete id="vcbDelete">
         delete from vcb where vcb_id = #{vcb_id} and LINK_ID = #{link_id}
     </delete>
@@ -83,6 +95,12 @@
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
+
+
+    <insert id="vcbCreateAlarmHistory">
+        insert into VCB_ALARM_HISTORY(vcb_id, LINK_ID, ALARM_DATETIME, ALARM_TYPE)
+        values(#{vcb_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
+    </insert>
 
     <select id="vcbAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory">
         SELECT * FROM (
@@ -116,6 +134,11 @@
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
+
+    <insert id="vcbCreateRunHistory">
+        insert into VCB_RUN_HISTORY(vcb_id, LINK_ID, RUN_START_DATETIME)
+        values(#{vcb_id}, #{link_id}, #{run_start_datetime})
+    </insert>
 
     <select id="vcbRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory">
         SELECT * FROM (
