@@ -37,8 +37,10 @@ public class JetPanController extends BaseCrudController<JetPan> {
     @GetMapping("monitor")
     public ResponseEntity<Result<JetPanSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<JetPanSttus> result = jetPanService.monitor(linkId, page, size);
+                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                             @RequestParam(defaultValue = "jet_pan_id", name = "sort_column") String sort_column,
+                                                             @RequestParam(defaultValue = "asc", name = "sort_direction") String sort_direction) {
+        Result<JetPanSttus> result = jetPanService.monitor(linkId, page, size, sort_column, sort_direction);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }

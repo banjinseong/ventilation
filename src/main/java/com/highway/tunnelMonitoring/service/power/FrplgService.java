@@ -20,7 +20,7 @@ public class FrplgService implements CrudService<Frplg> {
     private final FrplgMapper frplgMapper;
 
     @Override
-    public Result<Frplg> findAll(String linkId, int page, int size) {
+    public Result<Frplg> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Frplg> list = frplgMapper.frplgFindAll(linkId, offset, size);
         int total = frplgMapper.frplgCountAll(linkId);

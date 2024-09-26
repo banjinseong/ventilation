@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface JetPanMapper {
     
-    List<JetPan> jetPanFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<JetPan> jetPanFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit, @Param("sort_column") String sort_column, @Param("sort_direction") String sort_direction);
 
     int jetPanCountAll(@Param("link_id") String linkId);
 
@@ -24,7 +24,7 @@ public interface JetPanMapper {
     //데이터 삭제
     void jetPanDelete(JetPan jetPan);
 
-    List<JetPanSttus> jetPanMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<JetPanSttus> jetPanMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, @Param("sort_column") String sort_column, @Param("sort_direction") String sort_direction);
 
     int jetPanMonitorCountAll(@Param("link_id") String linkId);
 

@@ -21,7 +21,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     private final EltgnrMapper eltgnrMapper;
 
     @Override
-    public Result<Eltgnr> findAll(String linkId, int page, int size) {
+    public Result<Eltgnr> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Eltgnr> list = eltgnrMapper.eltgnrFindAll(linkId, offset, size);
         int total = eltgnrMapper.eltgnrCountAll(linkId);

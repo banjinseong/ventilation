@@ -20,7 +20,7 @@ public class TempHumService implements CrudService<TempHum> {
     private final TempHumMapper tempHumMapper;
 
     @Override
-    public Result<TempHum> findAll(String linkId, int page, int size) {
+    public Result<TempHum> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<TempHum> list = tempHumMapper.tempHumFindAll(linkId, offset, size);
         int total = tempHumMapper.tempHumCountAll(linkId);

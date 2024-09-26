@@ -22,7 +22,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     private final VenAxFnMapper venAxFnMapper;
 
     @Override
-    public Result<VenAxFn> findAll(String linkId, int page, int size) {
+    public Result<VenAxFn> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<VenAxFn> list = venAxFnMapper.venAxFnFindAll(linkId, offset, size);
         int total = venAxFnMapper.venAxFnCountAll(linkId);

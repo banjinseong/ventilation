@@ -22,7 +22,7 @@ public class VcbService implements CrudService<Vcb> {
     private final VcbMapper vcbMapper;
 
     @Override
-    public Result<Vcb> findAll(String linkId, int page, int size) {
+    public Result<Vcb> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Vcb> list = vcbMapper.vcbFindAll(linkId, offset, size);
         int total = vcbMapper.vcbCountAll(linkId);

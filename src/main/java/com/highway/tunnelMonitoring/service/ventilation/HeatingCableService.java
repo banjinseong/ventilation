@@ -23,7 +23,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     private final HeatingCableMapper heatingCableMapper;
 
     @Override
-    public Result<HeatingCable> findAll(String linkId, int page, int size) {
+    public Result<HeatingCable> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<HeatingCable> list = heatingCableMapper.heatingCableFindAll(linkId, offset, size);
         int total = heatingCableMapper.heatingCableCountAll(linkId);

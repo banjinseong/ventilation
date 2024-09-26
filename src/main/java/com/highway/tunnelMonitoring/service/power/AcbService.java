@@ -23,7 +23,7 @@ public class AcbService implements CrudService<Acb> {
     private final AcbMapper acbMapper;
 
     @Override
-    public Result<Acb> findAll(String linkId, int page, int size) {
+    public Result<Acb> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Acb> list = acbMapper.acbFindAll(linkId, offset, size);
         int total = acbMapper.acbCountAll(linkId);

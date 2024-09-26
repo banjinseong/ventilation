@@ -9,7 +9,25 @@
                           FROM (
                                    SELECT * FROM eltgnr
                                    WHERE LINK_ID = #{link_id}
-                                   ORDER BY ELTGNR_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'eltgnr_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(eltgnr_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'instl_lc'">
+                                            instl_lc
+                                        </if>
+                                        <if test="sort_column == 'instl_de'">
+                                            instl_de
+                                        </if>
+                                        <if test="sort_column == 'model_nm'">
+                                            model_nm
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -51,8 +69,18 @@
                           FROM (
                                    SELECT * FROM ELTGNR_STTUS
                                    WHERE LINK_ID = #{link_id}
-                                   ORDER BY ELTGNR_ID
-                               ) a
+                                   ORDER BY
+                                        <if test="sort_column == 'eltgnr_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(eltgnr_id, '\d+'))
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                        DESC
+                                        </if>
+
+        ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
@@ -65,8 +93,27 @@
                                    WHERE LINK_ID = #{link_id}
                                    AND ALARM_DATETIME >= #{startDate}
                                    AND ALARM_DATETIME &lt;= #{endDate}
-                                   ORDER BY ELTGNR_ID
-                               ) a
+                                   ORDER BY
+                                        <if test="sort_column == 'eltgnr_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(eltgnr_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'alarm_datetime'">
+                                            alarm_datetime
+                                        </if>
+                                        <if test="sort_column == 'alarm_type'">
+                                            alarm_type
+                                        </if>
+                                        <if test="sort_column == 'release_datetime'">
+                                            release_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                        DESC
+                                        </if>
+
+        ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
@@ -80,7 +127,22 @@
                                    WHERE LINK_ID = #{link_id}
                                      AND RUN_START_DATETIME >= #{startDate}
                                      AND RUN_START_DATETIME &lt;= #{endDate}
-                                   ORDER BY ELTGNR_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'eltgnr_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(eltgnr_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'run_start_datetime'">
+                                            run_start_datetime
+                                        </if>
+                                        <if test="sort_column == 'run_end_datetime'">
+                                            run_end_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}

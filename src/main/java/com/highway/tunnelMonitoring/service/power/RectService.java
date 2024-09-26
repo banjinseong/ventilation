@@ -20,7 +20,7 @@ public class RectService implements CrudService<Rect> {
     private final RectMapper rectMapper;
 
     @Override
-    public Result<Rect> findAll(String linkId, int page, int size) {
+    public Result<Rect> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Rect> list = rectMapper.rectFindAll(linkId, offset, size);
         int total = rectMapper.rectCountAll(linkId);

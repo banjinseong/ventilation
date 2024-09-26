@@ -44,7 +44,22 @@
                           FROM (
                                    SELECT * FROM TEMP_HUM_STTUS
                                    WHERE LINK_ID = #{link_id}
-                                   ORDER BY TEMP_HUM_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'temp_hum_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(temp_hum_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'temp'">
+                                            temp
+                                        </if>
+                                        <if test="sort_column == 'hum'">
+                                            hum
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}

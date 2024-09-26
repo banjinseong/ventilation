@@ -9,7 +9,33 @@
 
 
     <select id="acbFindAll" resultType="com.highway.tunnelMonitoring.domain.power.acb.Acb">
-        SELECT * FROM ACB WHERE LINK_ID = #{link_id}
+        SELECT * FROM (
+                          SELECT a.*, ROWNUM rnum
+                          FROM (
+                                   SELECT * FROM ACB
+                                   WHERE LINK_ID = #{link_id}
+                                   ORDER BY
+                                        <if test="sort_column == 'acb_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(acb_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'instl_lc'">
+                                            instl_lc
+                                        </if>
+                                        <if test="sort_column == 'instl_de'">
+                                            instl_de
+                                        </if>
+                                        <if test="sort_column == 'model_nm'">
+                                            model_nm
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
+                               ) a
+                      )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
     </select>
 
 
@@ -50,7 +76,16 @@
                           FROM (
                                    SELECT * FROM ACB_STTUS
                                    WHERE LINK_ID = #{link_id}
-                                   ORDER BY acb_id
+                                   ORDER BY
+                                        <if test="sort_column == 'acb_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(acb_id, '\d+'))
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -64,7 +99,25 @@
                                    WHERE LINK_ID = #{link_id}
                                      AND ALARM_DATETIME >= #{startDate}
                                      AND ALARM_DATETIME &lt;= #{endDate}
-                                   ORDER BY acb_id
+                                   ORDER BY
+                                        <if test="sort_column == 'acb_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(acb_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'alarm_datetime'">
+                                            alarm_datetime
+                                        </if>
+                                        <if test="sort_column == 'alarm_type'">
+                                            alarm_type
+                                        </if>
+                                        <if test="sort_column == 'release_datetime'">
+                                            release_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -79,7 +132,22 @@
                                    WHERE LINK_ID = #{link_id}
                                      AND RUN_START_DATETIME >= #{startDate}
                                      AND RUN_START_DATETIME &lt;= #{endDate}
-                                   ORDER BY acb_id
+                                   ORDER BY
+                                        <if test="sort_column == 'acb_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(acb_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'run_start_datetime'">
+                                            run_start_datetime
+                                        </if>
+                                        <if test="sort_column == 'run_end_datetime'">
+                                            run_end_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}

@@ -21,7 +21,7 @@ public class EldService implements CrudService<Eld> {
     private final EldMapper eldMapper;
 
     @Override
-    public Result<Eld> findAll(String linkId, int page, int size) {
+    public Result<Eld> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Eld> list = eldMapper.eldFindAll(linkId, offset, size);
         int total = eldMapper.eldCountAll(linkId);

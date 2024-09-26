@@ -21,7 +21,7 @@ public class UpsService implements CrudService<Ups> {
     private final UpsMapper upsMapper;
 
     @Override
-    public Result<Ups> findAll(String linkId, int page, int size) {
+    public Result<Ups> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
         int offset = (page - 1) * size;
         List<Ups> list = upsMapper.upsFindAll(linkId, offset, size);
         int total = upsMapper.upsCountAll(linkId);

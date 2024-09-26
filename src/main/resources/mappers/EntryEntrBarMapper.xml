@@ -9,7 +9,25 @@
                           FROM (
                                    SELECT * FROM entry_entr_bar
                                    where LINK_ID = #{link_id}
-                                   ORDER BY entry_entr_bar_id
+                                   ORDER BY
+                                        <if test="sort_column == 'entry_entr_bar_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'instl_lc'">
+                                            instl_lc
+                                        </if>
+                                        <if test="sort_column == 'instl_de'">
+                                            instl_de
+                                        </if>
+                                        <if test="sort_column == 'model_nm'">
+                                            model_nm
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -52,7 +70,16 @@
                           FROM (
                                    SELECT * FROM ENTRY_ENTR_BAR_STTUS
                                    where LINK_ID = #{link_id}
-                                   ORDER BY ENTRY_ENTR_BAR_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'entry_entr_bar_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -66,7 +93,22 @@
                                    where LINK_ID = #{link_id}
                                    AND FAULT_START_DATETIME >= #{startDate}
                                    AND FAULT_START_DATETIME &lt;= #{endData}
-                                   ORDER BY ENTRY_ENTR_BAR_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'entry_entr_bar_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'fault_start_datetime'">
+                                            fault_start_datetime
+                                        </if>
+                                        <if test="sort_column == 'fault_end_datetime'">
+                                            fault_end_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
@@ -81,7 +123,22 @@
                                    where LINK_ID = #{link_id}
                                      AND RUN_START_DATETIME >= #{startDate}
                                      AND RUN_START_DATETIME &lt;= #{endDate}
-                                   ORDER BY ENTRY_ENTR_BAR_ID
+                                   ORDER BY
+                                        <if test="sort_column == 'entry_entr_bar_id'">
+                                            TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))
+                                        </if>
+                                        <if test="sort_column == 'run_start_datetime'">
+                                            run_start_datetime
+                                        </if>
+                                        <if test="sort_column == 'run_end_datetime'">
+                                            run_end_datetime
+                                        </if>
+                                        <if test="sort_direction == 'asc'">
+                                            ASC
+                                        </if>
+                                        <if test="sort_direction == 'desc'">
+                                            DESC
+                                        </if>
                                ) a
                       )
         WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
