@@ -77,6 +77,12 @@
                                         <if test="sort_column == 'damper_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(damper_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'open_sttus'">
+                                            open_sttus
+                                        </if>
+                                        <if test="sort_column == 'close_sttus'">
+                                            close_sttus
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

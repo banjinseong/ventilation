@@ -76,6 +76,9 @@
                                         <if test="sort_column == 'eld_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(eld_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'leakage_alarm'">
+                                            leakage_alarm
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

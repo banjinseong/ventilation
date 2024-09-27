@@ -85,6 +85,18 @@
                                         <if test="sort_column == 'jet_pan_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(JET_PAN_ID, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'remote_mode'">
+                                            remote_mode
+                                        </if>
+                                        <if test="sort_column == 'forward_mode'">
+                                            forward_mode
+                                        </if>
+                                        <if test="sort_column == 'reverse_mode'">
+                                            reverse_mode
+                                        </if>
+                                        <if test="sort_column == 'fault_sttus'">
+                                            fault_sttus
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

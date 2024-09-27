@@ -85,6 +85,30 @@
                                         <if test="sort_column == 'eltgnr_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(eltgnr_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'auto_remote_sttus'">
+                                            auto_remote_sttus
+                                        </if>
+                                        <if test="run_sttus == 'run_sttus'">
+                                            run_sttus
+                                        </if>
+                                        <if test="sort_column == 'ocr_alarm'">
+                                            ocr_alarm
+                                        </if>
+                                        <if test="sort_column == 'ocgr_alarm'">
+                                            ocgr_alarm
+                                        </if>
+                                        <if test="sort_column == 'ovr_alarm'">
+                                            ovr_alarm
+                                        </if>
+                                        <if test="sort_column == 'uvr_alarm'">
+                                            uvr_alarm
+                                        </if>
+                                        <if test="sort_column == 'ovgr_alarm'">
+                                            ovgr_alarm
+                                        </if>
+                                        <if test="sort_column == 'por_alarm'">
+                                            por_alarm
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

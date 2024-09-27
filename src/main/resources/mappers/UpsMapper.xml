@@ -80,6 +80,15 @@
                                         <if test="sort_column == 'ups_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(ups_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'run_sttus'">
+                                            run_sttus
+                                        </if>
+                                        <if test="sort_column == 'fault_sttus'">
+                                            fault_sttus
+                                        </if>
+                                        <if test="sort_column == 'bypass_sttus'">
+                                            bypass_sttus
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

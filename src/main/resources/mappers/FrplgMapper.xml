@@ -78,6 +78,18 @@
                                         <if test="sort_column == 'frplg_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(frplg_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'frplg_alarm'">
+                                            frplg_alarm
+                                        </if>
+                                        <if test="sort_column == 'frplg_lifted'">
+                                            frplg_lifted
+                                        </if>
+                                        <if test="sort_column == 'frplg_door_open'">
+                                            frplg_door_open
+                                        </if>
+                                        <if test="sort_column == 'atmc_fire_detct'">
+                                            atmc_fire_detct
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

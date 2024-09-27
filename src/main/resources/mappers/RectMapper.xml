@@ -80,6 +80,9 @@
                                         <if test="sort_column == 'rect_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(rect_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'low_vltge_alarm'">
+                                            low_vltge_alarm
+                                        </if>
                                         <if test="sort_column == 'altrcrt_vltge_value'">
                                             altrcrt_vltge_value
                                         </if>

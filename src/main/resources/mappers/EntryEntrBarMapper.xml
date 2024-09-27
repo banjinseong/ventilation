@@ -84,6 +84,24 @@
                                         <if test="sort_column == 'entry_entr_bar_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'auto_remote_sttus'">
+                                            auto_remote_sttus
+                                        </if>
+                                        <if test="sort_column == 'run_sttus'">
+                                            run_sttus
+                                        </if>
+                                        <if test="sort_column == 'rising_sttus'">
+                                            rising_sttus
+                                        </if>
+                                        <if test="sort_column == 'desn_sttus'">
+                                            desn_sttus
+                                        </if>
+                                        <if test="sort_column == 'fault_sttus'">
+                                            fault_sttus
+                                        </if>
+                                        <if test="sort_column == 'comn_fault'">
+                                            comn_fault
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>

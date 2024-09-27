@@ -77,6 +77,15 @@
                                         <if test="sort_column == 'tank_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(tank_id, '\d+'))
                                         </if>
+                                        <if test="sort_column == 'high_water_alarm'">
+                                            high_water_alarm
+                                        </if>
+                                        <if test="sort_column == 'low_water_alarm'">
+                                            low_water_alarm
+                                        </if>
+                                        <if test="sort_column == 'current_water_level'">
+                                            current_water_level
+                                        </if>
                                         <if test="sort_direction == 'asc'">
                                             ASC
                                         </if>
