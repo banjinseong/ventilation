@@ -112,6 +112,12 @@
     </insert>
 
 
+    <update id="acbUpdateAlarmHistory">
+        update ACB_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where acb_id = #{acb_id} and LINK_ID = #{link_id}
+    </update>
+
+
     <select id="acbAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -150,6 +156,11 @@
         values(#{acb_id}, #{link_id}, #{run_start_datetime})
     </insert>
 
+
+    <update id="acbUpdateRunHistory">
+        update ACB_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where acb_id = #{acb_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="acbRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory">
         SELECT * FROM (

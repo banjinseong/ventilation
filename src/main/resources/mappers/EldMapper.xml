@@ -88,10 +88,15 @@
     </select>
 
 
-    <insert id="eldCreateAlarmHistroy">
+    <insert id="eldCreateAlarmHistory">
         insert into ELD_ALARM_HISTORY(ELD_ID, LINK_ID, ALARM_DATETIME, ALARM_TYPE)
         values(#{eld_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
+
+    <update id="eldUpdateAlarmHistory">
+        update ELD_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where ELD_ID = #{eld_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="eldAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy">
         SELECT * FROM (

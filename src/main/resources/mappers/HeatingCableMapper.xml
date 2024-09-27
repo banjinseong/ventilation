@@ -100,6 +100,12 @@
         values(#{cable_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
 
+
+    <update id="heatingCableUpdateAlarmHistory">
+        update HEATING_CABLE_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="heatingCableAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -137,6 +143,11 @@
         values(#{cable_id}, #{link_id}, #{run_start_datetime})
     </insert>
 
+
+    <update id="heatingCableUpdateRunHistory">
+        update HEATING_CABLE_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="heatingCableRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory">
         SELECT * FROM (

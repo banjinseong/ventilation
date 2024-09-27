@@ -97,6 +97,12 @@
         values(#{ups_id}, #{link_id}, #{fault_start_datetime})
     </insert>
 
+
+    <update id="upsUpdateFaultHistory">
+        update UPS_FAULT_HISTORY set FAULT_END_DATETIME = #{fault_end_datetime}
+        where ups_id = #{ups_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="upsFaultHistory" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -131,6 +137,11 @@
         insert into UPS_RUN_HISTORY(ups_id, LINK_ID, RUN_START_DATETIME)
         values(#{ups_id}, #{link_id}, #{run_start_datetime})
     </insert>
+
+    <update id="upsUpdateRunHistory">
+        update UPS_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where ups_id = #{ups_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="upsRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory">
         SELECT * FROM (

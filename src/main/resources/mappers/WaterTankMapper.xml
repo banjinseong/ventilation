@@ -95,6 +95,12 @@
         values(#{tank_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
 
+
+    <update id="waterTankUpdateAlarmHistory">
+        update WATER_TANK_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where TANK_ID = #{tank_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="waterTankAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum

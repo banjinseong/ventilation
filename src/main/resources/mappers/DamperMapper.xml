@@ -95,6 +95,11 @@
     </insert>
 
 
+    <update id="damperUpdateRunHistory">
+        update EXHAUST_DAMPER_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="damperRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum

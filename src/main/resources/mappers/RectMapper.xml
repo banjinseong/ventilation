@@ -109,6 +109,12 @@
         values(#{rect_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
 
+
+    <update id="rectUpdateAlarmHistory">
+        update RECT_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where rect_id = #{rect_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="rectAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum

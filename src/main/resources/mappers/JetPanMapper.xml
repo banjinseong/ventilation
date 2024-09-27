@@ -102,6 +102,12 @@
         values(#{jet_pan_id}, #{link_id}, #{fault_start_datetime})
     </insert>
 
+
+    <update id="jetPanUpdateFaultHistory">
+        update JET_PAN_FAULT_HISTORY set FAULT_END_DATETIME = #{fault_end_datetime}
+        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="jetPanFaultHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanFaultHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -136,6 +142,11 @@
         insert into JET_PAN_RUN_HISTORY(JET_PAN_ID, link_id,  RUN_START_DATETIME)
         values(#{jet_pan_id}, #{link_id}, #{run_start_datetime})
     </insert>
+
+    <update id="jetPanUpdateRunHistory">
+        update JET_PAN_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="jetPanRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory">
         SELECT * FROM (

@@ -95,6 +95,12 @@
         values(#{frplg_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
 
+
+    <update id="frplgUpdateAlarmHistory">
+        update FRPLG_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where frplg_id = #{frplg_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="frplgAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum

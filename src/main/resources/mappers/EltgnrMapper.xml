@@ -103,6 +103,12 @@
         values(#{eltgnr_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
     </insert>
 
+
+    <update id="eltgnrUpdateAlarmHistory">
+        update ELTGNR_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="eltgnrAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -141,6 +147,12 @@
         insert into ELTGNR_RUN_HISTORY(ELTGNR_ID, LINK_ID, RUN_START_DATETIME)
         values(#{eltgnr_id}, #{link_id}, #{run_start_datetime})
     </insert>
+
+
+    <update id="eltgnrUpdateRunHistory">
+        update ELTGNR_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="eltgnrRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory">
         SELECT * FROM (

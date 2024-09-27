@@ -102,6 +102,12 @@
         values(#{ven_ax_fn_id}, #{link_id}, #{fault_start_datetime})
     </insert>
 
+
+    <update id="venAxFnUpdateFaultHistory">
+        update VEN_AX_FN_FAULT_HISTORY set FAULT_END_DATETIME = #{fault_end_datetime}
+        where VEN_AX_FN_ID = #{ven_ax_fn_id} and LINK_ID = #{link_id}
+    </update>
+
     <select id="venAxFnFaultHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnFaultHistory">
         SELECT * FROM (
                           SELECT a.*, ROWNUM rnum
@@ -136,6 +142,12 @@
         insert into VEN_AX_FN_RUN_HISTORY(VEN_AX_FN_ID, link_id, RUN_START_DATETIME)
         values(#{ven_ax_fn_id}, #{link_id}, #{run_start_datetime})
     </insert>
+
+
+    <update id="venAxFnUpdateRunHistory">
+        update VEN_AX_FN_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where VEN_AX_FN_ID = #{ven_ax_fn_id} and LINK_ID = #{link_id}
+    </update>
 
     <select id="venAxFnRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnRunHistory">
         SELECT * FROM (
