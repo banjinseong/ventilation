@@ -35,4 +35,8 @@ public interface FrplgMapper {
     FrplgSttus frplgFindSttus(@Param("frplg_id") String frplgId, @Param("link_id") String linkId);
 
     void FrplgUpdateSttus(FrplgSttus frplgSttus);
+
+
+    void frplgCreateAlarmHistory(FrplgAlarmHistory frplgAlarmHistory);
+    void frplgUpdateAlarmHistory(FrplgAlarmHistory frplgAlarmHistory);
 }

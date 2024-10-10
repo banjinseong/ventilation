@@ -42,4 +42,10 @@ public interface EltgnrMapper {
 
 
     void EltgnrUpdateSttus(EltgnrSttus eltgnrSttus);
+
+    void eltgnrCreateAlarmHistory(EltgnrAlarmHistory eltgnrAlarmHistory);
+    void eltgnrUpdateAlarmHistory(EltgnrAlarmHistory eltgnrAlarmHistory);
+
+    void eltgnrCreateRunHistory(EltgnrRunHistory eltgnrRunHistory);
+    void eltgnrUpdateRunHistory(EltgnrRunHistory eltgnrRunHistory);
 }

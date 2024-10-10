@@ -49,4 +49,12 @@ public interface JetPanMapper {
 
 
     void jetPanUpdateSttus(JetPan jetPan);
+
+
+    void jetPanCreateFaultHistory(JetPanFaultHistory jetPanFaultHistory);
+    void jetPanUpdateFaultHistory(JetPanFaultHistory jetPanFaultHistory);
+
+    void jetPanCreateRunHistory(JetPanRunHistory jetPanRunHistory);
+    void jetPanUpdateRunHistory(JetPanRunHistory jetPanRunHistory);
+
 }

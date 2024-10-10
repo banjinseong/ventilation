@@ -50,4 +50,10 @@ public interface VenAxFnMapper {
 
 
     void venAxFnUpdateSttus(VenAxFnSttus venAxFnSttus);
+
+    void venAxFnCreateFaultHistory(VenAxFnFaultHistory faultHistory);
+    void venAxFnUpdateFaultHistory(VenAxFnFaultHistory faultHistory);
+
+    void venAxFnCreateRunHistory(VenAxFnRunHistory runHistory);
+    void venAxFnUpdateRunHistory(VenAxFnRunHistory runHistory);
 }

@@ -40,4 +40,8 @@ public interface WaterTankMapper {
 
 
     void tankUpdateSttus(WaterTankSttus waterTankSttus);
+
+
+    void waterTankCreateAlarmHistory(WaterTankAlarmHistory waterTankAlarmHistory);
+    void waterTankUpdateAlarmHistory(WaterTankAlarmHistory waterTankAlarmHistory);
 }

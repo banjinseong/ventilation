@@ -38,4 +38,7 @@ public interface DamperMapper {
 
 
     void damperUpdateSttus(ExhaustDamperSttus exhaustDamperSttus);
+
+    void damperCreateRunHistory(ExhaustDamperRunHistory exhaustDamperRunHistory);
+    void damperUpdateRunHistory(ExhaustDamperRunHistory exhaustDamperRunHistory);
 }

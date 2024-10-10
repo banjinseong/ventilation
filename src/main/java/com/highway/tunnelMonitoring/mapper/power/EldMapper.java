@@ -37,4 +37,7 @@ public interface EldMapper {
 
 
     void eldUpdateSttus(EldSttus eldSttus);
+
+    void eldCreateAlarmHistory(Eld eld);
+    void eldUpdateAlarmHistory(Eld eld);
 }

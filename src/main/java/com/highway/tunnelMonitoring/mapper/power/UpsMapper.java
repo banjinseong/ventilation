@@ -44,4 +44,11 @@ public interface UpsMapper {
 
 
     void UpsUpdateSttus(UpsSttus upsSttus);
+
+
+    void upsCreateFaultHistory(UpsFaultHistory upsFaultHistory);
+    void upsUpdateFaultHistory(UpsFaultHistory upsFaultHistory);
+
+    void upsCreateRunHistory(UpsRunHistory upsRunHistory);
+    void upsUpdateRunHistory(UpsRunHistory upsRunHistory);
 }

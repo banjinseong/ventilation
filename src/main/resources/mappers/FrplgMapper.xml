@@ -110,7 +110,7 @@
 
     <update id="frplgUpdateAlarmHistory">
         update FRPLG_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
-        where frplg_id = #{frplg_id} and LINK_ID = #{link_id}
+        where frplg_id = #{frplg_id} and LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
     </update>
 
     <select id="frplgAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory">

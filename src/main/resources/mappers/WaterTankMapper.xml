@@ -107,7 +107,7 @@
 
     <update id="waterTankUpdateAlarmHistory">
         update WATER_TANK_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
-        where TANK_ID = #{tank_id} and LINK_ID = #{link_id}
+        where TANK_ID = #{tank_id} and LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
     </update>
 
     <select id="waterTankAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.watertank.WaterTankAlarmHistory">

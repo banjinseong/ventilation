@@ -50,4 +50,11 @@ public interface PumpMapper {
 
 
     void pumpUpdateSttus(PumpSttus pumpSttus);
+
+
+    void pumpCreateFaultHistory(PumpFaultHistory pumpFaultHistory);
+    void pumpUpdateFaultHistory(PumpFaultHistory pumpFaultHistory);
+
+    void pumpCreateRunHistory(PumpRunHistory pumpRunHistory);
+    void pumpUpdateRunHistory(PumpRunHistory pumpRunHistory);
 }

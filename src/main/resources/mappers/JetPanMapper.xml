@@ -117,7 +117,7 @@
 
     <update id="jetPanUpdateFaultHistory">
         update JET_PAN_FAULT_HISTORY set FAULT_END_DATETIME = #{fault_end_datetime}
-        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id}
+        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id} and FAULT_START_DATETIME = #{fault_start_datetime}
     </update>
 
     <select id="jetPanFaultHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanFaultHistory">
@@ -157,7 +157,7 @@
 
     <update id="jetPanUpdateRunHistory">
         update JET_PAN_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id}
+        where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
     </update>
 
     <select id="jetPanRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.jetpan.JetPanRunHistory">

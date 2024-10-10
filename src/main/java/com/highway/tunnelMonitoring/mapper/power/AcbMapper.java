@@ -42,4 +42,10 @@ public interface AcbMapper {
     AcbSttus acbFindSttus(@Param("acb_id") String acbId, @Param("link_id") String linkId);
 
     void acbUpdateSttus(AcbSttus acbSttus);
+
+    void acbCreateAlarmHistory(AcbAlarmHistory acbAlarmHistory);
+    void acbUpdateAlarmHistory(AcbAlarmHistory acbAlarmHistory);
+
+    void acbCreateRunHistory(AcbRunHistory acbRunHistory);
+    void acbUpdateRunHistory(AcbRunHistory acbRunHistory);
 }

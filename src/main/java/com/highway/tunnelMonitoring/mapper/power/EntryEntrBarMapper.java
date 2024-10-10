@@ -41,4 +41,11 @@ public interface EntryEntrBarMapper {
     EntryEntrBarSttus entryEntrBarFindSttus(@Param("entryEntrBar_id") String entryEntrBarId, @Param("link_id") String linkId);
 
     void EntryEntrBarUpdateSttus(EntryEntrBarSttus entryEntrBarSttus);
+
+    void entryEntrBarCreateFaultHistory(EntryEntrBarFaultHistory entryEntrBarFaultHistory);
+    void entryEntrBarUpdateFaultHistory(EntryEntrBarFaultHistory entryEntrBarFaultHistory);
+
+    void entryEntrBarCreateRunHistory(EntryEntrBarRunHistory entryEntrBarRunHistory);
+    void entryEntrBarUpdateRunHistory(EntryEntrBarRunHistory entryEntrBarRunHistory);
+
 }

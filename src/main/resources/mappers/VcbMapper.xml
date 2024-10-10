@@ -129,7 +129,7 @@
 
     <update id="vcbUpdateAlarmHistory">
         update VCB_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
-        where vcb_id = #{vcb_id} and LINK_ID = #{link_id}
+        where vcb_id = #{vcb_id} and LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
     </update>
 
     <select id="vcbAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory">
@@ -173,7 +173,7 @@
 
     <update id="vcbUpdateRunHistory">
         update VCB_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where vcb_id = #{vcb_id} and LINK_ID = #{link_id}
+        where vcb_id = #{vcb_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
     </update>
 
     <select id="vcbRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.vcb.VcbRunHistory">

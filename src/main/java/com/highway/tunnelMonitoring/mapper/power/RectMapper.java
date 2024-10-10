@@ -12,13 +12,14 @@ import java.util.List;
 
 @Mapper
 public interface RectMapper {
-    
+
     List<Rect> rectFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
 
     int rectCountAll(@Param("link_id") String linkId);
 
     //데이터 등록
     void rectEnroll(Rect rect);
+
     //데이터 업데이트
     void rectUpdate(Rect rect);
 
@@ -38,4 +39,8 @@ public interface RectMapper {
 
 
     void RectUpadate(Rect rect);
+
+    void rectCreateAlarmHistory(Rect rect);
+    void rectUpdateAlarmHistory(Rect rect);
+
 }

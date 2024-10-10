@@ -47,4 +47,11 @@ public interface VcbMapper {
 
 
     void vcbUpdateSttus(VcbSttus vcbSttus);
+
+    void vcbCreateAlarmHistory(VcbAlarmHistory vcbAlarmHistory);
+    void vcbUpdateAlarmHistory(VcbAlarmHistory vcbAlarmHistory);
+
+
+    void vcbCreateRunHistory(VcbRunHistory vcbRunHistory);
+    void vcbUpdateRunHistory(VcbRunHistory vcbRunHistory);
 }

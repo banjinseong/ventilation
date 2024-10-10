@@ -109,7 +109,7 @@
 
     <update id="upsUpdateFaultHistory">
         update UPS_FAULT_HISTORY set FAULT_END_DATETIME = #{fault_end_datetime}
-        where ups_id = #{ups_id} and LINK_ID = #{link_id}
+        where ups_id = #{ups_id} and LINK_ID = #{link_id} and FAULT_START_DATETIME = #{fault_start_datetime}
     </update>
 
     <select id="upsFaultHistory" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory">
@@ -149,7 +149,7 @@
 
     <update id="upsUpdateRunHistory">
         update UPS_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where ups_id = #{ups_id} and LINK_ID = #{link_id}
+        where ups_id = #{ups_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
     </update>
 
     <select id="upsRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory">

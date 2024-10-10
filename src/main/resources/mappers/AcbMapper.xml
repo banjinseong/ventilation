@@ -138,7 +138,7 @@
 
     <update id="acbUpdateAlarmHistory">
         update ACB_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
-        where acb_id = #{acb_id} and LINK_ID = #{link_id}
+        where acb_id = #{acb_id} and LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
     </update>
 
 
@@ -183,7 +183,7 @@
 
     <update id="acbUpdateRunHistory">
         update ACB_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where acb_id = #{acb_id} and LINK_ID = #{link_id}
+        where acb_id = #{acb_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_end_datetime}
     </update>
 
     <select id="acbRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory">

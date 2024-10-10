@@ -44,4 +44,10 @@ public interface HeatingCableMapper {
 
 
     void cableUpdateSttus(HeatingCableSttus heatingCableSttus);
+
+    void heatingCableCreateAlarmHistory(HeatingCableAlarmHistory heatingCableAlarmHistory);
+    void heatingCableUpdateAlarmHistory(HeatingCableAlarmHistory heatingCableAlarmHistory);
+
+    void heatingCableCreateRunHistory(HeatingCableRunHistory heatingCableRunHistory);
+    void heatingCableUpdateRunHistory(HeatingCableRunHistory heatingCableRunHistory);
 }
