@@ -1,4 +1,4 @@
-package com.highway.tunnelMonitoring.domain.power.eltgnr;
+package com.highway.tunnelMonitoring.domain.power.swtbrd;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EltgnrSttus {
-    private String eltgnr_id; //기본키
+public class SwtbrdSttus {
+    private String swtbrd_id; //기본키
     private String link_id;
     private boolean auto_remote_sttus; //원격 수동 상태
     private boolean run_sttus; //운전 상태
@@ -29,4 +29,15 @@ public class EltgnrSttus {
     private double valid_pwrer_qy; // 전력량
     private double pf; //역률
     private double fqnc; //주파수
+
 }
+
+
+
+
+
+
+
+
+
+

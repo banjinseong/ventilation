@@ -1,7 +1,6 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.power.eld.EldAlarmHistroy;
 import com.highway.tunnelMonitoring.domain.power.frplg.Frplg;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;

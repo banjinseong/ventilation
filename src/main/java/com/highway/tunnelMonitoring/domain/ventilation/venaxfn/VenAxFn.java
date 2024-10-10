@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 /**
- * 축류팬 정보
+ * 배/급기팬 정보
  */
 public class VenAxFn {
     private String ven_ax_fn_id; //기본키
@@ -16,5 +16,7 @@ public class VenAxFn {
     private String fan_type; //배기/급기 타입
     private String instl_lc; //설치위치
     private LocalDate instl_de; //설치일자
-
+    private String model_nm;
+    private double x_crdnt; //x 좌표
+    private double y_crdnt; //y 좌표
 }

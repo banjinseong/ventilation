@@ -17,6 +17,9 @@ public class JetPan {
     private String link_id; // 링크(fk)키
     private String instl_lc; // 설치위치
     private LocalDate instl_de; // 설치일자
+    private String model_nm;
+    private double x_crdnt; //x 좌표
+    private double y_crdnt; //y 좌표
 }
 
 

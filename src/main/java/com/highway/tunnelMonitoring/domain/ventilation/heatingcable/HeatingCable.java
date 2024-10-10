@@ -18,4 +18,6 @@ public class HeatingCable {
     private String instl_lc;
     private LocalDate instl_de;
     private String model_nm;
+    private double x_crdnt; //x 좌표
+    private double y_crdnt; //y 좌표
 }

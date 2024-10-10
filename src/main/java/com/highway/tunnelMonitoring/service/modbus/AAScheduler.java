@@ -1,10 +1,7 @@
 package com.highway.tunnelMonitoring.service.modbus;
 
-import com.ghgande.j2mod.modbus.msg.ReadMultipleRegistersResponse;
 import com.highway.tunnelMonitoring.domain.power.acb.AcbSttus;
-import com.highway.tunnelMonitoring.mapper.power.AcbMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 
@@ -20,7 +17,7 @@ public class AAScheduler {
     /**
      * 은산 1터널 데이터 처리
      */
-    @Scheduled(fixedRate = 60000)
+//    @Scheduled(fixedRate = 60000)
     public void eunsan1TunnelData() {
         eunsan1Tunnel.connect();
         eunsan1Tunnel.readData();
