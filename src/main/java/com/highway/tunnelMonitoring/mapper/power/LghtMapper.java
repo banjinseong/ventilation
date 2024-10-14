@@ -10,7 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface LghtMapper {
-    List<Lght> lghtFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Lght> lghtFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int lghtCountAll(@Param("link_id") String linkId);
     //데이터 등록

@@ -38,7 +38,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
     @GetMapping("monitor")
     public ResponseEntity<Result<VenAxFnSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                @RequestParam(defaultValue = "10", name = "size") int size,
-                                                               @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                               @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                                @RequestParam(defaultValue = "ven_ax_fn_id", name = "sortColumn") String sortColumn,
                                                                @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
         Result<VenAxFnSttus> result = venAxfnService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -52,7 +52,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
      */
     @GetMapping("/faultHistory")
     public ResponseEntity<Result<VenAxFnFaultHistory>> faultHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -78,7 +78,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<VenAxFnRunHistory>> runHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -104,7 +104,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
      */
     @GetMapping("/stat")
     public ResponseEntity<Result<VenAxFnStat>> stat(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

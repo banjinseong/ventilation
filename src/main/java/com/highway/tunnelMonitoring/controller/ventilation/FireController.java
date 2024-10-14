@@ -33,7 +33,7 @@ public class FireController {
     @GetMapping("monitor")
     public ResponseEntity<Result<FireSttus>> monitorFire(@RequestParam(defaultValue = "1", name = "page") int page,
                                                          @RequestParam(defaultValue = "10", name = "size") int size,
-                                                         @RequestParam(defaultValue = "fire_id", value = "sortColumn") String sortColumn,
+                                                         @RequestParam(defaultValue = "link_id", value = "sortColumn") String sortColumn,
                                                          @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
         Result<FireSttus> result = fireService.monitor(page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);

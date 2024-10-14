@@ -12,7 +12,8 @@ import java.util.List;
 @Mapper
 public interface VenAxFnMapper {
     
-    List<VenAxFn> venAxFnFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<VenAxFn> venAxFnFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                                 @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int venAxFnCountAll(@Param("link_id") String linkId);
 

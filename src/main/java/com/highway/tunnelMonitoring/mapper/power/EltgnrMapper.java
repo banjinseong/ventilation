@@ -13,7 +13,8 @@ import java.util.List;
 @Mapper
 public interface EltgnrMapper {
     
-    List<Eltgnr> eltgnrFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Eltgnr> eltgnrFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                               @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int eltgnrCountAll(@Param("link_id") String linkId);
     //데이터 등록

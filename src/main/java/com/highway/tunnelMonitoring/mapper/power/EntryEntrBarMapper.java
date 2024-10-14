@@ -13,7 +13,8 @@ import java.util.List;
 @Mapper
 public interface EntryEntrBarMapper {
     
-    List<EntryEntrBar> entryEntrBarFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<EntryEntrBar> entryEntrBarFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int entryEntrBarCountAll(@Param("link_id") String linkId);
     //데이터 등록

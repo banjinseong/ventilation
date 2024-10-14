@@ -14,7 +14,8 @@ import java.util.List;
 @Mapper
 public interface HeatingCableMapper {
 
-    List<HeatingCable> heatingCableFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<HeatingCable> heatingCableFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int heatingCableCountAll(@Param("link_id") String linkId);
     //하나만 조회

@@ -37,7 +37,7 @@ public class PumpController extends BaseCrudController<Pump> {
     @GetMapping("monitor")
     public ResponseEntity<Result<PumpSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
                                                             @RequestParam(defaultValue = "10", name = "size") int size,
-                                                            @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                            @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                             @RequestParam(defaultValue = "pump_id", name = "sortColumn") String sortColumn,
                                                             @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
         Result<PumpSttus> result = pumpService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -51,7 +51,7 @@ public class PumpController extends BaseCrudController<Pump> {
      */
     @GetMapping("/faultHistory")
     public ResponseEntity<Result<PumpFaultHistory>> faultHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -77,7 +77,7 @@ public class PumpController extends BaseCrudController<Pump> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<PumpRunHistory>> runHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -103,7 +103,7 @@ public class PumpController extends BaseCrudController<Pump> {
      */
     @GetMapping("/stat")
     public ResponseEntity<Result<PumpStat>> stat(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

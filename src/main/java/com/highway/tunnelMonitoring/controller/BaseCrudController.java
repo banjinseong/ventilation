@@ -27,7 +27,7 @@ public abstract class BaseCrudController<T> {
     @GetMapping("config/list")
     public ResponseEntity<Result<T>> findAll(@RequestParam(defaultValue = "1", name = "page") int page,
                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                             @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                              @RequestParam(defaultValue = "instl_lc", name = "sortColumn") String sortColumn,
                                              @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
         Result<T> result = service.findAll(linkId, page, size, sortColumn, sortDirection);

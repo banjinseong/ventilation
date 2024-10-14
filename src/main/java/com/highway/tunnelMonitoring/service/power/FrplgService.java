@@ -19,9 +19,9 @@ public class FrplgService implements CrudService<Frplg> {
     private final FrplgMapper frplgMapper;
 
     @Override
-    public Result<Frplg> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<Frplg> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<Frplg> list = frplgMapper.frplgFindAll(linkId, offset, size);
+        List<Frplg> list = frplgMapper.frplgFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = frplgMapper.frplgCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

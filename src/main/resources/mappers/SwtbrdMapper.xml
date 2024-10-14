@@ -97,7 +97,7 @@
         <if test="sort_column == 'auto_remote_sttus'">
             auto_remote_sttus
         </if>
-        <if test="run_sttus == 'run_sttus'">
+        <if test="sort_column == 'run_sttus'">
             run_sttus
         </if>
         <if test="sort_column == 'ocr_alarm'">

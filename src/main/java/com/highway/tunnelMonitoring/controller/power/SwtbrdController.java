@@ -38,7 +38,7 @@ public class SwtbrdController extends BaseCrudController<Swtbrd> {
     @GetMapping("monitor")
     public ResponseEntity<Result<SwtbrdSttus>> monitorSwtbrd(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                             @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                              @RequestParam(defaultValue = "swtbrd_id", value = "sortColumn") String sortColumn,
                                                              @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
         Result<SwtbrdSttus> result = swtbrdService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -52,7 +52,7 @@ public class SwtbrdController extends BaseCrudController<Swtbrd> {
      */
     @GetMapping("/alarmHistory")
     public ResponseEntity<Result<SwtbrdAlarmHistory>> alarmHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -77,7 +77,7 @@ public class SwtbrdController extends BaseCrudController<Swtbrd> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<SwtbrdRunHistory>> runHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -100,7 +100,7 @@ public class SwtbrdController extends BaseCrudController<Swtbrd> {
 
     @GetMapping("/stat")
     public ResponseEntity<Result<SwtbrdStat>> stat(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

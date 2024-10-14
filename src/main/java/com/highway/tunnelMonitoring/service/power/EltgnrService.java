@@ -20,9 +20,9 @@ public class EltgnrService implements CrudService<Eltgnr> {
     private final EltgnrMapper eltgnrMapper;
 
     @Override
-    public Result<Eltgnr> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<Eltgnr> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<Eltgnr> list = eltgnrMapper.eltgnrFindAll(linkId, offset, size);
+        List<Eltgnr> list = eltgnrMapper.eltgnrFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = eltgnrMapper.eltgnrCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

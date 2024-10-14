@@ -14,7 +14,8 @@ import java.util.List;
 @Mapper
 public interface UpsMapper {
     
-    List<Ups> upsFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Ups> upsFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                         @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int upsCountAll(@Param("link_id") String linkId);
 

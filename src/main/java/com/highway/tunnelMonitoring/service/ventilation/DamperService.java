@@ -19,9 +19,9 @@ public class DamperService implements CrudService<ExhaustDamper> {
     private final DamperMapper damperMapper;
 
     @Override
-    public Result<ExhaustDamper> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<ExhaustDamper> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<ExhaustDamper> list = damperMapper.damperFindAll(linkId, offset, size);
+        List<ExhaustDamper> list = damperMapper.damperFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = damperMapper.damperCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

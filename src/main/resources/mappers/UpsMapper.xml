@@ -119,7 +119,7 @@
                                    SELECT * FROM UPS_FAULT_HISTORY
                                    where LINK_ID = #{link_id}
                                      AND FAULT_START_DATETIME >= #{startDate}
-                                     AND FAULT_START_DATETIME &lt;= #{endData}
+                                     AND FAULT_START_DATETIME &lt;= #{endDate}
                                    ORDER BY
                                         <if test="sort_column == 'ups_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(ups_id, '\d+'))

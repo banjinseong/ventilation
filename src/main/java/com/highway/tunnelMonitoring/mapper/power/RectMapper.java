@@ -13,7 +13,8 @@ import java.util.List;
 @Mapper
 public interface RectMapper {
 
-    List<Rect> rectFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Rect> rectFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int rectCountAll(@Param("link_id") String linkId);
 

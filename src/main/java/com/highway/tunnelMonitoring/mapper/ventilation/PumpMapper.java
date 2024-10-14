@@ -11,7 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface PumpMapper {
-    List<Pump> pumpFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Pump> pumpFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int pumpCountAll(@Param("link_id") String linkId);
     //하나만 조회

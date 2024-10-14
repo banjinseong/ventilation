@@ -38,7 +38,7 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
     @GetMapping("monitor")
     public ResponseEntity<Result<WaterTankSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                 @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                                @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                                 @RequestParam(defaultValue = "tank_id", name = "sortColumn") String sortColumn,
                                                                 @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
         Result<WaterTankSttus> result = waterTankService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -52,7 +52,7 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
      */
     @GetMapping("/alarmHistory")
     public ResponseEntity<Result<WaterTankAlarmHistory>> alarmHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

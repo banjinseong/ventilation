@@ -14,7 +14,8 @@ import java.util.List;
 
 @Mapper
 public interface SwtbrdMapper {
-    List<Swtbrd> swtbrdFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit);
+    List<Swtbrd> swtbrdFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                               @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int swtbrdCountAll(@Param("link_id") String linkId);
     //데이터 등록

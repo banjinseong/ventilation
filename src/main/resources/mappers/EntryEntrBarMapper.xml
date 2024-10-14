@@ -131,7 +131,7 @@
                                    SELECT * FROM ENTRY_ENTR_BAR_FAULT_HISTORY
                                    where LINK_ID = #{link_id}
                                    AND FAULT_START_DATETIME >= #{startDate}
-                                   AND FAULT_START_DATETIME &lt;= #{endData}
+                                   AND FAULT_START_DATETIME &lt;= #{endDate}
                                    ORDER BY
                                         <if test="sort_column == 'entry_entr_bar_id'">
                                             TO_NUMBER(REGEXP_SUBSTR(entry_entr_bar_id, '\d+'))

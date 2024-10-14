@@ -29,10 +29,9 @@
             SELECT a.*, ROWNUM rnum
             FROM (
                 SELECT * FROM Fire_STTUS
-                    WHERE LINK_ID = #{link_id}
                     ORDER BY
-                    <if test="sort_column == 'fire_id'">
-                        TO_NUMBER(REGEXP_SUBSTR(fire_id, '\d+'))
+                    <if test="sort_column == 'link_id'">
+                        TO_NUMBER(REGEXP_SUBSTR(link_id, '\d+'))
                     </if>
                     <if test="sort_column == 'fire_sttus'">
                         fire_sttus

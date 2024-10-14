@@ -19,9 +19,9 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     private final VenAxFnMapper venAxFnMapper;
 
     @Override
-    public Result<VenAxFn> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<VenAxFn> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<VenAxFn> list = venAxFnMapper.venAxFnFindAll(linkId, offset, size);
+        List<VenAxFn> list = venAxFnMapper.venAxFnFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = venAxFnMapper.venAxFnCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

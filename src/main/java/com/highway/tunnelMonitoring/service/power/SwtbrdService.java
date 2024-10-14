@@ -19,9 +19,9 @@ public class SwtbrdService implements CrudService<Swtbrd> {
     private final SwtbrdMapper swtbrdMapper;
 
     @Override
-    public Result<Swtbrd> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<Swtbrd> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<Swtbrd> list = swtbrdMapper.swtbrdFindAll(linkId, offset, size);
+        List<Swtbrd> list = swtbrdMapper.swtbrdFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = swtbrdMapper.swtbrdCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

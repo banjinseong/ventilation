@@ -76,7 +76,7 @@
         <if test="sort_column == 'nlt_sttus'">
             nlt_sttus
         </if>
-        <if test="run_sttus == 'dlt_sttus'">
+        <if test="sort_column == 'dlt_sttus'">
             dlt_sttus
         </if>
         <if test="sort_column == 'lght_lvl'">

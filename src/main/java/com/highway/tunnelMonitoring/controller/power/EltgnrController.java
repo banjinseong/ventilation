@@ -41,7 +41,7 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
     @GetMapping("monitor")
     public ResponseEntity<Result<EltgnrSttus>> monitorEltgnr(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                             @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                              @RequestParam(defaultValue = "eltgnr_id", value = "sortColumn") String sortColumn,
                                                              @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
         Result<EltgnrSttus> result = eltgnrService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -55,7 +55,7 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
      */
     @GetMapping("/alarmHistory")
     public ResponseEntity<Result<EltgnrAlarmHistory>> alarmHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -80,7 +80,7 @@ public class EltgnrController extends BaseCrudController<Eltgnr> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<EltgnrRunHistory>> runHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

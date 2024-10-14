@@ -21,9 +21,9 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     private final EntryEntrBarMapper entryEntrBarMapper;
 
     @Override
-    public Result<EntryEntrBar> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<EntryEntrBar> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EntryEntrBar> list = entryEntrBarMapper.entryEntrBarFindAll(linkId, offset, size);
+        List<EntryEntrBar> list = entryEntrBarMapper.entryEntrBarFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = entryEntrBarMapper.entryEntrBarCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

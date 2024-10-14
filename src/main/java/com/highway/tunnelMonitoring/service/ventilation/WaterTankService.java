@@ -20,9 +20,9 @@ public class WaterTankService implements CrudService<WaterTank> {
     private final WaterTankMapper waterTankMapper;
 
     @Override
-    public Result<WaterTank> findAll(String linkId, int page, int size, String sort_column, String sort_direction) {
+    public Result<WaterTank> findAll(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<WaterTank> list = waterTankMapper.waterTankFindAll(linkId, offset, size);
+        List<WaterTank> list = waterTankMapper.waterTankFindAll(linkId, offset, size, sortColumn, sortDirection);
         int total = waterTankMapper.waterTankCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

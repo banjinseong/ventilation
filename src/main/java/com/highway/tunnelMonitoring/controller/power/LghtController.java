@@ -36,7 +36,7 @@ public class LghtController extends BaseCrudController<Lght> {
     @GetMapping("monitor")
     public ResponseEntity<Result<LghtSttus>> monitorLght(@RequestParam(defaultValue = "1", name = "page") int page,
                                                              @RequestParam(defaultValue = "10", name = "size") int size,
-                                                             @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                             @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                              @RequestParam(defaultValue = "lght_id", value = "sortColumn") String sortColumn,
                                                              @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
         Result<LghtSttus> result = lghtService.monitor(linkId, page, size, sortColumn, sortDirection);

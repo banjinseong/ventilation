@@ -41,7 +41,7 @@ public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
     @GetMapping("monitor")
     public ResponseEntity<Result<EntryEntrBarSttus>> monitorEntryEntrBar(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                          @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                         @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                                         @RequestParam(defaultValue = "001", name = "linkId") String linkId,
                                                                          @RequestParam(defaultValue = "entry_entr_bar_id", value = "sortColumn") String sortColumn,
                                                                          @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
         Result<EntryEntrBarSttus> result = entryEntrBarService.monitor(linkId, page, size, sortColumn, sortDirection);
@@ -54,7 +54,7 @@ public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
      */
     @GetMapping("/faultHistory")
     public ResponseEntity<Result<EntryEntrBarFaultHistory>> faultHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
@@ -81,7 +81,7 @@ public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
      */
     @GetMapping("/runHistory")
     public ResponseEntity<Result<EntryEntrBarRunHistory>> runHistory(
-            @RequestParam(defaultValue = "LNK001", value = "linkId") String linkId,
+            @RequestParam(defaultValue = "001", value = "linkId") String linkId,
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,

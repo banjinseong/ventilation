@@ -11,7 +11,8 @@ import java.util.List;
 @Mapper
 public interface JetPanMapper {
     
-    List<JetPan> jetPanFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit, @Param("sort_column") String sort_column, @Param("sort_direction") String sort_direction);
+    List<JetPan> jetPanFindAll(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int limit,
+                               @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int jetPanCountAll(@Param("link_id") String linkId);
 
