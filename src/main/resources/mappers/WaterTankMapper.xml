@@ -46,8 +46,8 @@
     </select>
 
     <insert id="waterTankEnroll">
-        insert into WATER_TANK(TANK_ID, LINK_ID, instl_lc, instl_de)
-        values(#{tank_id}, #{link_id}, #{instl_lc}, #{instl_de})
+        insert into WATER_TANK(TANK_ID, LINK_ID, MODEL_NM, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{tank_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="waterTankUpdate">

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.LghtMapper">
+    <select id="lghtFindAll" resultType="com.highway.tunnelMonitoring.domain.power.lght.Lght">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM lght
+        WHERE LINK_ID = #{link_id}
+        ORDER BY
+        <if test="sort_column == 'lght_id'">
+            TO_NUMBER(REGEXP_SUBSTR(lght_id, '\d+'))
+        </if>
+        <if test="sort_column == 'instl_lc'">
+            instl_lc
+        </if>
+        <if test="sort_column == 'instl_de'">
+            instl_de
+        </if>
+        <if test="sort_column == 'model_nm'">
+            model_nm
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="lghtCountAll" resultType="int">
+        SELECT COUNT(*) FROM lght WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="lghtMonitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM LGHT_STTUS WHERE LINK_ID = #{link_id}
+    </select>
+
+
+    <insert id="lghtEnroll">
+        insert into lght(LGHT_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{lght_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
+    </insert>
+
+    <update id="lghtUpdate">
+        update lght set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
+        where LGHT_ID = #{lght_id} and LINK_ID = #{link_id}
+    </update>
+
+    <update id="lghtUpdateSttus">
+        update LGHT_STTUS set NLT_STTUS = #{nlt_sttus},
+                              DLT_STTUS = #{dlt_sttus},
+                              LGHT_LVL = #{lght_lvl}
+        where LGHT_ID = #{lght_id} and LINK_ID = #{link_id}
+    </update>
+
+    <delete id="lghtDelete">
+        delete from lght where LGHT_ID = #{lght_id} and LINK_ID = #{link_id}
+    </delete>
+
+    <select id="lghtMonitor" resultType="com.highway.tunnelMonitoring.domain.power.lght.LghtSttus">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM LGHT_STTUS
+        WHERE LINK_ID = #{link_id}
+        ORDER BY
+        <if test="sort_column == 'lght_id'">
+            TO_NUMBER(REGEXP_SUBSTR(lght_id, '\d+'))
+        </if>
+        <if test="sort_column == 'nlt_sttus'">
+            nlt_sttus
+        </if>
+        <if test="run_sttus == 'dlt_sttus'">
+            dlt_sttus
+        </if>
+        <if test="sort_column == 'lght_lvl'">
+            lght_lvl
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+
+
+</mapper>

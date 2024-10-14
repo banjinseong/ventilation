@@ -55,8 +55,8 @@
 
 
     <insert id="pumpEnroll">
-        insert into PUMP(PUMP_ID, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{pump_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        insert into PUMP(PUMP_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{pump_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="pumpUpdate">

@@ -50,8 +50,8 @@
     </select>
 
     <insert id="eltgnrEnroll">
-        insert into eltgnr(ELTGNR_ID, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{eltgnr_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        insert into eltgnr(ELTGNR_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{eltgnr_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="eltgnrUpdate">
@@ -67,7 +67,16 @@
                                 OVR_ALARM = #{ovr_alarm},
                                 UVR_ALARM = #{uvr_alarm},
                                 OVGR_ALARM = #{ovgr_alarm},
-                                POR_ALARM = #{por_alarm}
+                                POR_ALARM = #{por_alarm},
+                                R_UPPT_VLTGE = #{r_uttp_vltge},
+                                S_UPPT_VLTGE = #{s_uttp_vltge},
+                                t_UPPT_VLTGE = #{t_uttp_vltge},
+                                R_UPPT_ERCRT = #{r_uttp_ercrt},
+                                S_UPPT_ERCRT = #{s_uttp_ercrt},
+                                T_UPPT_ERCRT = #{t_uttp_ercrt},
+                                VALID_PWRER = #{valid_pwrer},
+                                VALID_PWRER_QY = #{valid_pwrer_qy},
+                                FQNC = #{fqnc}
         where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id}
     </update>
 
@@ -175,7 +184,7 @@
 
     <update id="eltgnrUpdateRunHistory">
         update ELTGNR_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_end_datetime}
+        where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
     </update>
 
     <select id="eltgnrRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory">

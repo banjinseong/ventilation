@@ -55,8 +55,8 @@
 
 
     <insert id="venAxFnEnroll">
-        insert into VEN_AX_FN(VEN_AX_FN_ID, link_id, FAN_TYPE, instl_lc, instl_de)
-        values(#{ven_ax_fn_id}, #{link_id}, #{fan_type}, #{instl_lc}, #{instl_de})
+        insert into VEN_AX_FN(VEN_AX_FN_ID, link_id, FAN_TYPE, MODEL_NM, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{ven_ax_fn_id}, #{link_id}, #{fan_type}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="venAxFnUpdate">

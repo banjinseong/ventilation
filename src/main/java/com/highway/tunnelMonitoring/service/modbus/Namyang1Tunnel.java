@@ -18,7 +18,7 @@ import java.net.InetAddress;
 @RequiredArgsConstructor
 public class Namyang1Tunnel {
 
-    private final AcbMapper acbMapper;
+
 
 
     private String ipAddress = "10.20.12.171";

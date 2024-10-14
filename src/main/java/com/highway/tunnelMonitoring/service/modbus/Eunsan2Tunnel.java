@@ -18,7 +18,6 @@ import java.net.InetAddress;
 @RequiredArgsConstructor
 public class Eunsan2Tunnel {
 
-    private final AcbMapper acbMapper;
 
 
     private String ipAddress = "10.20.12.161";

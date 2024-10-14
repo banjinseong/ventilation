@@ -50,8 +50,8 @@
     </select>
 
     <insert id="upsEnroll">
-        insert into ups(ups_id, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{ups_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        insert into ups(ups_id, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{ups_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="upsUpdate">

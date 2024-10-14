@@ -38,8 +38,10 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
     @GetMapping("monitor")
     public ResponseEntity<Result<VenAxFnSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                @RequestParam(defaultValue = "10", name = "size") int size,
-                                                               @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<VenAxFnSttus> result = venAxfnService.monitor(linkId, page, size);
+                                                               @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                               @RequestParam(defaultValue = "ven_ax_fn_id", name = "sortColumn") String sortColumn,
+                                                               @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
+        Result<VenAxFnSttus> result = venAxfnService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -54,7 +56,9 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "ven_ax_fn_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -65,7 +69,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(venAxfnService.faultHistory(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.faultHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -78,7 +82,9 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "ven_ax_fn_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -89,7 +95,7 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(venAxfnService.runHistory(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.runHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -102,7 +108,9 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "ven_ax_fn_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -113,6 +121,6 @@ public class VenAxFnController extends BaseCrudController<VenAxFn> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(venAxfnService.stat(linkId, page, size, startDate, endDate));
+                .body(venAxfnService.stat(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 }

@@ -1,6 +1,5 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.jetpan.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,7 +23,8 @@ public interface JetPanMapper {
     //데이터 삭제
     void jetPanDelete(JetPan jetPan);
 
-    List<JetPanSttus> jetPanMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, @Param("sort_column") String sort_column, @Param("sort_direction") String sort_direction);
+    List<JetPanSttus> jetPanMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                    @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int jetPanMonitorCountAll(@Param("link_id") String linkId);
 
@@ -32,13 +32,19 @@ public interface JetPanMapper {
 
     int jetPanRunCountAll(@Param("link_id") String linkId);
 
-    List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<JetPanRunHistory> jetPanRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<JetPanRunHistory> jetPanRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int jetPanStatCountAll(@Param("link_id") String linkId);
 
-    List<JetPanStat> jetPanStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+    List<JetPanStat> jetPanStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,
+                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
     //매 자정 통계 기록

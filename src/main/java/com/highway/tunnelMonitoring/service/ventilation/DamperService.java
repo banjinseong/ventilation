@@ -1,7 +1,6 @@
 package com.highway.tunnelMonitoring.service.ventilation;
 
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
@@ -46,17 +45,17 @@ public class DamperService implements CrudService<ExhaustDamper> {
     }
 
 
-    public Result<ExhaustDamperSttus> monitor(String linkId, int page, int size) {
+    public Result<ExhaustDamperSttus> monitor(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperSttus> list = damperMapper.damperMonitor(linkId, offset, size);
+        List<ExhaustDamperSttus> list = damperMapper.damperMonitor(linkId, offset, size, sortColumn, sortDirection);
         int total = damperMapper.damperMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<ExhaustDamperRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<ExhaustDamperRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<ExhaustDamperRunHistory> list = damperMapper.damperRunHistory(linkId, offset, size, startDate, endDate);
+        List<ExhaustDamperRunHistory> list = damperMapper.damperRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = damperMapper.damperRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

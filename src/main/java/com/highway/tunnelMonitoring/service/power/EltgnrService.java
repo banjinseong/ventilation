@@ -1,7 +1,6 @@
 package com.highway.tunnelMonitoring.service.power;
 
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.power.acb.AcbRunHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.Eltgnr;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrRunHistory;
@@ -47,26 +46,26 @@ public class EltgnrService implements CrudService<Eltgnr> {
         eltgnrMapper.eltgnrDelete(eltgnr);
     }
 
-    public Result<EltgnrSttus> monitor(String linkId, int page, int size) {
+    public Result<EltgnrSttus> monitor(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EltgnrSttus> list = eltgnrMapper.eltgnrMonitor(linkId, offset, size);
+        List<EltgnrSttus> list = eltgnrMapper.eltgnrMonitor(linkId, offset, size, sortColumn, sortDirection);
         int total = eltgnrMapper.eltgnrMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<EltgnrAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EltgnrAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EltgnrAlarmHistory> list = eltgnrMapper.eltgnrAlarmHistory(linkId, offset, size, startDate, endDate);
+        List<EltgnrAlarmHistory> list = eltgnrMapper.eltgnrAlarmHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = eltgnrMapper.eltgnrAlarmCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<EltgnrRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EltgnrRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EltgnrRunHistory> list = eltgnrMapper.eltgnrRunHistory(linkId, offset, size, startDate, endDate);
+        List<EltgnrRunHistory> list = eltgnrMapper.eltgnrRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = eltgnrMapper.eltgnrRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

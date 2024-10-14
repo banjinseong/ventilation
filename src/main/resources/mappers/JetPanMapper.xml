@@ -52,8 +52,8 @@
 
 
     <insert id="jetPanEnroll">
-        insert into JET_PAN(JET_PAN_ID, link_id,  instl_lc, instl_de)
-        values(#{jet_pan_id}, #{link_id}, #{instl_lc}, #{instl_de})
+        insert into JET_PAN(JET_PAN_ID, link_id, MODEL_NM, X_CRDNT, Y_CRDNT,  instl_lc, instl_de)
+        values(#{jet_pan_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="jetPanUpdate">

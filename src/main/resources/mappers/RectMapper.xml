@@ -47,8 +47,8 @@
 
 
     <insert id="rectEnroll">
-        insert into rect(rect_id, LINK_ID, instl_lc, instl_de)
-        values(#{rect_id}, #{link_id}, #{instl_lc}, #{instl_de})
+        insert into rect(rect_id, LINK_ID, MODEL_NM, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{rect_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="rectUpdate">

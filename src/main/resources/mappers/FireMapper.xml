@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.ventilation.FireMapper">
+    <select id="fireMonitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM Fire_STTUS
+    </select>
+
+    <select id="fireAlarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM Fire_ALARM_HISTORY WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="fireStatCountAll" resultType="int">
+        SELECT COUNT(*) FROM FIRE_STAT
+    </select>
+
+
+    <update id="fireUpdateSttus">
+        update Fire_STTUS set FIRE_STTUS = #{fire_sttus}
+        where LINK_ID = #{link_id}
+    </update>
+
+
+
+
+    <select id="fireMonitor" resultType="com.highway.tunnelMonitoring.domain.ventilation.fire.FireSttus">
+        SELECT * FROM (
+            SELECT a.*, ROWNUM rnum
+            FROM (
+                SELECT * FROM Fire_STTUS
+                    WHERE LINK_ID = #{link_id}
+                    ORDER BY
+                    <if test="sort_column == 'fire_id'">
+                        TO_NUMBER(REGEXP_SUBSTR(fire_id, '\d+'))
+                    </if>
+                    <if test="sort_column == 'fire_sttus'">
+                        fire_sttus
+                    </if>
+                    <if test="sort_direction == 'asc'">
+                        ASC
+                    </if>
+                    <if test="sort_direction == 'desc'">
+                        DESC
+                    </if>
+
+            ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+    <insert id="fireCreateAlarmHistory">
+        insert into Fire_ALARM_HISTORY(LINK_ID, ALARM_DATETIME, ALARM_TYPE)
+        values(#{link_id}, #{alarm_datetime}, #{alarm_type})
+    </insert>
+
+
+    <update id="fireUpdateAlarmHistory">
+        update Fire_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
+    </update>
+
+    <select id="fireAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.fire.FireAlarmHistory">
+        SELECT * FROM (
+            SELECT a.*, ROWNUM rnum
+                FROM (
+                    SELECT * FROM Fire_ALARM_HISTORY
+                        WHERE ALARM_DATETIME >= #{startDate}
+                        AND ALARM_DATETIME &lt;= #{endDate}
+                        ORDER BY
+                        <if test="sort_column == 'link_id'">
+                            TO_NUMBER(REGEXP_SUBSTR(link_id, '\d+'))
+                        </if>
+                        <if test="sort_column == 'alarm_datetime'">
+                            alarm_datetime
+                        </if>
+                        <if test="sort_column == 'alarm_type'">
+                            alarm_type
+                        </if>
+                        <if test="sort_column == 'release_datetime'">
+                            release_datetime
+                        </if>
+                        <if test="sort_direction == 'asc'">
+                            ASC
+                        </if>
+                        <if test="sort_direction == 'desc'">
+                            DESC
+                        </if>
+
+            ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="fireStat" resultType="com.highway.tunnelMonitoring.domain.ventilation.fire.FireStat">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM FIRE_STAT
+        where LINK_ID = #{link_id}
+        AND RECORD_DATE >= #{startDate}
+        AND RECORD_DATE &lt;= #{endDate}
+        ORDER BY
+        <if test="sort_column == 'record_date'">
+            record_date
+        </if>
+        <if test="sort_column == 'fire_count'">
+            fire_count
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+</mapper>

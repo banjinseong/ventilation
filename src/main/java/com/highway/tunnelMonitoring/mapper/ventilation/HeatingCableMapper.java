@@ -27,13 +27,18 @@ public interface HeatingCableMapper {
     //데이터 삭제
     void heatingCableDelete(HeatingCable heatingCable);
 
-    List<HeatingCableSttus> heatingCableMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<HeatingCableSttus> heatingCableMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int heatingCableMonitorCountAll(@Param("link_id") String linkId);
 
-    List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableRunHistory> heatingCableRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                        @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                        @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<HeatingCableAlarmHistory> heatingCableAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int heatingCableRunCountAll(@Param("link_id") String linkId);
 

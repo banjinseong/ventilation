@@ -1,6 +1,5 @@
 package com.highway.tunnelMonitoring.mapper.ventilation;
 
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamper;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
@@ -25,9 +24,12 @@ public interface DamperMapper {
     //데이터 삭제
     void damperDelete(ExhaustDamper exhaustDamper);
 
-    List<ExhaustDamperSttus> damperMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<ExhaustDamperSttus> damperMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<ExhaustDamperRunHistory> damperRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                   @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                   @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int damperRunCountAll(@Param("link_id") String linkId);
 

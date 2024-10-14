@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.highway.tunnelMonitoring.mapper.power.SwtbrdMapper">
+    <select id="swtbrdFindAll" resultType="com.highway.tunnelMonitoring.domain.power.swtbrd.Swtbrd">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM swtbrd
+        WHERE LINK_ID = #{link_id}
+        ORDER BY
+        <if test="sort_column == 'swtbrd_id'">
+            TO_NUMBER(REGEXP_SUBSTR(swtbrd_id, '\d+'))
+        </if>
+        <if test="sort_column == 'instl_lc'">
+            instl_lc
+        </if>
+        <if test="sort_column == 'instl_de'">
+            instl_de
+        </if>
+        <if test="sort_column == 'model_nm'">
+            model_nm
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+    <select id="swtbrdCountAll" resultType="int">
+        SELECT COUNT(*) FROM swtbrd WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="swtbrdMonitorCountAll" resultType="int">
+        SELECT COUNT(*) FROM SWTBRD_STTUS WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="swtbrdAlarmCountAll" resultType="int">
+        SELECT COUNT(*) FROM SWTBRD_ALARM_HISTORY WHERE LINK_ID = #{link_id}
+    </select>
+
+    <select id="swtbrdRunCountAll" resultType="int">
+        SELECT COUNT(*) FROM SWTBRD_RUN_HISTORY WHERE LINK_ID = #{link_id}
+    </select>
+
+    <insert id="swtbrdEnroll">
+        insert into swtbrd(SWTBRD_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{swtbrd_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
+    </insert>
+
+    <update id="swtbrdUpdate">
+        update swtbrd set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
+        where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id}
+    </update>
+
+    <update id="swtbrdUpdateSttus">
+        update SWTBRD_STTUS set AUTO_REMOTE_STTUS = #{auto_remote_sttus},
+                                RUN_STTUS = #{run_sttus},
+                                OCR_ALARM = #{ocr_alarm},
+                                OCGR_ALARM = #{ocgr_alarm},
+                                OVR_ALARM = #{ovr_alarm},
+                                UVR_ALARM = #{uvr_alarm},
+                                OVGR_ALARM = #{ovgr_alarm},
+                                POR_ALARM = #{por_alarm},
+                                R_UPPT_VLTGE = #{r_uttp_vltge},
+                                S_UPPT_VLTGE = #{s_uttp_vltge},
+                                t_UPPT_VLTGE = #{t_uttp_vltge},
+                                R_UPPT_ERCRT = #{r_uttp_ercrt},
+                                S_UPPT_ERCRT = #{s_uttp_ercrt},
+                                T_UPPT_ERCRT = #{t_uttp_ercrt},
+                                VALID_PWRER = #{valid_pwrer},
+                                VALID_PWRER_QY = #{valid_pwrer_qy},
+                                FQNC = #{fqnc}
+        where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id}
+    </update>
+
+    <delete id="swtbrdDelete">
+        delete from swtbrd where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id}
+    </delete>
+
+    <select id="swtbrdMonitor" resultType="com.highway.tunnelMonitoring.domain.power.swtbrd.SwtbrdSttus">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM SWTBRD_STTUS
+        WHERE LINK_ID = #{link_id}
+        ORDER BY
+        <if test="sort_column == 'swtbrd_id'">
+            TO_NUMBER(REGEXP_SUBSTR(swtbrd_id, '\d+'))
+        </if>
+        <if test="sort_column == 'auto_remote_sttus'">
+            auto_remote_sttus
+        </if>
+        <if test="run_sttus == 'run_sttus'">
+            run_sttus
+        </if>
+        <if test="sort_column == 'ocr_alarm'">
+            ocr_alarm
+        </if>
+        <if test="sort_column == 'ocgr_alarm'">
+            ocgr_alarm
+        </if>
+        <if test="sort_column == 'ovr_alarm'">
+            ovr_alarm
+        </if>
+        <if test="sort_column == 'uvr_alarm'">
+            uvr_alarm
+        </if>
+        <if test="sort_column == 'ovgr_alarm'">
+            ovgr_alarm
+        </if>
+        <if test="sort_column == 'por_alarm'">
+            por_alarm
+        </if>
+        <if test="sort_column == 'r_uttp_vltge'">
+            r_uttp_vltge
+        </if>
+        <if test="sort_column == 's_uttp_vltge'">
+            s_uttp_vltge
+        </if>
+        <if test="sort_column == 't_uttp_vltge'">
+            t_uttp_vltge
+        </if>
+        <if test="sort_column == 'r_uttp_ercrt'">
+            r_uttp_ercrt
+        </if>
+        <if test="sort_column == 's_uttp_ercrt'">
+            s_uttp_ercrt
+        </if>
+        <if test="sort_column == 't_uttp_ercrt'">
+            t_uttp_ercrt
+        </if>
+        <if test="sort_column == 'valid_pwrer'">
+            valid_pwrer
+        </if>
+        <if test="sort_column == 'valid_pwrer_qy'">
+            valid_pwrer_qy
+        </if>
+        <if test="sort_column == 'fqnc'">
+            fqnc
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+    <insert id="swtbrdCreateAlarmHistory">
+        insert into SWTBRD_ALARM_HISTORY(SWTBRD_ID, LINK_ID, ALARM_DATETIME, ALARM_TYPE)
+        values(#{swtbrd_id}, #{link_id}, #{alarm_datetime}, #{alarm_type})
+    </insert>
+
+
+    <update id="swtbrdUpdateAlarmHistory">
+        update SWTBRD_ALARM_HISTORY set RELEASE_DATETIME = #{release_datetime}
+        where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id} and ALARM_DATETIME = #{alarm_datetime} and ALARM_TYPE = #{alarm_type}
+    </update>
+
+    <select id="swtbrdAlarmHistory" resultType="com.highway.tunnelMonitoring.domain.power.swtbrd.SwtbrdAlarmHistory">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM SWTBRD_ALARM_HISTORY
+        WHERE LINK_ID = #{link_id}
+        AND ALARM_DATETIME >= #{startDate}
+        AND ALARM_DATETIME &lt;= #{endDate}
+        ORDER BY
+        <if test="sort_column == 'swtbrd_id'">
+            TO_NUMBER(REGEXP_SUBSTR(swtbrd_id, '\d+'))
+        </if>
+        <if test="sort_column == 'alarm_datetime'">
+            alarm_datetime
+        </if>
+        <if test="sort_column == 'alarm_type'">
+            alarm_type
+        </if>
+        <if test="sort_column == 'release_datetime'">
+            release_datetime
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+    <insert id="swtbrdCreateRunHistory">
+        insert into SWTBRD_RUN_HISTORY(SWTBRD_ID, LINK_ID, RUN_START_DATETIME)
+        values(#{swtbrd_id}, #{link_id}, #{run_start_datetime})
+    </insert>
+
+
+    <update id="swtbrdUpdateRunHistory">
+        update SWTBRD_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
+        where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
+    </update>
+
+    <select id="swtbrdRunHistory" resultType="com.highway.tunnelMonitoring.domain.power.swtbrd.SwtbrdRunHistory">
+        SELECT * FROM (
+        SELECT a.*, ROWNUM rnum
+        FROM (
+        SELECT * FROM SWTBRD_RUN_HISTORY
+        WHERE LINK_ID = #{link_id}
+        AND RUN_START_DATETIME >= #{startDate}
+        AND RUN_START_DATETIME &lt;= #{endDate}
+        ORDER BY
+        <if test="sort_column == 'swtbrd_id'">
+            TO_NUMBER(REGEXP_SUBSTR(swtbrd_id, '\d+'))
+        </if>
+        <if test="sort_column == 'run_start_datetime'">
+            run_start_datetime
+        </if>
+        <if test="sort_column == 'run_end_datetime'">
+            run_end_datetime
+        </if>
+        <if test="sort_direction == 'asc'">
+            ASC
+        </if>
+        <if test="sort_direction == 'desc'">
+            DESC
+        </if>
+        ) a
+        )
+        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}
+    </select>
+
+
+
+<!--    <select id="swtbrdStat" resultType="com.highway.tunnelMonitoring.domain.ventilation.swtbrd.swtbrdStat">-->
+<!--        SELECT * FROM (-->
+<!--        SELECT a.*, ROWNUM rnum-->
+<!--        FROM (-->
+<!--        SELECT * FROM SWTBRD_STAT-->
+<!--        where LINK_ID = #{link_id}-->
+<!--        AND RECORD_DATE >= #{startDate}-->
+<!--        AND RECORD_DATE &lt;= #{endDate}-->
+<!--        ORDER BY-->
+<!--        <if test="sort_column == 'swtbrd_id'">-->
+<!--            TO_NUMBER(REGEXP_SUBSTR(JET_PAN_ID, '\d+'))-->
+<!--        </if>-->
+<!--        <if test="sort_column == 'record_date'">-->
+<!--            record_date-->
+<!--        </if>-->
+<!--        <if test="sort_column == 'run_time_hours'">-->
+<!--            run_time_hours-->
+<!--        </if>-->
+<!--        <if test="sort_column == 'fault_count'">-->
+<!--            fault_count-->
+<!--        </if>-->
+<!--        <if test="sort_column == 'run_count'">-->
+<!--            run_count-->
+<!--        </if>-->
+<!--        <if test="sort_direction == 'asc'">-->
+<!--            ASC-->
+<!--        </if>-->
+<!--        <if test="sort_direction == 'desc'">-->
+<!--            DESC-->
+<!--        </if>-->
+<!--        ) a-->
+<!--        )-->
+<!--        WHERE rnum BETWEEN #{offset} + 1 AND #{offset} + #{limit}-->
+<!--    </select>-->
+
+
+
+
+
+</mapper>

@@ -47,8 +47,8 @@
 
 
     <insert id="damperEnroll">
-        insert into EXHAUST_DAMPER(DAMPER_ID, LINK_ID, model_nm, instl_lc, instl_de)
-        values(#{damper_id}, #{link_id}, #{model_nm}, #{instl_lc}, #{instl_de})
+        insert into EXHAUST_DAMPER(DAMPER_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
+        values(#{damper_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="damperUpdate">
@@ -103,7 +103,7 @@
 
     <update id="damperUpdateRunHistory">
         update EXHAUST_DAMPER_RUN_HISTORY set RUN_END_DATETIME = #{run_end_datetime}
-        where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_end_datetime}
+        where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id} and RUN_START_DATETIME = #{run_start_datetime}
     </update>
 
     <select id="damperRunHistory" resultType="com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory">

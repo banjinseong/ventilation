@@ -38,8 +38,10 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
     @GetMapping("monitor")
     public ResponseEntity<Result<WaterTankSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                 @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<WaterTankSttus> result = waterTankService.monitor(linkId, page, size);
+                                                                @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                                @RequestParam(defaultValue = "tank_id", name = "sortColumn") String sortColumn,
+                                                                @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
+        Result<WaterTankSttus> result = waterTankService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -54,7 +56,9 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "tank_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -64,6 +68,6 @@ public class WaterTankController extends BaseCrudController<WaterTank> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(waterTankService.alarmHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(waterTankService.alarmHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 }

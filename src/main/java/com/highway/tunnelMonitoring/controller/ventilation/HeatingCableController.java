@@ -2,8 +2,6 @@ package com.highway.tunnelMonitoring.controller.ventilation;
 
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
-import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperRunHistory;
-import com.highway.tunnelMonitoring.domain.ventilation.damper.ExhaustDamperSttus;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCable;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableAlarmHistory;
 import com.highway.tunnelMonitoring.domain.ventilation.heatingcable.HeatingCableRunHistory;
@@ -41,8 +39,10 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
     @GetMapping("monitor")
     public ResponseEntity<Result<HeatingCableSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                    @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                   @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<HeatingCableSttus> result = heatingCableService.monitor(linkId, page, size);
+                                                                   @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                                   @RequestParam(defaultValue = "cable_id", value = "sortColumn") String sortColumn,
+                                                                   @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
+        Result<HeatingCableSttus> result = heatingCableService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -57,7 +57,9 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "cable_id", value = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -68,7 +70,7 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(heatingCableService.runHistory(linkId, page, size, startDate, endDate));
+                .body(heatingCableService.runHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -81,7 +83,9 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "cable_id", value = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -91,6 +95,6 @@ public class HeatingCableController extends BaseCrudController<HeatingCable> {
             endDate = LocalDateTime.now();  // 기본적으로 오늘까지의 데이터
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(heatingCableService.alarmHistory(linkId, page, size, startDate, endDate));
+        return ResponseEntity.status(HttpStatus.OK).body(heatingCableService.alarmHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
  }

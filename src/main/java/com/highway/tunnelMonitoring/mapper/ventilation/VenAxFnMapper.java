@@ -24,7 +24,8 @@ public interface VenAxFnMapper {
     //데이터 삭제
     void venAxFnDelete(VenAxFn venAxfn);
 
-    List<VenAxFnSttus> venAxFnMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<VenAxFnSttus> venAxFnMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                      @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int venAxFnMonitorCountAll(@Param("link_id") String linkId);
 
@@ -34,11 +35,17 @@ public interface VenAxFnMapper {
 
     int venAxFnStatCountAll(@Param("link_id") String linkId);
 
-    List<VenAxFnFaultHistory> venAxFnFaultHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VenAxFnFaultHistory> venAxFnFaultHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size,
+                                                  @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                  @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<VenAxFnRunHistory> venAxFnRunHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<VenAxFnRunHistory> venAxFnRunHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size,
+                                              @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                              @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<VenAxFnStat> venAxFnStat(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+    List<VenAxFnStat> venAxFnStat(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size,
+                                  @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,
+                                  @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
     //매 자정 통계 기록

@@ -6,7 +6,6 @@ import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarRunHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -48,26 +47,26 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
         entryEntrBarMapper.entryEntrBarDelete(entryEntrBar);
     }
 
-    public Result<EntryEntrBarSttus> monitor(String linkId, int page, int size) {
+    public Result<EntryEntrBarSttus> monitor(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EntryEntrBarSttus> list = entryEntrBarMapper.entryEntrBarMonitor(linkId, offset, size);
+        List<EntryEntrBarSttus> list = entryEntrBarMapper.entryEntrBarMonitor(linkId, offset, size, sortColumn, sortDirection);
         int total = entryEntrBarMapper.entryEntrBarMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<EntryEntrBarFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EntryEntrBarFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.entryEntrBarFaultHistory(linkId, offset, size, startDate, endDate);
+        List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.entryEntrBarFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = entryEntrBarMapper.entryEntrBarFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<EntryEntrBarRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<EntryEntrBarRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<EntryEntrBarRunHistory> list = entryEntrBarMapper.entryEntrBarRunHistory(linkId, offset, size, startDate, endDate);
+        List<EntryEntrBarRunHistory> list = entryEntrBarMapper.entryEntrBarRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = entryEntrBarMapper.entryEntrBarRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

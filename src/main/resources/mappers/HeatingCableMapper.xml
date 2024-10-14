@@ -50,8 +50,8 @@
     </select>
 
     <insert id="heatingCableEnroll">
-        insert into HEATING_CABLE(CABLE_ID, LINK_ID, model_nm, instl_de)
-        values(#{cable_id}, #{link_id}, #{model_nm}, #{instl_de})
+        insert into HEATING_CABLE(CABLE_ID, LINK_ID, model_nm, X_CRDNT, Y_CRDNT, INSTL_LC, instl_de)
+        values(#{cable_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="heatingCableUpdate">

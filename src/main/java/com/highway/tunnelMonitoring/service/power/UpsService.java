@@ -5,7 +5,6 @@ import com.highway.tunnelMonitoring.domain.power.ups.Ups;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsRunHistory;
 import com.highway.tunnelMonitoring.domain.power.ups.UpsSttus;
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import com.highway.tunnelMonitoring.mapper.power.UpsMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
@@ -47,26 +46,26 @@ public class UpsService implements CrudService<Ups> {
         upsMapper.upsDelete(ups);
     }
 
-    public Result<UpsSttus> monitor(String linkId, int page, int size) {
+    public Result<UpsSttus> monitor(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<UpsSttus> list = upsMapper.upsMonitor(linkId, offset, size);
+        List<UpsSttus> list = upsMapper.upsMonitor(linkId, offset, size, sortColumn, sortDirection);
         int total = upsMapper.upsMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<UpsFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<UpsFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<UpsFaultHistory> list = upsMapper.upsFaultHistory(linkId, offset, size, startDate, endDate);
+        List<UpsFaultHistory> list = upsMapper.upsFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = upsMapper.upsFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<UpsRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<UpsRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<UpsRunHistory> list = upsMapper.upsRunHistory(linkId, offset, size, startDate, endDate);
+        List<UpsRunHistory> list = upsMapper.upsRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = upsMapper.upsRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

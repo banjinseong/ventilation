@@ -1,6 +1,5 @@
 package com.highway.tunnelMonitoring.service.modbus;
 
-import com.highway.tunnelMonitoring.domain.power.acb.AcbSttus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

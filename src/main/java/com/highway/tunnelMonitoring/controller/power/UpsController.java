@@ -41,8 +41,10 @@ public class UpsController extends BaseCrudController<Ups> {
     @GetMapping("monitor")
     public ResponseEntity<Result<UpsSttus>> monitorUps(@RequestParam(defaultValue = "1", name = "page") int page,
                                                        @RequestParam(defaultValue = "10", name = "size") int size,
-                                                       @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<UpsSttus> result = upsService.monitor(linkId, page, size);
+                                                       @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                       @RequestParam(defaultValue = "ups_id", value = "sortColumn") String sortColumn,
+                                                       @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
+        Result<UpsSttus> result = upsService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -56,7 +58,9 @@ public class UpsController extends BaseCrudController<Ups> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "ups_id", value = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -67,7 +71,7 @@ public class UpsController extends BaseCrudController<Ups> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(upsService.faultHistory(linkId, page, size, startDate, endDate));
+                .body(upsService.faultHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -81,7 +85,9 @@ public class UpsController extends BaseCrudController<Ups> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "ups_id", value = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -92,6 +98,6 @@ public class UpsController extends BaseCrudController<Ups> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(upsService.runHistory(linkId, page, size, startDate, endDate));
+                .body(upsService.runHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 }

@@ -18,7 +18,6 @@ import java.net.InetAddress;
 @RequiredArgsConstructor
 public class PoseungTunnel {
 
-    private final AcbMapper acbMapper;
 
 
     private String ipAddress = "10.10.21.151";

@@ -1,8 +1,5 @@
 package com.highway.tunnelMonitoring.service.ventilation;
 
-import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpFaultHistory;
-import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpRunHistory;
-import com.highway.tunnelMonitoring.domain.ventilation.pump.PumpStat;
 import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.*;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.mapper.ventilation.VenAxFnMapper;
@@ -48,35 +45,35 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     }
 
 
-    public Result<VenAxFnSttus> monitor(String linkId, int page, int size) {
+    public Result<VenAxFnSttus> monitor(String linkId, int page, int size, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<VenAxFnSttus> list = venAxFnMapper.venAxFnMonitor(linkId, offset, size);
+        List<VenAxFnSttus> list = venAxFnMapper.venAxFnMonitor(linkId, offset, size, sortColumn, sortDirection);
         int total = venAxFnMapper.venAxFnMonitorCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
     }
 
-    public Result<VenAxFnFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<VenAxFnFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<VenAxFnFaultHistory> list = venAxFnMapper.venAxFnFaultHistory(linkId, offset, size, startDate, endDate);
+        List<VenAxFnFaultHistory> list = venAxFnMapper.venAxFnFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = venAxFnMapper.venAxFnFaultCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<VenAxFnRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate) {
+    public Result<VenAxFnRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<VenAxFnRunHistory> list = venAxFnMapper.venAxFnRunHistory(linkId, offset, size, startDate, endDate);
+        List<VenAxFnRunHistory> list = venAxFnMapper.venAxFnRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = venAxFnMapper.venAxFnRunCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
     }
 
-    public Result<VenAxFnStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate) {
+    public Result<VenAxFnStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
-        List<VenAxFnStat> list = venAxFnMapper.venAxFnStat(linkId, offset, size, startDate, endDate);
+        List<VenAxFnStat> list = venAxFnMapper.venAxFnStat(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
         int total = venAxFnMapper.venAxFnStatCountAll(linkId);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);

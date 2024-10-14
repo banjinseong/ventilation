@@ -3,11 +3,6 @@ package com.highway.tunnelMonitoring.controller.ventilation;
 import com.highway.tunnelMonitoring.controller.BaseCrudController;
 import com.highway.tunnelMonitoring.domain.Result;
 import com.highway.tunnelMonitoring.domain.ventilation.pump.*;
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnFaultHistory;
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnRunHistory;
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnStat;
-import com.highway.tunnelMonitoring.domain.ventilation.venaxfn.VenAxFnSttus;
-import com.highway.tunnelMonitoring.service.CrudService;
 import com.highway.tunnelMonitoring.service.ventilation.PumpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -42,8 +37,10 @@ public class PumpController extends BaseCrudController<Pump> {
     @GetMapping("monitor")
     public ResponseEntity<Result<PumpSttus>> monitorVenAxFn(@RequestParam(defaultValue = "1", name = "page") int page,
                                                             @RequestParam(defaultValue = "10", name = "size") int size,
-                                                            @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<PumpSttus> result = pumpService.monitor(linkId, page, size);
+                                                            @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                            @RequestParam(defaultValue = "pump_id", name = "sortColumn") String sortColumn,
+                                                            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
+        Result<PumpSttus> result = pumpService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -58,7 +55,9 @@ public class PumpController extends BaseCrudController<Pump> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "pump_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -69,7 +68,7 @@ public class PumpController extends BaseCrudController<Pump> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(pumpService.faultHistory(linkId, page, size, startDate, endDate));
+                .body(pumpService.faultHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -82,7 +81,9 @@ public class PumpController extends BaseCrudController<Pump> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "pump_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -93,7 +94,7 @@ public class PumpController extends BaseCrudController<Pump> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(pumpService.runHistory(linkId, page, size, startDate, endDate));
+                .body(pumpService.runHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 
 
@@ -106,7 +107,9 @@ public class PumpController extends BaseCrudController<Pump> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "pump_id", name = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", name = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -117,6 +120,6 @@ public class PumpController extends BaseCrudController<Pump> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(pumpService.stat(linkId, page, size, startDate, endDate));
+                .body(pumpService.stat(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 }

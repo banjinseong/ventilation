@@ -24,16 +24,21 @@ public interface EltgnrMapper {
     //데이터 삭제
     void eltgnrDelete(Eltgnr eltgnr);
 
-    List<EltgnrSttus> eltgnrMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<EltgnrSttus> eltgnrMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                    @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int eltgnrMonitorCountAll(@Param("link_id") String linkId);
 
     int eltgnrAlarmCountAll(@Param("link_id") String linkId);
 
-    List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
-    List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EltgnrRunHistory> eltgnrRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int eltgnrRunCountAll(@Param("link_id") String linkId);
 

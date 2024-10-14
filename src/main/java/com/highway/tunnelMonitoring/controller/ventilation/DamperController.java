@@ -40,8 +40,10 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
     @GetMapping("monitor")
     public ResponseEntity<Result<ExhaustDamperSttus>> monitorJetPan(@RequestParam(defaultValue = "1", name = "page") int page,
                                                                     @RequestParam(defaultValue = "10", name = "size") int size,
-                                                                    @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId) {
-        Result<ExhaustDamperSttus> result = damperService.monitor(linkId, page, size);
+                                                                    @RequestParam(defaultValue = "LNK001", name = "linkId") String linkId,
+                                                                    @RequestParam(defaultValue = "damper_id", value = "sortColumn") String sortColumn,
+                                                                    @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
+        Result<ExhaustDamperSttus> result = damperService.monitor(linkId, page, size, sortColumn, sortDirection);
         return ResponseEntity.status(HttpStatus.OK).body(result);
 
     }
@@ -55,7 +57,9 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
             @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
             @RequestParam(value = "page", defaultValue = "1") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size) {
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(defaultValue = "damper_id", value = "sortColumn") String sortColumn,
+            @RequestParam(defaultValue = "asc", value = "sortDirection") String sortDirection) {
 
         // 기본값 설정 (startDate 또는 endDate가 null인 경우)
         if (startDate == null) {
@@ -66,6 +70,6 @@ public class DamperController extends BaseCrudController<ExhaustDamper> {
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(damperService.runHistory(linkId, page, size, startDate, endDate));
+                .body(damperService.runHistory(linkId, page, size, startDate, endDate, sortColumn, sortDirection));
     }
 }

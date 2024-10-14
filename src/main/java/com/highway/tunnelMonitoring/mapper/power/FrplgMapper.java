@@ -23,11 +23,14 @@ public interface FrplgMapper {
     //데이터 삭제
     void frplgDelete(Frplg frplg);
 
-    List<FrplgSttus> frplgMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<FrplgSttus> frplgMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                  @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int frplgMonitorCountAll(@Param("link_id") String linkId);
 
-    List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<FrplgAlarmHistory> frplgAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                              @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                              @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int frplgAlarmCountAll(@Param("link_id") String linkId);
 

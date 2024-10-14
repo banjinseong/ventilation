@@ -47,8 +47,8 @@
 
 
     <insert id="frplgEnroll">
-        insert into frplg(frplg_id, link_id, model_nm, instl_lc)
-        values(#{frplg_id}, #{link_id}, #{model_nm}, #{instl_lc})
+        insert into frplg(frplg_id, link_id, model_nm, X_CRDNT, Y_CRDNT, instl_lc, INSTL_DE)
+        values(#{frplg_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
     <update id="frplgUpdate">

@@ -18,7 +18,6 @@ import java.net.InetAddress;
 @RequiredArgsConstructor
 public class JangsuTunnel {
 
-    private final AcbMapper acbMapper;
 
 
     private String ipAddress = "10.20.12.236";

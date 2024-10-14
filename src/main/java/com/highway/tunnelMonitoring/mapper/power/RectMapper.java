@@ -26,13 +26,16 @@ public interface RectMapper {
     //데이터 삭제
     void rectDelete(Rect rect);
 
-    List<RectSttus> rectMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<RectSttus> rectMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int rectMonitorCountAll(@Param("link_id") String linkId);
 
     int rectAlarmCountAll(@Param("link_id") String linkId);
 
-    List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
     RectSttus rectFindSttus(@Param("rect_id") String rectId, @Param("link_id") String linkId);

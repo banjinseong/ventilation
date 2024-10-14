@@ -4,7 +4,6 @@ import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBar;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarFaultHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarRunHistory;
 import com.highway.tunnelMonitoring.domain.power.entryentrbar.EntryEntrBarSttus;
-import com.highway.tunnelMonitoring.domain.power.vcb.VcbAlarmHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,16 +24,21 @@ public interface EntryEntrBarMapper {
     //데이터 삭제
     void entryEntrBarDelete(EntryEntrBar entryEntrBar);
 
-    List<EntryEntrBarSttus> entryEntrBarMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<EntryEntrBarSttus> entryEntrBarMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int entryEntrBarMonitorCountAll(@Param("link_id") String linkId);
 
-    List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarFaultHistory> entryEntrBarFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int entryEntrBarFaultCountAll(@Param("link_id") String linkId);
 
 
-    List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                        @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                        @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int entryEntrBarRunCountAll(@Param("link_id") String linkId);
 

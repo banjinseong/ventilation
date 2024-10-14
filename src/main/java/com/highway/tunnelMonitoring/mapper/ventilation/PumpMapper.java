@@ -24,7 +24,8 @@ public interface PumpMapper {
     //데이터 삭제
     void pumpDelete(Pump pump);
 
-    List<PumpSttus> pumpMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<PumpSttus> pumpMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int pumpMonitorCountAll(@Param("link_id") String linkId);
 
@@ -34,11 +35,17 @@ public interface PumpMapper {
 
     int pumpStatCountAll(@Param("link_id") String linkId);
 
-    List<PumpFaultHistory> pumpFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<PumpFaultHistory> pumpFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<PumpRunHistory> pumpRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<PumpRunHistory> pumpRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                        @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                        @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    List<PumpStat> pumpStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDate startDate, LocalDate endDate);
+    List<PumpStat> pumpStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                            @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,
+                            @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
     //매 자정 통계 기록

@@ -25,13 +25,16 @@ public interface WaterTankMapper {
     //데이터 삭제
     void waterTankDelete(WaterTank waterTank);
 
-    List<WaterTankSttus> waterTankMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<WaterTankSttus> waterTankMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                          @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int waterTankMonitorCountAll(@Param("link_id") String linkId);
 
     int waterTankAlarmCountAll(@Param("link_id") String linkId);
 
-    List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<WaterTankAlarmHistory> waterTankAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                                      @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                                      @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
 
 

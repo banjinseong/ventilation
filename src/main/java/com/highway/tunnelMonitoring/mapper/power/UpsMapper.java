@@ -26,16 +26,21 @@ public interface UpsMapper {
     //데이터 삭제
     void upsDelete(Ups ups);
 
-    List<UpsSttus> upsMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size);
+    List<UpsSttus> upsMonitor(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                              @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int upsMonitorCountAll(@Param("link_id") String linkId);
 
 
-    List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsFaultHistory> upsFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                          @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int upsFaultCountAll(@Param("link_id") String linkId);
 
-    List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size, LocalDateTime startDate, LocalDateTime endDate);
+    List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                      @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
+                                      @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
     int upsRunCountAll(@Param("link_id") String linkId);
 
