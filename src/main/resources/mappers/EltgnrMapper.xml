@@ -42,11 +42,13 @@
     </select>
 
     <select id="eltgnrAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM ELTGNR_ALARM_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM ELTGNR_ALARM_HISTORY WHERE LINK_ID = #{link_id} AND ALARM_DATETIME >= #{startDate}
+                                                    AND ALARM_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="eltgnrRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM ELTGNR_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM ELTGNR_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                  AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
     <insert id="eltgnrEnroll">

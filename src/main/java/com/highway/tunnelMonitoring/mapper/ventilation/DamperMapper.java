@@ -32,7 +32,8 @@ public interface DamperMapper {
                                                    @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                                    @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int damperRunCountAll(@Param("link_id") String linkId);
+    int damperRunCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     int damperMonitorCountAll(@Param("link_id") String linkId);
 

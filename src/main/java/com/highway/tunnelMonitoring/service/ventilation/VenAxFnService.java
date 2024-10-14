@@ -56,7 +56,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<VenAxFnFaultHistory> list = venAxFnMapper.venAxFnFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = venAxFnMapper.venAxFnFaultCountAll(linkId);
+        int total = venAxFnMapper.venAxFnFaultCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -65,7 +65,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<VenAxFnRunHistory> list = venAxFnMapper.venAxFnRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = venAxFnMapper.venAxFnRunCountAll(linkId);
+        int total = venAxFnMapper.venAxFnRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -74,7 +74,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     public Result<VenAxFnStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<VenAxFnStat> list = venAxFnMapper.venAxFnStat(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = venAxFnMapper.venAxFnStatCountAll(linkId);
+        int total = venAxFnMapper.venAxFnStatCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

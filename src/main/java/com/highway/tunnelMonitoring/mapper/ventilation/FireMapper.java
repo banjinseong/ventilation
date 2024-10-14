@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
-
 public interface FireMapper {
 
 
@@ -20,13 +19,14 @@ public interface FireMapper {
 
     int fireMonitorCountAll();
 
-    int fireAlarmCountAll(@Param("link_id") String linkId);
+    int fireAlarmCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<FireAlarmHistory> fireAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                               @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                               @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int fireStatCountAll();
+    int fireStatCountAll(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     List<FireStat> fireStat(@Param("offset") int offset, @Param("limit") int size,
                               @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,

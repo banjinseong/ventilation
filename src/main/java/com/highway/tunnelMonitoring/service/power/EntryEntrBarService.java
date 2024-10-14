@@ -58,7 +58,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<EntryEntrBarFaultHistory> list = entryEntrBarMapper.entryEntrBarFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = entryEntrBarMapper.entryEntrBarFaultCountAll(linkId);
+        int total = entryEntrBarMapper.entryEntrBarFaultCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -67,7 +67,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     public Result<EntryEntrBarRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<EntryEntrBarRunHistory> list = entryEntrBarMapper.entryEntrBarRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = entryEntrBarMapper.entryEntrBarRunCountAll(linkId);
+        int total = entryEntrBarMapper.entryEntrBarRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

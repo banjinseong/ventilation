@@ -33,7 +33,8 @@ public interface FrplgMapper {
                                               @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                               @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int frplgAlarmCountAll(@Param("link_id") String linkId);
+    int frplgAlarmCountAll(@Param("link_id") String linkId,
+                           @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 
     FrplgSttus frplgFindSttus(@Param("frplg_id") String frplgId, @Param("link_id") String linkId);

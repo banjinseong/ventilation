@@ -31,7 +31,8 @@ public interface SwtbrdMapper {
 
     int swtbrdMonitorCountAll(@Param("link_id") String linkId);
 
-    int swtbrdAlarmCountAll(@Param("link_id") String linkId);
+    int swtbrdAlarmCountAll(@Param("link_id") String linkId,
+                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<SwtbrdAlarmHistory> swtbrdAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                                 @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
@@ -42,9 +43,11 @@ public interface SwtbrdMapper {
                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int swtbrdRunCountAll(@Param("link_id") String linkId);
+    int swtbrdRunCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    int swtbrdStatCountAll(@Param("link_id") String linkId);
+    int swtbrdStatCountAll(@Param("link_id") String linkId,
+                           @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     List<SwtbrdStat> swtbrdStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                 @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,

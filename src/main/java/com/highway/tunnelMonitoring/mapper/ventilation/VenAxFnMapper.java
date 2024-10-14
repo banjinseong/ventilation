@@ -30,11 +30,14 @@ public interface VenAxFnMapper {
 
     int venAxFnMonitorCountAll(@Param("link_id") String linkId);
 
-    int venAxFnFaultCountAll(@Param("link_id") String linkId);
+    int venAxFnFaultCountAll(@Param("link_id") String linkId,
+                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    int venAxFnRunCountAll(@Param("link_id") String linkId);
+    int venAxFnRunCountAll(@Param("link_id") String linkId,
+                           @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    int venAxFnStatCountAll(@Param("link_id") String linkId);
+    int venAxFnStatCountAll(@Param("link_id") String linkId,
+                            @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     List<VenAxFnFaultHistory> venAxFnFaultHistory(@Param("link_id") String linkId,@Param("offset") int offset, @Param("limit") int size,
                                                   @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,

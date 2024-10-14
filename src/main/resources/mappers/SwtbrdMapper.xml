@@ -42,11 +42,13 @@
     </select>
 
     <select id="swtbrdAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM SWTBRD_ALARM_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM SWTBRD_ALARM_HISTORY WHERE LINK_ID = #{link_id} AND ALARM_DATETIME >= #{startDate}
+                                                    AND ALARM_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="swtbrdRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM SWTBRD_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM SWTBRD_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                  AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
     <insert id="swtbrdEnroll">

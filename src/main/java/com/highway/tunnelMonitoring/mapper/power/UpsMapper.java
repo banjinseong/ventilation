@@ -37,13 +37,15 @@ public interface UpsMapper {
                                           @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                           @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int upsFaultCountAll(@Param("link_id") String linkId);
+    int upsFaultCountAll(@Param("link_id") String linkId,
+                         @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<UpsRunHistory> upsRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                       @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                       @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int upsRunCountAll(@Param("link_id") String linkId);
+    int upsRunCountAll(@Param("link_id") String linkId,
+                       @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 
     UpsSttus upsFindSttus(@Param("ups_id") String upsId, @Param("link_id") String linkId);

@@ -4,9 +4,11 @@ import com.highway.tunnelMonitoring.domain.power.frplg.FrplgSttus;
 import com.highway.tunnelMonitoring.domain.power.rect.Rect;
 import com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
+import com.highway.tunnelMonitoring.domain.power.rect.RectStat;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,11 +34,24 @@ public interface RectMapper {
 
     int rectMonitorCountAll(@Param("link_id") String linkId);
 
-    int rectAlarmCountAll(@Param("link_id") String linkId);
+    int rectAlarmCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<RectAlarmHistory> rectAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
+
+
+    int rectStatCountAll(@Param("link_id") String linkId,
+                           @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+
+    List<RectStat> rectStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
+                                @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,
+                                @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
+
+
+    //매 자정 통계 기록
+    void rectRecordStat();
 
 
     RectSttus rectFindSttus(@Param("rect_id") String rectId, @Param("link_id") String linkId);

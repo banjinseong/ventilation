@@ -29,9 +29,11 @@ public interface JetPanMapper {
 
     int jetPanMonitorCountAll(@Param("link_id") String linkId);
 
-    int jetPanFaultCountAll(@Param("link_id") String linkId);
+    int jetPanFaultCountAll(@Param("link_id") String linkId,
+                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    int jetPanRunCountAll(@Param("link_id") String linkId);
+    int jetPanRunCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<JetPanFaultHistory> jetPanFaultHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                                 @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
@@ -41,7 +43,8 @@ public interface JetPanMapper {
                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int jetPanStatCountAll(@Param("link_id") String linkId);
+    int jetPanStatCountAll(@Param("link_id") String linkId,
+                           @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     List<JetPanStat> jetPanStat(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                 @Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate,

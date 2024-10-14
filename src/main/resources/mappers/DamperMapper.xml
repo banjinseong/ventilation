@@ -42,7 +42,8 @@
     </select>
 
     <select id="damperRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM EXHAUST_DAMPER_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM EXHAUST_DAMPER_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                          AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
 

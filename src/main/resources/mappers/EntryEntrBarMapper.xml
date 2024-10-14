@@ -42,11 +42,13 @@
     </select>
 
     <select id="entryEntrBarFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_FAULT_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_FAULT_HISTORY WHERE LINK_ID = #{link_id} AND FAULT_START_DATETIME >= #{startDate}
+                                                            AND FAULT_START_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="entryEntrBarRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM ENTRY_ENTR_BAR_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                          AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
 

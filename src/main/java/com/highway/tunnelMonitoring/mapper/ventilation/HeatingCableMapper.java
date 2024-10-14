@@ -41,9 +41,11 @@ public interface HeatingCableMapper {
                                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int heatingCableRunCountAll(@Param("link_id") String linkId);
+    int heatingCableRunCountAll(@Param("link_id") String linkId,
+                                @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
-    int heatingCableAlarmCountAll(@Param("link_id") String linkId);
+    int heatingCableAlarmCountAll(@Param("link_id") String linkId,
+                                  @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 
     HeatingCableSttus cableFindSttus(@Param("cable_id") String cableId, @Param("link_id") String linkId);

@@ -56,7 +56,7 @@ public class DamperService implements CrudService<ExhaustDamper> {
     public Result<ExhaustDamperRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<ExhaustDamperRunHistory> list = damperMapper.damperRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = damperMapper.damperRunCountAll(linkId);
+        int total = damperMapper.damperRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

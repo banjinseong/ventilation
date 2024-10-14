@@ -5,11 +5,14 @@ import com.highway.tunnelMonitoring.domain.power.eltgnr.EltgnrAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.Rect;
 import com.highway.tunnelMonitoring.domain.power.rect.RectAlarmHistory;
 import com.highway.tunnelMonitoring.domain.power.rect.RectSttus;
+import com.highway.tunnelMonitoring.domain.power.rect.RectStat;
 import com.highway.tunnelMonitoring.mapper.power.RectMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -57,9 +60,24 @@ public class RectService implements CrudService<Rect> {
     public Result<RectAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<RectAlarmHistory> list = rectMapper.rectAlarmHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = rectMapper.rectAlarmCountAll(linkId);
+        int total = rectMapper.rectAlarmCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
+    }
+
+    public Result<RectStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
+        int offset = (page - 1) * size;
+        List<RectStat> list = rectMapper.rectStat(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
+        int total = rectMapper.rectStatCountAll(linkId, startDate, endDate);
+        int totalPages = (int) Math.ceil((double) total / size);
+        return new Result<>(list, total, page, totalPages);
+
+    }
+
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void rectRecordStat(){
+        rectMapper.rectRecordStat();
     }
 }

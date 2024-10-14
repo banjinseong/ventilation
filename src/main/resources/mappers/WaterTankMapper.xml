@@ -42,7 +42,8 @@
     </select>
 
     <select id="waterTankAlarmCountAll" resultType="int">
-        SELECT COUNT(*) FROM WATER_TANK_ALARM_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM WATER_TANK_ALARM_HISTORY WHERE LINK_ID = #{link_id} AND ALARM_DATETIME >= #{startDate}
+                                                        AND ALARM_DATETIME &lt;= #{endDate}
     </select>
 
     <insert id="waterTankEnroll">

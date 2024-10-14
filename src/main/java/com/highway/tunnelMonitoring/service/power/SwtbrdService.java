@@ -56,7 +56,7 @@ public class SwtbrdService implements CrudService<Swtbrd> {
     public Result<SwtbrdAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<SwtbrdAlarmHistory> list = swtbrdMapper.swtbrdAlarmHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = swtbrdMapper.swtbrdAlarmCountAll(linkId);
+        int total = swtbrdMapper.swtbrdAlarmCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -65,7 +65,7 @@ public class SwtbrdService implements CrudService<Swtbrd> {
     public Result<SwtbrdRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<SwtbrdRunHistory> list = swtbrdMapper.swtbrdRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = swtbrdMapper.swtbrdRunCountAll(linkId);
+        int total = swtbrdMapper.swtbrdRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -74,7 +74,7 @@ public class SwtbrdService implements CrudService<Swtbrd> {
     public Result<SwtbrdStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<SwtbrdStat> list = swtbrdMapper.swtbrdStat(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = swtbrdMapper.swtbrdStatCountAll(linkId);
+        int total = swtbrdMapper.swtbrdStatCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

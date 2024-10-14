@@ -63,7 +63,7 @@ public class PumpService implements CrudService<Pump> {
     public Result<PumpFaultHistory> faultHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<PumpFaultHistory> list = pumpMapper.pumpFaultHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = pumpMapper.pumpFaultCountAll(linkId);
+        int total = pumpMapper.pumpFaultCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -72,7 +72,7 @@ public class PumpService implements CrudService<Pump> {
     public Result<PumpRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<PumpRunHistory> list = pumpMapper.pumpRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = pumpMapper.pumpRunCountAll(linkId);
+        int total = pumpMapper.pumpRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -81,7 +81,7 @@ public class PumpService implements CrudService<Pump> {
     public Result<PumpStat> stat(String linkId, int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<PumpStat> list = pumpMapper.pumpStat(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = pumpMapper.pumpStatCountAll(linkId);
+        int total = pumpMapper.pumpStatCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

@@ -30,7 +30,8 @@ public interface EltgnrMapper {
 
     int eltgnrMonitorCountAll(@Param("link_id") String linkId);
 
-    int eltgnrAlarmCountAll(@Param("link_id") String linkId);
+    int eltgnrAlarmCountAll(@Param("link_id") String linkId,
+                            @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     List<EltgnrAlarmHistory> eltgnrAlarmHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                                 @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
@@ -41,7 +42,8 @@ public interface EltgnrMapper {
                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int eltgnrRunCountAll(@Param("link_id") String linkId);
+    int eltgnrRunCountAll(@Param("link_id") String linkId,
+                          @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 
     EltgnrSttus eltgnrFindSttus(@Param("eltgnr_id") String eltgnrId, @Param("link_id") String linkId);

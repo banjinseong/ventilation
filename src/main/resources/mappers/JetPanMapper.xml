@@ -39,15 +39,18 @@
     </select>
 
     <select id="jetPanFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_FAULT_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM JET_PAN_FAULT_HISTORY WHERE LINK_ID = #{link_id} AND FAULT_START_DATETIME >= #{startDate}
+                                                     AND FAULT_START_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="jetPanRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM JET_PAN_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                   AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="jetPanStatCountAll" resultType="int">
-        SELECT COUNT(*) FROM JET_PAN_STAT WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM JET_PAN_STAT WHERE LINK_ID = #{link_id} AND RECORD_DATE >= #{startDate}
+                                            AND RECORD_DATE &lt;= #{endDate}
     </select>
 
 

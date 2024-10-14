@@ -34,14 +34,16 @@ public interface EntryEntrBarMapper {
                                                             @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                                             @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int entryEntrBarFaultCountAll(@Param("link_id") String linkId);
+    int entryEntrBarFaultCountAll(@Param("link_id") String linkId,
+                                  @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
 
     List<EntryEntrBarRunHistory> entryEntrBarRunHistory(@Param("link_id") String linkId, @Param("offset") int offset, @Param("limit") int size,
                                                         @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate,
                                                         @Param("sort_column") String sortColumn, @Param("sort_direction") String sortDirection);
 
-    int entryEntrBarRunCountAll(@Param("link_id") String linkId);
+    int entryEntrBarRunCountAll(@Param("link_id") String linkId,
+                                @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 
     EntryEntrBarSttus entryEntrBarFindSttus(@Param("entryEntrBar_id") String entryEntrBarId, @Param("link_id") String linkId);
 

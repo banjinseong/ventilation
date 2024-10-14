@@ -30,7 +30,7 @@ public class FireService {
     public Result<FireAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<FireAlarmHistory> list = fireMapper.fireAlarmHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = fireMapper.fireAlarmCountAll(linkId);
+        int total = fireMapper.fireAlarmCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -38,7 +38,7 @@ public class FireService {
     public Result<FireStat> stat(int page, int size, LocalDate startDate, LocalDate endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<FireStat> list = fireMapper.fireStat(offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = fireMapper.fireStatCountAll();
+        int total = fireMapper.fireStatCountAll(startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 

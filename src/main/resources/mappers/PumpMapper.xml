@@ -42,15 +42,18 @@
     </select>
 
     <select id="pumpFaultCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_FAULT_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM PUMP_FAULT_HISTORY WHERE LINK_ID = #{link_id} AND FAULT_START_DATETIME >= #{startDate}
+                                                  AND FAULT_START_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="pumpRunCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_RUN_HISTORY WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM PUMP_RUN_HISTORY WHERE LINK_ID = #{link_id} AND RUN_START_DATETIME >= #{startDate}
+                                                AND RUN_START_DATETIME &lt;= #{endDate}
     </select>
 
     <select id="pumpStatCountAll" resultType="int">
-        SELECT COUNT(*) FROM PUMP_STAT WHERE LINK_ID = #{link_id}
+        SELECT COUNT(*) FROM PUMP_STAT WHERE LINK_ID = #{link_id} AND RECORD_DATE >= #{startDate}
+                                         AND RECORD_DATE &lt;= #{endDate}
     </select>
 
 

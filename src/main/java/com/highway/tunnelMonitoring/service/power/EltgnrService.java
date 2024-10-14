@@ -57,7 +57,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrAlarmHistory> alarmHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<EltgnrAlarmHistory> list = eltgnrMapper.eltgnrAlarmHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = eltgnrMapper.eltgnrAlarmCountAll(linkId);
+        int total = eltgnrMapper.eltgnrAlarmCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
@@ -66,7 +66,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     public Result<EltgnrRunHistory> runHistory(String linkId, int page, int size, LocalDateTime startDate, LocalDateTime endDate, String sortColumn, String sortDirection) {
         int offset = (page - 1) * size;
         List<EltgnrRunHistory> list = eltgnrMapper.eltgnrRunHistory(linkId, offset, size, startDate, endDate, sortColumn, sortDirection);
-        int total = eltgnrMapper.eltgnrRunCountAll(linkId);
+        int total = eltgnrMapper.eltgnrRunCountAll(linkId, startDate, endDate);
         int totalPages = (int) Math.ceil((double) total / size);
         return new Result<>(list, total, page, totalPages);
 
