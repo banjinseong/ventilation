@@ -34,6 +34,7 @@ public class EltgnrService implements CrudService<Eltgnr> {
     @Override
     public void enroll(Eltgnr eltgnr){
         eltgnrMapper.eltgnrEnroll(eltgnr);
+        eltgnrMapper.eltgnrSttusEnroll(eltgnr.getEltgnr_id(),eltgnr.getLink_id());
     }
 
     @Override

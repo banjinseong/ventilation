@@ -21,6 +21,11 @@ public interface UpsMapper {
 
     //데이터 등록
     void upsEnroll(Ups ups);
+
+
+    void upsSttusEnroll(@Param("ups_id") String upsId, @Param("link_id") String linkId);
+
+
     //데이터 업데이트
     void upsUpdate(Ups ups);
 

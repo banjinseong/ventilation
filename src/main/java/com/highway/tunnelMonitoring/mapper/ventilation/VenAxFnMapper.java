@@ -19,6 +19,9 @@ public interface VenAxFnMapper {
 
     //데이터 등록
     void venAxFnEnroll(VenAxFn venAxfn);
+
+    void venAxFnSttusEnroll(@Param("venAxFn_id") String venAxFnId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void venAxFnUpdate(VenAxFn venAxfn);
 

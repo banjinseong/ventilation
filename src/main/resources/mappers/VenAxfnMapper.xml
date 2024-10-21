@@ -62,6 +62,11 @@
         values(#{ven_ax_fn_id}, #{link_id}, #{fan_type}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="venAxFnSttusEnroll">
+        insert into VEN_AX_FN_STTUS(VEN_AX_FN_ID, link_id)
+        values(#{ven_ax_fn_id}, #{link_id})
+    </insert>
+
     <update id="venAxFnUpdate">
         update VEN_AX_FN set instl_lc = #{instl_lc}, instl_de = #{instl_de}
         where VEN_AX_FN_ID = #{ven_ax_fn_id} and LINK_ID = #{link_id}

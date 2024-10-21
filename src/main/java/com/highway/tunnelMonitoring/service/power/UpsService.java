@@ -34,6 +34,7 @@ public class UpsService implements CrudService<Ups> {
     @Override
     public void enroll(Ups ups){
         upsMapper.upsEnroll(ups);
+        upsMapper.upsSttusEnroll(ups.getUps_id(), ups.getLink_id());
     }
 
     @Override

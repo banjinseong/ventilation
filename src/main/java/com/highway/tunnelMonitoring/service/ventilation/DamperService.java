@@ -32,6 +32,7 @@ public class DamperService implements CrudService<ExhaustDamper> {
     @Override
     public void enroll(ExhaustDamper exhaustDamper){
         damperMapper.damperEnroll(exhaustDamper);
+        damperMapper.damperSttusEnroll(exhaustDamper.getDamper_id(), exhaustDamper.getLink_id());
     }
 
     @Override

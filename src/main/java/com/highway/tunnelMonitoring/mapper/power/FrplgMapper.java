@@ -18,6 +18,9 @@ public interface FrplgMapper {
     int frplgCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void frplgEnroll(Frplg frplg);
+
+    void frplgSttusEnroll(@Param("frplg_id") String frplgId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void frplgUpdate(Frplg frplg);
 

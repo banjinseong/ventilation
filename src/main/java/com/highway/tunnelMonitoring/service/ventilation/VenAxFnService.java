@@ -32,6 +32,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     @Override
     public void enroll(VenAxFn venAxfn){
         venAxFnMapper.venAxFnEnroll(venAxfn);
+        venAxFnMapper.venAxFnSttusEnroll(venAxfn.getVen_ax_fn_id(), venAxfn.getLink_id());
     }
 
     @Override

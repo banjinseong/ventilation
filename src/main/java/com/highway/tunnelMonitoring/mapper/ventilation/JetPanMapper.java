@@ -18,6 +18,9 @@ public interface JetPanMapper {
 
     //데이터 등록
     void jetPanEnroll(JetPan jetPan);
+
+    void jetPanSttusEnroll(@Param("jetPan_id") String jetPanId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void jetPanUpdate(JetPan jetPan);
 

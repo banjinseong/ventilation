@@ -56,6 +56,12 @@
         values(#{swtbrd_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
     </insert>
 
+
+    <insert id="swtbrdSttusEnroll">
+        insert into SWTBRD_STTUS(SWTBRD_ID, LINK_ID)
+        values(#{swtbrd_id}, #{link_id})
+    </insert>
+
     <update id="swtbrdUpdate">
         update swtbrd set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where SWTBRD_ID = #{swtbrd_id} and LINK_ID = #{link_id}

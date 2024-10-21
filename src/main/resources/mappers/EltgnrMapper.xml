@@ -56,6 +56,11 @@
         values(#{eltgnr_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="eltgnrSttusEnroll">
+        insert into ELTGNR_STTUS(ELTGNR_ID, LINK_ID)
+        values(#{eltgnr_id}, #{link_id})
+    </insert>
+
     <update id="eltgnrUpdate">
         update eltgnr set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where ELTGNR_ID = #{eltgnr_id} and LINK_ID = #{link_id}

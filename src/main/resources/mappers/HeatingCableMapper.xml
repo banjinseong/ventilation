@@ -56,6 +56,11 @@
         values(#{cable_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="heatingCableSttusEnroll">
+        insert into HEATING_CABLE_STTUS(CABLE_ID, LINK_ID)
+        values(#{cable_id}, #{link_id})
+    </insert>
+
     <update id="heatingCableUpdate">
         update HEATING_CABLE set INSTL_DE = #{instl_de}
         where CABLE_ID = #{cable_id} and LINK_ID = #{link_id}

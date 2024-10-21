@@ -33,6 +33,7 @@ public class FrplgService implements CrudService<Frplg> {
     @Override
     public void enroll(Frplg frplg){
         frplgMapper.frplgEnroll(frplg);
+        frplgMapper.frplgSttusEnroll(frplg.getFrplg_id(),frplg.getLink_id());
     }
 
     @Override

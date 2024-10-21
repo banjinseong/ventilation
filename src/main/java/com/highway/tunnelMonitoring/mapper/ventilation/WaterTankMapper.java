@@ -20,6 +20,9 @@ public interface WaterTankMapper {
 
     //데이터 등록
     void waterTankEnroll(WaterTank waterTank);
+
+    void waterTankSttusEnroll(@Param("tank_id") String tankId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void waterTankUpdate(WaterTank waterTank);
 

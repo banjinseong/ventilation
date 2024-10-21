@@ -33,6 +33,7 @@ public class SwtbrdService implements CrudService<Swtbrd> {
     @Override
     public void enroll(Swtbrd swtbrd){
         swtbrdMapper.swtbrdEnroll(swtbrd);
+        swtbrdMapper.swtbrdSttusEnroll(swtbrd.getSwtbrd_id(), swtbrd.getLink_id());
     }
 
     @Override

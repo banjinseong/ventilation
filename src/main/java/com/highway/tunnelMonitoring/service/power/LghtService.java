@@ -28,6 +28,7 @@ public class LghtService implements CrudService<Lght> {
     @Override
     public void enroll(Lght lght){
         lghtMapper.lghtEnroll(lght);
+        lghtMapper.lghtSttusEnroll(lght.getLght_id(), lght.getLink_id());
     }
 
     @Override

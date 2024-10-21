@@ -37,6 +37,7 @@ public class RectService implements CrudService<Rect> {
     @Override
     public void enroll(Rect rect){
         rectMapper.rectEnroll(rect);
+        rectMapper.rectSttusEnroll(rect.getRect_id(), rect.getLink_id());
     }
 
     @Override

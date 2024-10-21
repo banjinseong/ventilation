@@ -19,6 +19,10 @@ public interface DamperMapper {
 //    ExhaustDamper findOne(String cmo_msrins_no);
     //데이터 등록
     void damperEnroll(ExhaustDamper exhaustDamper);
+
+    void damperSttusEnroll(@Param("damper_id") String damperId, @Param("link_id") String linkId);
+
+
     //데이터 업데이트
     void damperUpdate(ExhaustDamper exhaustDamper);
 

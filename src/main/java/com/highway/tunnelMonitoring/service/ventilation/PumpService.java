@@ -38,6 +38,7 @@ public class PumpService implements CrudService<Pump> {
     @Override
     public void enroll(Pump pump){
         pumpMapper.pumpEnroll(pump);
+        pumpMapper.pumpSttusEnroll(pump.getPump_id(), pump.getLink_id());
     }
 
     @Override

@@ -59,6 +59,11 @@
         values(#{jet_pan_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="jetPanSttusEnroll">
+        insert into JET_PAN_STTUS(JET_PAN_ID, link_id)
+        values(#{jet_pan_id}, #{link_id})
+    </insert>
+
     <update id="jetPanUpdate">
         update JET_PAN set instl_lc = #{instl_lc}, instl_de = #{instl_de}
         where JET_PAN_ID = #{jet_pan_id} and LINK_ID = #{link_id}

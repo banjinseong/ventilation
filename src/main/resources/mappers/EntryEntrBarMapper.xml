@@ -53,8 +53,14 @@
 
 
     <insert id="entryEntrBarEnroll">
-        insert into entry_entr_bar(entry_entr_bar_id, MODEL_NM, X_CRDNT, Y_CRDNT, link_id, instl_lc, instl_de)
+        insert into entry_entr_bar(entry_entr_bar_id,link_id, MODEL_NM, X_CRDNT, Y_CRDNT, instl_lc, instl_de)
         values(#{entry_entr_bar_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
+    </insert>
+
+
+    <insert id="entryEntrBarSttusEnroll">
+        insert into ENTRY_ENTR_BAR_STTUS(entry_entr_bar_id, link_id)
+        values(#{entry_entr_bar_id}, #{link_id})
     </insert>
 
     <update id="entryEntrBarUpdate">

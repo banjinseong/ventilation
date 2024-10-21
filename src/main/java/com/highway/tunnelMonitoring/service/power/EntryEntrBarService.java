@@ -35,6 +35,7 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
     @Override
     public void enroll(EntryEntrBar entryEntrBar){
         entryEntrBarMapper.entryEntrBarEnroll(entryEntrBar);
+        entryEntrBarMapper.entryEntrBarSttusEnroll(entryEntrBar.getEntry_entr_bar_id(),entryEntrBar.getLink_id());
     }
 
     @Override

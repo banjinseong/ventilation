@@ -52,6 +52,12 @@
         values(#{rect_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+
+    <insert id="rectSttusEnroll">
+        insert into RECT_STTUS(rect_id, LINK_ID)
+        values(#{rect_id}, #{link_id})
+    </insert>
+
     <update id="rectUpdate">
         update rect set instl_lc = #{instl_lc}, instl_de = #{instl_de}
         where rect_id = #{rect_id} and LINK_ID = #{link_id}

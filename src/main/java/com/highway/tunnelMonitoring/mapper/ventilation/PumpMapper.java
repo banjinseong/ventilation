@@ -19,6 +19,10 @@ public interface PumpMapper {
 
     //데이터 등록
     void pumpEnroll(Pump pump);
+
+
+    void pumpSttusEnroll(@Param("pump_id") String pumpId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void pumpUpdate(Pump pump);
 

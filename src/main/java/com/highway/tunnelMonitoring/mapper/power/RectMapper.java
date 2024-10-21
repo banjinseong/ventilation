@@ -23,6 +23,9 @@ public interface RectMapper {
     //데이터 등록
     void rectEnroll(Rect rect);
 
+
+    void rectSttusEnroll(@Param("rect_id") String rectId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void rectUpdate(Rect rect);
 

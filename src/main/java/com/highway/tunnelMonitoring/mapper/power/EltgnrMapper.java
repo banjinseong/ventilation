@@ -19,6 +19,9 @@ public interface EltgnrMapper {
     int eltgnrCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void eltgnrEnroll(Eltgnr eltgnr);
+
+    void eltgnrSttusEnroll(@Param("eltgnr_id") String eltgnrId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void eltgnrUpdate(Eltgnr eltgnr);
 

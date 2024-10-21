@@ -22,6 +22,9 @@ public interface HeatingCableMapper {
 
     //데이터 등록
     void heatingCableEnroll(HeatingCable heatingCable);
+
+    void heatingCableSttusEnroll(@Param("cable_id") String cableId, @Param("link_id") String linkId);
+
     //데이터 업데이트
     void heatingCableUpdate(HeatingCable heatingCable);
 

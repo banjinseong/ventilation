@@ -33,6 +33,7 @@ public class WaterTankService implements CrudService<WaterTank> {
     @Override
     public void enroll(WaterTank waterTank){
         waterTankMapper.waterTankEnroll(waterTank);
+        waterTankMapper.waterTankSttusEnroll(waterTank.getTank_id(),waterTank.getLink_id());
     }
 
     @Override

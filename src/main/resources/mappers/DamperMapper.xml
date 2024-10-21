@@ -52,6 +52,12 @@
         values(#{damper_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+
+    <insert id="damperSttusEnroll">
+        insert into EXHAUST_DAMPER_STTUS(DAMPER_ID, LINK_ID)
+        values(#{damper_id}, #{link_id})
+    </insert>
+
     <update id="damperUpdate">
         update EXHAUST_DAMPER set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where DAMPER_ID = #{damper_id} and LINK_ID = #{link_id}

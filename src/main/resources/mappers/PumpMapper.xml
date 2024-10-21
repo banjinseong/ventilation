@@ -62,6 +62,11 @@
         values(#{pump_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="pumpSttusEnroll">
+        insert into PUMP_STTUS(PUMP_ID, LINK_ID)
+        values(#{pump_id}, #{link_id})
+    </insert>
+
     <update id="pumpUpdate">
         update PUMP set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where PUMP_ID = #{pump_id} and LINK_ID = #{link_id}

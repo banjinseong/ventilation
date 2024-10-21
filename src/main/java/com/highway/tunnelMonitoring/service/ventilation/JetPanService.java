@@ -34,6 +34,7 @@ public class JetPanService implements CrudService<JetPan> {
     @Override
     public void enroll(JetPan jetPan){
         jetPanMapper.jetPanEnroll(jetPan);
+        jetPanMapper.jetPanSttusEnroll(jetPan.getJet_pan_id(), jetPan.getLink_id());
     }
 
     @Override

@@ -56,6 +56,12 @@
         values(#{ups_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+
+    <insert id="upsSttusEnroll">
+        insert into UPS_STTUS(ups_id, LINK_ID)
+        values(#{ups_id}, #{link_id})
+    </insert>
+
     <update id="upsUpdate">
         update ups set instl_lc = #{instl_lc}, instl_de = #{instl_de}
         where ups_id = #{ups_id} and LINK_ID = #{link_id}

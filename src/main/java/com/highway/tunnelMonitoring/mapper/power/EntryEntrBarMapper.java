@@ -19,6 +19,9 @@ public interface EntryEntrBarMapper {
     int entryEntrBarCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void entryEntrBarEnroll(EntryEntrBar entryEntrBar);
+
+
+    void entryEntrBarSttusEnroll(@Param("entryEntrBar_id") String entryEntrBarId, @Param("link_id") String linkId);
     //데이터 업데이트
     void entryEntrBarUpdate(EntryEntrBar entryEntrBar);
 

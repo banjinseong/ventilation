@@ -16,6 +16,10 @@ public interface LghtMapper {
     int lghtCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void lghtEnroll(Lght lght);
+
+    void lghtSttusEnroll(@Param("lght_id") String lghtId, @Param("link_id") String linkId);
+
+
     //데이터 업데이트
     void lghtUpdate(Lght lght);
 

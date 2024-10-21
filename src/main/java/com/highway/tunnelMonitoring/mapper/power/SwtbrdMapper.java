@@ -20,6 +20,11 @@ public interface SwtbrdMapper {
     int swtbrdCountAll(@Param("link_id") String linkId);
     //데이터 등록
     void swtbrdEnroll(Swtbrd swtbrd);
+
+
+    void swtbrdSttusEnroll(@Param("swtbrd_id") String swtbrdId, @Param("link_id") String linkId);
+
+
     //데이터 업데이트
     void swtbrdUpdate(Swtbrd swtbrd);
 

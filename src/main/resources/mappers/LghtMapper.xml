@@ -47,6 +47,11 @@
         values(#{lght_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt},  #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="lghtSttusEnroll">
+        insert into LGHT_STTUS(LGHT_ID, LINK_ID)
+        values(#{lght_id}, #{link_id})
+    </insert>
+
     <update id="lghtUpdate">
         update lght set instl_lc = #{instl_lc}, INSTL_DE = #{instl_de}
         where LGHT_ID = #{lght_id} and LINK_ID = #{link_id}

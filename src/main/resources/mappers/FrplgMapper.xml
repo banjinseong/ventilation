@@ -52,6 +52,11 @@
         values(#{frplg_id}, #{link_id}, #{model_nm}, #{x_crdnt}, #{y_crdnt}, #{instl_lc}, #{instl_de})
     </insert>
 
+    <insert id="frplgSttusEnroll">
+        insert into FRPLG_STTUS(frplg_id, link_id)
+        values(#{frplg_id}, #{link_id})
+    </insert>
+
     <update id="frplgUpdate">
         update frplg set instl_lc = #{instl_lc}, model_nm = #{model_nm}
         where frplg_id = #{frplg_id} and LINK_ID = #{link_id}

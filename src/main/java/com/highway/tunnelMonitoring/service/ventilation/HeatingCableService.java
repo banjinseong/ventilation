@@ -36,6 +36,7 @@ public class HeatingCableService implements CrudService<HeatingCable> {
     @Override
     public void enroll(HeatingCable heatingCable){
         heatingCableMapper.heatingCableEnroll(heatingCable);
+        heatingCableMapper.heatingCableSttusEnroll(heatingCable.getCable_id(), heatingCable.getLink_id());
     }
 
     @Override
