@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/ventilation/waterTank/*")
 public class WaterTankController extends BaseCrudController<WaterTank> {
 

@@ -9,11 +9,13 @@ import com.highway.tunnelMonitoring.mapper.ventilation.WaterTankMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class WaterTankService implements CrudService<WaterTank> {
 
@@ -31,17 +33,20 @@ public class WaterTankService implements CrudService<WaterTank> {
 //    public WaterTank findOne(String jet_pan_no){ return waterTankMapper.findOne(jet_pan_no); }
 
     @Override
+    @Transactional
     public void enroll(WaterTank waterTank){
         waterTankMapper.waterTankEnroll(waterTank);
         waterTankMapper.waterTankSttusEnroll(waterTank.getTank_id(),waterTank.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(WaterTank waterTank){
         waterTankMapper.waterTankUpdate(waterTank);
     }
 
     @Override
+    @Transactional
     public void delete(WaterTank waterTank){
         waterTankMapper.waterTankDelete(waterTank);
     }

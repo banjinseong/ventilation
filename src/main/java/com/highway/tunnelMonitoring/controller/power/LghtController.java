@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/lght/*")
 public class LghtController extends BaseCrudController<Lght> {
 

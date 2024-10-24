@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @RequestMapping("/ventilation/fire/*")
 public class FireController {

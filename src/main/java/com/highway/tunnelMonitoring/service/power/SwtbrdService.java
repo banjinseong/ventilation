@@ -7,12 +7,14 @@ import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class SwtbrdService implements CrudService<Swtbrd> {
 
@@ -31,17 +33,20 @@ public class SwtbrdService implements CrudService<Swtbrd> {
 //    public Swtbrd findOne(String swtbrd_no){ return swtbrdMapper.findOne(swtbrd_no); }
 
     @Override
+    @Transactional
     public void enroll(Swtbrd swtbrd){
         swtbrdMapper.swtbrdEnroll(swtbrd);
         swtbrdMapper.swtbrdSttusEnroll(swtbrd.getSwtbrd_id(), swtbrd.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Swtbrd swtbrd){
         swtbrdMapper.swtbrdUpdate(swtbrd);
     }
 
     @Override
+    @Transactional
     public void delete(Swtbrd swtbrd){
         swtbrdMapper.swtbrdDelete(swtbrd);
     }
@@ -83,6 +88,7 @@ public class SwtbrdService implements CrudService<Swtbrd> {
 
 
     @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
     public void swtbrdRecordStat(){
         swtbrdMapper.swtbrdRecordStat();
     }

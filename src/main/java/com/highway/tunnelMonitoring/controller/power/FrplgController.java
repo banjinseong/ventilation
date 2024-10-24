@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
  * 소화전
  */
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/frplg/*")
 public class FrplgController extends BaseCrudController<Frplg> {
 

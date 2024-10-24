@@ -7,12 +7,14 @@ import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class VenAxFnService implements CrudService<VenAxFn> {
 
@@ -30,17 +32,20 @@ public class VenAxFnService implements CrudService<VenAxFn> {
 //    public VenAxFn findOne(String ven_axfn_no){ return venAxFnMapper.findOne(ven_axfn_no); }
 
     @Override
+    @Transactional
     public void enroll(VenAxFn venAxfn){
         venAxFnMapper.venAxFnEnroll(venAxfn);
         venAxFnMapper.venAxFnSttusEnroll(venAxfn.getVen_ax_fn_id(), venAxfn.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(VenAxFn venAxfn){
         venAxFnMapper.venAxFnUpdate(venAxfn);
     }
 
     @Override
+    @Transactional
     public void delete(VenAxFn venAxfn){
         venAxFnMapper.venAxFnDelete(venAxfn);
     }
@@ -82,6 +87,7 @@ public class VenAxFnService implements CrudService<VenAxFn> {
     }
 
     @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
     public void venAxFnRecordStat(){
         venAxFnMapper.venAxFnRecordStat();
     }

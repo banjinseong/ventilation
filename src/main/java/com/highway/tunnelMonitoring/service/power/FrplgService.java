@@ -8,11 +8,13 @@ import com.highway.tunnelMonitoring.mapper.power.FrplgMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class FrplgService implements CrudService<Frplg> {
 
@@ -31,17 +33,20 @@ public class FrplgService implements CrudService<Frplg> {
 //    public Frplg findOne(String frplg_no){ return frplgMapper.findOne(frplg_no); }
 
     @Override
+    @Transactional
     public void enroll(Frplg frplg){
         frplgMapper.frplgEnroll(frplg);
         frplgMapper.frplgSttusEnroll(frplg.getFrplg_id(),frplg.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Frplg frplg){
         frplgMapper.frplgUpdate(frplg);
     }
 
     @Override
+    @Transactional
     public void delete(Frplg frplg){
         frplgMapper.frplgDelete(frplg);
     }

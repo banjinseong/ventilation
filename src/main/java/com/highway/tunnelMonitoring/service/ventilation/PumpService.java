@@ -13,12 +13,14 @@ import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class PumpService implements CrudService<Pump> {
 
@@ -36,17 +38,20 @@ public class PumpService implements CrudService<Pump> {
 //    public Pump findOne(String jet_pan_no){ return pumpMapper.findOne(jet_pan_no); }
 
     @Override
+    @Transactional
     public void enroll(Pump pump){
         pumpMapper.pumpEnroll(pump);
         pumpMapper.pumpSttusEnroll(pump.getPump_id(), pump.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Pump pump){
         pumpMapper.pumpUpdate(pump);
     }
 
     @Override
+    @Transactional
     public void delete(Pump pump){
         pumpMapper.pumpDelete(pump);
     }
@@ -89,6 +94,7 @@ public class PumpService implements CrudService<Pump> {
     }
 
     @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
     public void pumpRecordStat(){
         pumpMapper.pumpRecordStat();
     }

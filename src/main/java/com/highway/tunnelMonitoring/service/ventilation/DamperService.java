@@ -8,11 +8,13 @@ import com.highway.tunnelMonitoring.mapper.ventilation.DamperMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class DamperService implements CrudService<ExhaustDamper> {
 
@@ -30,17 +32,20 @@ public class DamperService implements CrudService<ExhaustDamper> {
 //    public ExhaustDamper findOne(String jet_pan_no){ return damperMapper.findOne(jet_pan_no); }
 
     @Override
+    @Transactional
     public void enroll(ExhaustDamper exhaustDamper){
         damperMapper.damperEnroll(exhaustDamper);
         damperMapper.damperSttusEnroll(exhaustDamper.getDamper_id(), exhaustDamper.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(ExhaustDamper exhaustDamper){
         damperMapper.damperUpdate(exhaustDamper);
     }
 
     @Override
+    @Transactional
     public void delete(ExhaustDamper exhaustDamper){
         damperMapper.damperDelete(exhaustDamper);
     }

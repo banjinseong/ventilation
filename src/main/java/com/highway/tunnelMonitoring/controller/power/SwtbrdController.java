@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/swtbrd/*")
 public class SwtbrdController extends BaseCrudController<Swtbrd> {
 

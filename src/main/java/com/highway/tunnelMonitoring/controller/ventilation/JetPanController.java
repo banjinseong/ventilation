@@ -17,7 +17,6 @@ import java.util.List;
 
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/ventilation/jetPan/*")
 public class JetPanController extends BaseCrudController<JetPan> {
 

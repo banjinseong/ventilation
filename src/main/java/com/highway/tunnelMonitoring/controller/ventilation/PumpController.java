@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/ventilation/pump/*")
 public class PumpController extends BaseCrudController<Pump> {
     

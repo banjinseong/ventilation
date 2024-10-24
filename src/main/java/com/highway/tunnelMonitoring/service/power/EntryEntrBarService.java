@@ -10,11 +10,13 @@ import com.highway.tunnelMonitoring.mapper.power.EntryEntrBarMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class EntryEntrBarService implements CrudService<EntryEntrBar> {
 
@@ -33,17 +35,20 @@ public class EntryEntrBarService implements CrudService<EntryEntrBar> {
 //    public EntryEntrBar findOne(String entry_entr_bar_no){ return entryEntrBarMapper.findOne(entry_entr_bar_no); }
 
     @Override
+    @Transactional
     public void enroll(EntryEntrBar entryEntrBar){
         entryEntrBarMapper.entryEntrBarEnroll(entryEntrBar);
         entryEntrBarMapper.entryEntrBarSttusEnroll(entryEntrBar.getEntry_entr_bar_id(),entryEntrBar.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(EntryEntrBar entryEntrBar){
         entryEntrBarMapper.entryEntrBarUpdate(entryEntrBar);
     }
 
     @Override
+    @Transactional
     public void delete(EntryEntrBar entryEntrBar){
         entryEntrBarMapper.entryEntrBarDelete(entryEntrBar);
     }

@@ -7,10 +7,12 @@ import com.highway.tunnelMonitoring.mapper.power.LghtMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class LghtService implements CrudService<Lght> {
 
@@ -26,17 +28,20 @@ public class LghtService implements CrudService<Lght> {
     }
 
     @Override
+    @Transactional
     public void enroll(Lght lght){
         lghtMapper.lghtEnroll(lght);
         lghtMapper.lghtSttusEnroll(lght.getLght_id(), lght.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Lght lght){
         lghtMapper.lghtUpdate(lght);
     }
 
     @Override
+    @Transactional
     public void delete(Lght lght){
         lghtMapper.lghtDelete(lght);
     }

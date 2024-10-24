@@ -11,12 +11,14 @@ import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class RectService implements CrudService<Rect> {
 
@@ -35,17 +37,20 @@ public class RectService implements CrudService<Rect> {
 //    public Rect findOne(String rect_no){ return rectMapper.findOne(rect_no); }
 
     @Override
+    @Transactional
     public void enroll(Rect rect){
         rectMapper.rectEnroll(rect);
         rectMapper.rectSttusEnroll(rect.getRect_id(), rect.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Rect rect){
         rectMapper.rectUpdate(rect);
     }
 
     @Override
+    @Transactional
     public void delete(Rect rect){
         rectMapper.rectDelete(rect);
     }
@@ -78,6 +83,7 @@ public class RectService implements CrudService<Rect> {
 
 
     @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
     public void rectRecordStat(){
         rectMapper.rectRecordStat();
     }

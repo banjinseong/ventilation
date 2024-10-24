@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
  * UPS (Uninterruptible Power Supply)
  */
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/ups/*")
 public class UpsController extends BaseCrudController<Ups> {
 

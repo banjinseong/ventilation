@@ -11,11 +11,13 @@ import com.highway.tunnelMonitoring.mapper.ventilation.HeatingCableMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class HeatingCableService implements CrudService<HeatingCable> {
 
@@ -34,17 +36,20 @@ public class HeatingCableService implements CrudService<HeatingCable> {
 //    public HeatingCable findOne(String jet_pan_no){ return heatingCableMapper.findOne(jet_pan_no); }
 
     @Override
+    @Transactional
     public void enroll(HeatingCable heatingCable){
         heatingCableMapper.heatingCableEnroll(heatingCable);
         heatingCableMapper.heatingCableSttusEnroll(heatingCable.getCable_id(), heatingCable.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(HeatingCable heatingCable){
         heatingCableMapper.heatingCableUpdate(heatingCable);
     }
 
     @Override
+    @Transactional
     public void delete(HeatingCable heatingCable){
         heatingCableMapper.heatingCableDelete(heatingCable);
     }

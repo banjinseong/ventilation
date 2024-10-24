@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDateTime;
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/ventilation/damper/*")
 public class DamperController extends BaseCrudController<ExhaustDamper> {
 

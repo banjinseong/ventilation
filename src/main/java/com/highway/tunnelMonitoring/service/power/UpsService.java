@@ -9,11 +9,13 @@ import com.highway.tunnelMonitoring.mapper.power.UpsMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UpsService implements CrudService<Ups> {
 
@@ -32,17 +34,20 @@ public class UpsService implements CrudService<Ups> {
 //    public Ups findOne(String ups_no){ return upsMapper.findOne(ups_no); }
 
     @Override
+    @Transactional
     public void enroll(Ups ups){
         upsMapper.upsEnroll(ups);
         upsMapper.upsSttusEnroll(ups.getUps_id(), ups.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Ups ups){
         upsMapper.upsUpdate(ups);
     }
 
     @Override
+    @Transactional
     public void delete(Ups ups){
         upsMapper.upsDelete(ups);
     }

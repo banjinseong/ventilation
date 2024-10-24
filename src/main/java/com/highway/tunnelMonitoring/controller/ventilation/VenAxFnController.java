@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 
 
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/ventilation/venAxFn/*")
 public class VenAxFnController extends BaseCrudController<VenAxFn> {
 

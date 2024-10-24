@@ -9,12 +9,14 @@ import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class JetPanService implements CrudService<JetPan> {
 
@@ -32,17 +34,20 @@ public class JetPanService implements CrudService<JetPan> {
 //    public JetPan findOne(String jet_pan_no){ return jetPanMapper.findOne(jet_pan_no); }
 
     @Override
+    @Transactional
     public void enroll(JetPan jetPan){
         jetPanMapper.jetPanEnroll(jetPan);
         jetPanMapper.jetPanSttusEnroll(jetPan.getJet_pan_id(), jetPan.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(JetPan jetPan){
         jetPanMapper.jetPanUpdate(jetPan);
     }
 
     @Override
+    @Transactional
     public void delete(JetPan jetPan){
         jetPanMapper.jetPanDelete(jetPan);
     }
@@ -85,11 +90,12 @@ public class JetPanService implements CrudService<JetPan> {
 
 
     @Scheduled(cron = "0 0 0 * * *")
+    @Transactional
     public void jetPanRecordStat(){
         jetPanMapper.jetPanRecordStat();
     }
 
-
+    @Transactional
     public void updateSttus(JetPanSttus jetPanSttus){
         jetPanMapper.jetPanUpdateSttus(jetPanSttus);
     }

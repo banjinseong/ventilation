@@ -21,7 +21,6 @@ import java.time.LocalDateTime;
  * 정류기
  */
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/rect/*")
 public class RectController extends BaseCrudController<Rect> {
 

@@ -23,7 +23,6 @@ import java.util.List;
  * 발전기
  */
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/eltgnr/*")
 public class EltgnrController extends BaseCrudController<Eltgnr> {
 

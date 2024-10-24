@@ -23,7 +23,6 @@ import java.time.LocalDateTime;
  * 진입 차단기
  */
 @RestController
-@Transactional(readOnly = true)
 @RequestMapping("/power/entryEntrBar/*")
 public class EntryEntrBarController extends BaseCrudController<EntryEntrBar> {
 

@@ -9,11 +9,13 @@ import com.highway.tunnelMonitoring.mapper.power.EltgnrMapper;
 import com.highway.tunnelMonitoring.service.CrudService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class EltgnrService implements CrudService<Eltgnr> {
 
@@ -32,17 +34,20 @@ public class EltgnrService implements CrudService<Eltgnr> {
 //    public Eltgnr findOne(String eltgnr_no){ return eltgnrMapper.findOne(eltgnr_no); }
 
     @Override
+    @Transactional
     public void enroll(Eltgnr eltgnr){
         eltgnrMapper.eltgnrEnroll(eltgnr);
         eltgnrMapper.eltgnrSttusEnroll(eltgnr.getEltgnr_id(),eltgnr.getLink_id());
     }
 
     @Override
+    @Transactional
     public void update(Eltgnr eltgnr){
         eltgnrMapper.eltgnrUpdate(eltgnr);
     }
 
     @Override
+    @Transactional
     public void delete(Eltgnr eltgnr){
         eltgnrMapper.eltgnrDelete(eltgnr);
     }
