@@ -263,19 +263,25 @@
 <!--        AND RECORD_DATE &lt;= #{endDate}-->
 <!--        ORDER BY-->
 <!--        <if test="sort_column == 'swtbrd_id'">-->
-<!--            TO_NUMBER(REGEXP_SUBSTR(JET_PAN_ID, '\d+'))-->
+<!--            TO_NUMBER(REGEXP_SUBSTR(swtbrd_id, '\d+'))-->
 <!--        </if>-->
 <!--        <if test="sort_column == 'record_date'">-->
 <!--            record_date-->
 <!--        </if>-->
-<!--        <if test="sort_column == 'run_time_hours'">-->
-<!--            run_time_hours-->
+<!--        <if test="sort_column == 'valid_pwrer_stat'">-->
+<!--            valid_pwrer_stat-->
 <!--        </if>-->
-<!--        <if test="sort_column == 'fault_count'">-->
-<!--            fault_count-->
+<!--        <if test="sort_column == 'r_uppt_ercrt_statt'">-->
+<!--            r_uppt_ercrt_statt-->
 <!--        </if>-->
-<!--        <if test="sort_column == 'run_count'">-->
-<!--            run_count-->
+<!--        <if test="sort_column == 's_uppt_ercrt_statt'">-->
+<!--            s_uppt_ercrt_statt-->
+<!--        </if>-->
+<!--        <if test="sort_column == 't_uppt_ercrt_statt'">-->
+<!--            t_uppt_ercrt_statt-->
+<!--        </if>-->
+<!--        <if test="sort_column == 'ocr_count'">-->
+<!--            ocr_count-->
 <!--        </if>-->
 <!--        <if test="sort_direction == 'asc'">-->
 <!--            ASC-->
@@ -290,6 +296,61 @@
 
 
 
+<!--    <insert id="swtbrdRecordStat">-->
+<!--        INSERT INTO swtbrd_stat (swtbrd_id, link_id, record_date, valid_pwrer_stat, r_uppt_ercrt_statt,-->
+<!--                                 s_uppt_ercrt_statt, t_uppt_ercrt_statt,ocr_count)-->
+<!--        SELECT-->
+<!--            r.swtbrd_id,-->
+<!--            r.link_id,-->
+<!--            TRUNC(SYSDATE - 1) AS record_date,  &#45;&#45; 어제 날짜 기준으로 기록-->
 
+<!--            &#45;&#45; 가동 시간 계산 (초 단위로 변환 후, 시간으로 변환)-->
+<!--            SUM(-->
+<!--                    CASE-->
+<!--                        &#45;&#45; 어제 시작되고 어제 종료된 경우-->
+<!--                        WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE - 1)-->
+<!--                            AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE - 1) THEN-->
+<!--                            (EXTRACT(HOUR FROM (r.run_end_datetime - r.run_start_datetime)) +-->
+<!--                             EXTRACT(MINUTE FROM (r.run_end_datetime - r.run_start_datetime)) / 60)  &#45;&#45; 시간과 분 계산-->
+
+<!--                    &#45;&#45; 어제 시작되고 아직 종료되지 않은 경우 (24시간에서 시작 시간만큼 뺌)-->
+<!--                        WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE - 1)-->
+<!--                            AND r.run_end_datetime IS NULL THEN-->
+<!--                            24 - (EXTRACT(HOUR FROM r.run_start_datetime) +-->
+<!--                                  EXTRACT(MINUTE FROM r.run_start_datetime) / 60)  &#45;&#45; 24시간에서 시작 시간을 뺀 값-->
+
+<!--                    &#45;&#45; 전날 시작되어 어제 종료된 경우 (종료 시간만 사용)-->
+<!--                        WHEN TRUNC(r.run_start_datetime) &lt; TRUNC(SYSDATE - 1)-->
+<!--                            AND TRUNC(r.run_end_datetime) = TRUNC(SYSDATE - 1) THEN-->
+<!--                            (EXTRACT(HOUR FROM r.run_end_datetime) +-->
+<!--                             EXTRACT(MINUTE FROM r.run_end_datetime) / 60)  &#45;&#45; 자정부터 종료 시점까지 시간 계산-->
+
+<!--                    &#45;&#45; 전날 시작되어 아직 종료되지 않은 경우 (24시간으로 설정)-->
+<!--                        WHEN TRUNC(r.run_start_datetime) &lt; TRUNC(SYSDATE - 1)-->
+<!--                            AND r.run_end_datetime IS NULL THEN-->
+<!--                            24  &#45;&#45; 자정부터 현재까지 24시간으로 설정-->
+
+<!--                        ELSE 0-->
+<!--                        END-->
+<!--            ) AS run_time_hours,  &#45;&#45; 시간을 시간 단위로 변환-->
+
+<!--            &#45;&#45; 고장 횟수 계산-->
+<!--            (SELECT COUNT(f.fault_start_datetime)-->
+<!--             FROM swtbrd_fault_history f-->
+<!--             WHERE f.swtbrd_id = r.swtbrd_id-->
+<!--               AND f.link_id = r.link_id-->
+<!--               AND TRUNC(f.fault_start_datetime) = TRUNC(SYSDATE - 1)) AS fault_count,-->
+
+<!--            &#45;&#45; 가동 횟수 계산-->
+<!--            COUNT(CASE WHEN TRUNC(r.run_start_datetime) = TRUNC(SYSDATE - 1) THEN 1 END) AS run_count-->
+
+
+<!--        FROM swtbrd_run_history r-->
+<!--        WHERE TRUNC(r.run_start_datetime) &lt;= TRUNC(SYSDATE - 1)-->
+<!--          AND (TRUNC(r.run_end_datetime) >= TRUNC(SYSDATE - 1)-->
+<!--            OR r.run_end_datetime IS NULL)-->
+<!--        GROUP BY r.swtbrd_id, r.link_id;-->
+
+<!--    </insert>-->
 
 </mapper>

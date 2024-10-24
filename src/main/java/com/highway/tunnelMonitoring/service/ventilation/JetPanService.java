@@ -90,4 +90,8 @@ public class JetPanService implements CrudService<JetPan> {
     }
 
 
+    public void updateSttus(JetPanSttus jetPanSttus){
+        jetPanMapper.jetPanUpdateSttus(jetPanSttus);
+    }
+
 }

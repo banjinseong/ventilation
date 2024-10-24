@@ -67,4 +67,6 @@ public class AuthQueryFilter extends OncePerRequestFilter {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(response.getWriter(), errorResponse);
     }
+
+
 }

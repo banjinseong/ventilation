@@ -27,7 +27,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
-        ErrorResponse errorResponse = new ErrorResponse("FORBIDDEN", "잘못된 접근입니다.");
+        ErrorResponse errorResponse = new ErrorResponse("FORBIDDEN", authException.getMessage());
 
         // 응답 설정
         response.setStatus(HttpServletResponse.SC_FORBIDDEN); // 403 상태 코드 설정
